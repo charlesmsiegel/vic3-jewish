@@ -1,0 +1,145 @@
+# Jewish Commercial Networks Effect
+activate_jewish_trade_networks = {
+	every_scope_state = {
+		limit = {
+			any_scope_pop = {
+				culture_is_jewish = yes
+				OR = {
+					pop_type = capitalists
+					pop_type = shopkeepers
+				}
+				pop_size >= 5000
+			}
+		}
+		
+		add_modifier = {
+			name = jewish_commercial_networks
+			months = -1
+		}
+	}
+	
+	# Enhanced trade routes with other Jewish communities
+	every_country = {
+		limit = {
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_size >= 25000
+			}
+			NOT = { THIS = root }
+		}
+		
+		# Improve trade relations
+		change_relations = {
+			country = root
+			value = 15
+		}
+		
+		# Establish trade agreements if possible
+		if = {
+			limit = {
+				can_form_diplomatic_pact = {
+					country = root
+					type = trade_agreement
+				}
+			}
+			create_diplomatic_pact = {
+				country = root
+				type = trade_agreement
+			}
+		}
+	}
+}
+
+# Kosher Food Industry Development
+develop_kosher_industry = {
+	capital = {
+		if = {
+			limit = {
+				NOT = { state_has_building = building_food_industry }
+			}
+			create_building = {
+				building = building_food_industry
+				level = 1
+			}
+		}
+		
+		add_modifier = {
+			name = kosher_food_production
+			months = -1
+		}
+	}
+	
+	# Spread to other Jewish population centers
+	every_scope_state = {
+		limit = {
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_size >= 15000
+			}
+			state_has_building = building_food_industry
+		}
+		
+		add_modifier = {
+			name = kosher_food_production
+			months = -1
+		}
+	}
+}
+
+# Jewish Banking Network Effect
+establish_jewish_banking = {
+	every_scope_state = {
+		limit = {
+			OR = {
+				is_capital = yes
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_type = capitalists
+					pop_size >= 10000
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				can_build = building_financial_district
+			}
+			create_building = {
+				building = building_financial_district
+				level = 1
+			}
+		}
+		
+		add_modifier = {
+			name = jewish_banking_networks
+			months = -1
+		}
+	}
+}
+
+# Hebrew Press and Publishing
+develop_hebrew_press = {
+	every_scope_state = {
+		limit = {
+			any_scope_pop = {
+				culture_is_jewish = yes
+				OR = {
+					pop_type = intellectuals
+					pop_type = clergymen
+				}
+				pop_size >= 5000
+			}
+		}
+		
+		add_modifier = {
+			name = hebrew_yiddish_press
+			months = -1
+		}
+	}
+	
+	# Boost innovation and cultural development
+	add_modifier = {
+		name = jewish_literary_renaissance
+		months = 120
+	}
+}

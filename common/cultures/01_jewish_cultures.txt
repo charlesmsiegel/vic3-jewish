@@ -1,0 +1,429 @@
+ashkenazi_jewish = {
+	color = { 0.2 0.3 0.7 }
+	religion = jewish
+	traits = {
+		# Enhanced literacy and urban preference
+		cosmopolitan
+		urban_preference
+		literacy_focused
+	}
+	
+	# Detailed migration patterns - common to all Jewish cultures
+	migration_attraction = {
+		trigger = {
+			OR = {
+				state_has_building = building_university
+				state_has_building = building_financial_district
+				state_has_building = building_arts_academy
+				has_law = law_freedom_of_movement
+				has_law = law_guaranteed_liberties
+				has_law = law_total_separation
+				owner = { 
+					has_modifier = jewish_refuge_policies
+					has_modifier = philosemitic_policies
+				}
+			}
+		}
+		value = 35
+	}
+	
+	migration_repulsion = {
+		trigger = {
+			OR = {
+				has_modifier = jewish_pogrom_aftermath
+				has_modifier = state_sponsored_antisemitism
+				has_law = law_state_religion
+				has_law = law_national_supremacy
+				owner = { 
+					has_journal_entry = je_antisemitic_policies
+					has_modifier = blood_libel_accusations
+					has_modifier = economic_antisemitism
+				}
+			}
+		}
+		value = 75
+	}
+	
+	# Economic preferences
+	economic_attraction = {
+		trigger = {
+			OR = {
+				state_has_building = building_financial_district
+				state_has_building = building_university
+				state_has_building = building_government_administration
+				is_capital = yes
+			}
+		}
+		value = 20
+	}
+	
+	# Demographic traits
+	pop_growth_speed_mult = 1.15  # Higher literacy leads to demographic transition
+	pop_politicization_mult = 1.25  # More politically engaged
+}
+
+sephardic_jewish = {
+	color = { 0.7 0.4 0.2 }
+	religion = jewish
+	traits = {
+		cosmopolitan
+		merchant_focused
+		linguistic_adaptability
+	}
+	
+	# Similar migration patterns but stronger commercial focus
+	migration_attraction = {
+		trigger = {
+			OR = {
+				state_has_building = building_financial_district
+				state_has_building = building_port
+				state_has_building = building_trade_center
+				has_law = law_freedom_of_movement
+				has_law = law_guaranteed_liberties
+				owner = { has_modifier = philosemitic_policies }
+			}
+		}
+		value = 30
+	}
+	
+	migration_repulsion = {
+		trigger = {
+			OR = {
+				has_modifier = jewish_pogrom_aftermath
+				has_modifier = state_sponsored_antisemitism
+				has_law = law_state_religion
+				has_law = law_national_supremacy
+				owner = { has_journal_entry = je_antisemitic_policies }
+			}
+		}
+		value = 65
+	}
+	
+	# Strong commercial networks and maritime connections
+	trade_route_attraction = 20
+	pop_wealth_mult = 1.10  # Historical commercial success
+}
+
+mizrahi_jewish = {
+	color = { 0.6 0.5 0.3 }
+	religion = jewish
+	traits = {
+		desert_adapted
+		traditional_craftsmanship
+		ancient_communities
+	}
+	
+	# Less mobile historically but same persecution response
+	migration_attraction = {
+		trigger = {
+			OR = {
+				state_has_building = building_university
+				state_has_building = building_financial_district
+				has_law = law_guaranteed_liberties
+				owner = { has_modifier = philosemitic_policies }
+			}
+		}
+		value = 20
+	}
+	
+	migration_repulsion = {
+		trigger = {
+			OR = {
+				has_modifier = jewish_pogrom_aftermath
+				has_modifier = state_sponsored_antisemitism
+				has_law = law_state_religion
+				owner = { has_journal_entry = je_antisemitic_policies }
+			}
+		}
+		value = 55  # Somewhat less mobile than Ashkenazi/Sephardic
+	}
+	
+	# Traditional economic patterns
+	pop_wealth_mult = 1.05
+	traditional_economic_focus = yes
+}
+
+# New Jewish homeland culture for settlers
+eretz_yisrael_jewish = {
+	color = { 0.1 0.5 0.8 }
+	religion = jewish
+	traits = {
+		agricultural_revival
+		linguistic_revival
+		pioneering_spirit
+	}
+	
+	# Strong attraction to Palestine specifically
+	migration_attraction = {
+		trigger = {
+			state_region = s:STATE_PALESTINE
+		}
+		value = 100
+	}
+	
+	# Only appears through immigration and settlement
+	homeland = STATE_PALESTINE
+	pop_growth_speed_mult = 1.30  # Pioneer demographics
+	pop_politicization_mult = 1.50  # Highly motivated ideologically
+}
+
+# Ethiopian Jewish culture
+beta_israel_jewish = {
+	color = { 0.4 0.2 0.1 }
+	religion = jewish
+	traits = {
+		highland_adapted
+		ancient_traditions
+		isolated_community
+	}
+	
+	# Very limited migration historically
+	migration_attraction = {
+		trigger = {
+			state_region = s:STATE_PALESTINE
+			owner = { has_modifier = jewish_homeland_established }
+		}
+		value = 40
+	}
+	
+	migration_repulsion = {
+		trigger = {
+			has_modifier = state_sponsored_antisemitism
+			owner = { has_journal_entry = je_antisemitic_policies }
+		}
+		value = 30
+	}
+	
+	homeland = STATE_ETHIOPIA
+}
+
+# Cochin and Indian Jewish communities
+cochin_jewish = {
+	color = { 0.5 0.3 0.6 }
+	religion = jewish
+	traits = {
+		spice_trade_heritage
+		tropical_adapted
+		ancient_communities
+	}
+	
+	migration_attraction = {
+		trigger = {
+			OR = {
+				state_has_building = building_port
+				state_has_building = building_trade_center
+				state_region = s:STATE_PALESTINE
+			}
+		}
+		value = 25
+	}
+	
+	migration_repulsion = {
+		trigger = {
+			OR = {
+				has_modifier = state_sponsored_antisemitism
+				owner = { has_journal_entry = je_antisemitic_policies }
+			}
+		}
+		value = 40
+	}
+	
+	homeland = STATE_BOMBAY
+	trade_route_attraction = 15
+}
+
+# Samaritan culture
+samaritan = {
+	color = { 0.3 0.6 0.4 }
+	religion = samaritan
+	traits = {
+		ancient_traditions
+		mountain_adapted
+		religious_conservatism
+	}
+	
+	# Very small, conservative community
+	migration_attraction = {
+		trigger = {
+			OR = {
+				state_region = s:STATE_PALESTINE
+				state_region = s:STATE_SYRIA
+			}
+		}
+		value = 15
+	}
+	
+	migration_repulsion = {
+		trigger = {
+			has_modifier = state_sponsored_antisemitism
+			owner = { has_journal_entry = je_antisemitic_policies }
+		}
+		value = 50
+	}
+	
+	homeland = STATE_PALESTINE
+	pop_growth_speed_mult = 0.85  # Very small community
+	pop_politicization_mult = 0.90  # Conservative, less politically active
+}
+
+# Karaite Jewish culture
+karaite_jewish = {
+	color = { 0.8 0.6 0.2 }
+	religion = karaite
+	traits = {
+		scriptural_focus
+		scholarly_tradition
+		theological_independence
+	}
+	
+	migration_attraction = {
+		trigger = {
+			OR = {
+				state_has_building = building_university
+				state_region = s:STATE_PALESTINE
+				state_region = s:STATE_CRIMEA
+				state_region = s:STATE_LITHUANIA
+			}
+		}
+		value = 25
+	}
+	
+	migration_repulsion = {
+		trigger = {
+			OR = {
+				has_modifier = state_sponsored_antisemitism
+				owner = { has_journal_entry = je_antisemitic_policies }
+			}
+		}
+		value = 60
+	}
+	
+	homeland = STATE_CRIMEA
+	pop_wealth_mult = 1.08  # Scholarly and commercial success
+}
+
+# Mountain Jewish culture (Caucasus)
+mountain_jewish = {
+	color = { 0.5 0.4 0.3 }
+	religion = jewish
+	traits = {
+		mountain_adapted
+		warrior_tradition
+		isolated_community
+	}
+	
+	migration_attraction = {
+		trigger = {
+			OR = {
+				state_region = s:STATE_PALESTINE
+				state_region = s:STATE_DAGESTAN
+				state_region = s:STATE_AZERBAIJAN
+			}
+		}
+		value = 20
+	}
+	
+	migration_repulsion = {
+		trigger = {
+			has_modifier = state_sponsored_antisemitism
+		}
+		value = 45
+	}
+	
+	homeland = STATE_DAGESTAN
+	pop_growth_speed_mult = 1.05
+}
+
+# Bukharan Jewish culture
+bukharan_jewish = {
+	color = { 0.6 0.4 0.5 }
+	religion = jewish
+	traits = {
+		silk_road_heritage
+		desert_adapted
+		traditional_craftsmanship
+	}
+	
+	migration_attraction = {
+		trigger = {
+			OR = {
+				state_has_building = building_trade_center
+				state_region = s:STATE_PALESTINE
+				state_region = s:STATE_UZBEKISTAN
+			}
+		}
+		value = 22
+	}
+	
+	migration_repulsion = {
+		trigger = {
+			has_modifier = state_sponsored_antisemitism
+		}
+		value = 50
+	}
+	
+	homeland = STATE_UZBEKISTAN
+	trade_route_attraction = 18
+}
+
+# Yemenite Jewish culture
+yemenite_jewish = {
+	color = { 0.7 0.3 0.4 }
+	religion = jewish
+	traits = {
+		desert_adapted
+		traditional_craftsmanship
+		ancient_traditions
+	}
+	
+	migration_attraction = {
+		trigger = {
+			OR = {
+				state_region = s:STATE_PALESTINE
+				state_region = s:STATE_YEMEN
+			}
+		}
+		value = 30
+	}
+	
+	migration_repulsion = {
+		trigger = {
+			has_modifier = state_sponsored_antisemitism
+		}
+		value = 55
+	}
+	
+	homeland = STATE_YEMEN
+	pop_wealth_mult = 1.03
+}
+
+# Georgian Jewish culture
+georgian_jewish = {
+	color = { 0.4 0.5 0.6 }
+	religion = jewish
+	traits = {
+		mountain_adapted
+		wine_making_tradition
+		ancient_communities
+	}
+	
+	migration_attraction = {
+		trigger = {
+			OR = {
+				state_region = s:STATE_PALESTINE
+				state_region = s:STATE_GEORGIA
+			}
+		}
+		value = 25
+	}
+	
+	migration_repulsion = {
+		trigger = {
+			has_modifier = state_sponsored_antisemitism
+		}
+		value = 50
+	}
+	
+	homeland = STATE_GEORGIA
+	pop_wealth_mult = 1.06
+}

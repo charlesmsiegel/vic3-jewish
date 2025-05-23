@@ -1,0 +1,609 @@
+# Cultural and Religious Modifiers
+first_zionist_congress = {
+	icon = "gfx/interface/icons/modifiers/modifier_immigration.dds"
+	
+	country_migration_attraction_mult = 0.15
+	country_weekly_innovation_mult = 0.05
+	
+	# Only affects Jewish pops
+	country_legitimacy_headshot_mult = 0.10
+}
+
+jewish_homeland_established = {
+	icon = "gfx/interface/icons/modifiers/modifier_homeland.dds"
+	
+	# Massive immigration attraction for Jewish pops
+	country_migration_attraction_mult = 0.50
+	
+	# Reduced unrest from Jewish pops
+	country_revolution_threshold_mult = 0.15
+	
+	# Economic benefits from motivated population
+	country_weekly_innovation_mult = 0.10
+	building_construction_sector_max_level_mult = 0.25
+}
+
+balfour_declaration = {
+	icon = "gfx/interface/icons/modifiers/modifier_diplomacy.dds"
+	
+	country_influence_mult = 0.10
+	country_migration_attraction_mult = 0.25
+	
+	# Diplomatic benefits
+	country_diplomatic_weight_mult = 0.05
+}
+
+jewish_pogrom_aftermath = {
+	icon = "gfx/interface/icons/modifiers/modifier_famine.dds"
+	
+	# Severe local effects
+	state_migration_pull_mult = -0.75
+	state_pop_pol_str_mult = -0.20
+	state_weekly_innovation_mult = -0.15
+	
+	# Economic disruption
+	state_building_construction_sector_max_level_mult = -0.30
+	state_tax_capacity_mult = -0.25
+}
+
+jewish_mass_emigration = {
+	icon = "gfx/interface/icons/modifiers/modifier_exodus.dds"
+	
+	# Increased emigration pressure
+	state_migration_pull_mult = -0.50
+	
+	# Loss of skilled workers
+	state_weekly_innovation_mult = -0.10
+	state_building_financial_district_max_level_mult = -0.20
+}
+
+encouraged_jewish_immigration = {
+	icon = "gfx/interface/icons/modifiers/modifier_settlement.dds"
+	
+	# Attraction specifically for Jewish cultures
+	state_migration_attraction_mult = 0.40
+	
+	# Development benefits
+	state_building_construction_sector_max_level_mult = 0.15
+	state_infrastructure_mult = 0.10
+}
+
+pale_of_settlement_autonomy = {
+	icon = "gfx/interface/icons/modifiers/modifier_autonomy.dds"
+	
+	# Cultural preservation
+	country_cultural_acceptance_mult = 0.25
+	country_weekly_innovation_mult = 0.15
+	
+	# Religious freedom
+	country_revolution_threshold_mult = 0.20
+}
+
+jewish_agricultural_colonies = {
+	icon = "gfx/interface/icons/modifiers/modifier_agriculture.dds"
+	
+	# Agricultural focus
+	building_food_industry_throughput_mult = 0.20
+	building_livestock_ranch_throughput_mult = 0.15
+	
+	# Pioneer spirit
+	state_migration_attraction_mult = 0.20
+	country_weekly_innovation_mult = 0.05
+}
+
+dreyfus_affair_crisis = {
+	icon = "gfx/interface/icons/modifiers/modifier_crisis.dds"
+	
+	# Social division
+	country_authority_mult = -0.15
+	country_legitimacy_govt_total_votes_mult = -0.10
+	
+	# International attention
+	country_influence_mult = -0.05
+}
+
+new_immigrant_communities = {
+	icon = "gfx/interface/icons/modifiers/modifier_immigration.dds"
+	
+	# Economic dynamism
+	state_building_manufacturing_throughput_mult = 0.10
+	state_building_financial_district_throughput_mult = 0.15
+	
+	# Cultural tension
+	state_revolution_threshold_mult = -0.05
+}
+
+state_sponsored_antisemitism = {
+	icon = "gfx/interface/icons/modifiers/modifier_oppression.dds"
+	
+	# Severe effects on Jewish population
+	state_pop_pol_str_mult = -0.40
+	state_migration_pull_mult = -0.80
+	
+	# International isolation
+	country_influence_mult = -0.20
+	country_diplomatic_weight_mult = -0.15
+	
+	# Economic damage from persecution
+	state_building_financial_district_max_level_mult = -0.50
+	state_weekly_innovation_mult = -0.25
+}
+
+# Conversion and Religious Change Modifiers
+mass_conversion_to_judaism = {
+	icon = "gfx/interface/icons/modifiers/modifier_conversion.dds"
+	
+	# Social upheaval from major religious change
+	country_authority_mult = -0.25
+	country_revolution_threshold_mult = -0.15
+	
+	# Cultural transformation benefits
+	country_weekly_innovation_mult = 0.15
+	country_cultural_acceptance_mult = 0.20
+	
+	# International tension
+	country_influence_mult = -0.10
+}
+
+recent_conversion_to_judaism = {
+	icon = "gfx/interface/icons/modifiers/modifier_new_faith.dds"
+	
+	# Personal adjustment period
+	pop_pol_str_mult = -0.10
+	pop_wealth_mult = 0.95
+	
+	# Increased political engagement
+	pop_politicization_mult = 1.25
+}
+
+intellectual_jewish_influence = {
+	icon = "gfx/interface/icons/modifiers/modifier_intellectual.dds"
+	
+	# Academic and cultural benefits
+	country_weekly_innovation_mult = 0.20
+	building_university_throughput_mult = 0.15
+	
+	# Social change catalyst
+	country_cultural_acceptance_mult = 0.15
+}
+
+philosemitic_policies = {
+	icon = "gfx/interface/icons/modifiers/modifier_tolerance.dds"
+	
+	# Attraction for Jewish immigration
+	country_migration_attraction_mult = 0.30
+	
+	# Cultural benefits
+	country_weekly_innovation_mult = 0.10
+	country_cultural_acceptance_mult = 0.20
+	
+	# Economic benefits from diversity
+	building_financial_district_throughput_mult = 0.10
+}
+
+ruler_converted_to_judaism = {
+	icon = "gfx/interface/icons/modifiers/modifier_royal_conversion.dds"
+	
+	# Major political upheaval
+	country_authority_mult = -0.30
+	country_legitimacy_govt_total_votes_mult = -0.20
+	
+	# Religious and cultural transformation
+	country_cultural_acceptance_mult = 0.30
+	
+	# International diplomatic issues
+	country_influence_mult = -0.15
+}
+
+interfaith_marriage_acceptance = {
+	icon = "gfx/interface/icons/modifiers/modifier_integration.dds"
+	
+	# Social integration benefits
+	country_cultural_acceptance_mult = 0.25
+	country_revolution_threshold_mult = 0.10
+	
+	# Gradual demographic change
+	state_pop_growth_mult = 1.05
+}
+
+# New Formable Nation Modifiers
+socialist_jewish_republic = {
+	icon = "gfx/interface/icons/modifiers/modifier_socialist_republic.dds"
+	
+	# Soviet-style benefits
+	building_government_administration_throughput_mult = 0.20
+	country_weekly_innovation_mult = 0.15
+	
+	# Agricultural focus
+	building_food_industry_throughput_mult = 0.25
+	
+	# Immigration attraction for ideological reasons
+	country_migration_attraction_mult = 0.40
+}
+
+crimean_jewish_settlement = {
+	icon = "gfx/interface/icons/modifiers/modifier_settlement.dds"
+	
+	# Agricultural development
+	building_food_industry_throughput_mult = 0.30
+	building_livestock_ranch_throughput_mult = 0.25
+	
+	# Pioneer benefits
+	state_infrastructure_mult = 0.15
+	state_building_construction_sector_max_level_mult = 0.20
+}
+
+far_eastern_jewish_settlement = {
+	icon = "gfx/interface/icons/modifiers/modifier_frontier.dds"
+	
+	# Frontier development
+	state_infrastructure_mult = 0.25
+	state_building_construction_sector_max_level_mult = 0.30
+	
+	# Resource extraction focus
+	building_logging_camp_throughput_mult = 0.20
+	building_mining_sector_throughput_mult = 0.15
+}
+
+yiddish_cultural_revival = {
+	icon = "gfx/interface/icons/modifiers/modifier_cultural_revival.dds"
+	
+	# Cultural preservation and development
+	country_cultural_acceptance_mult = 0.30
+	building_arts_academy_throughput_mult = 0.25
+	
+	# Educational focus
+	country_weekly_innovation_mult = 0.10
+	building_university_throughput_mult = 0.15
+}
+
+east_african_jewish_territory = {
+	icon = "gfx/interface/icons/modifiers/modifier_colonial_development.dds"
+	
+	# Colonial development benefits
+	state_infrastructure_mult = 0.20
+	building_construction_sector_max_level_mult = 0.25
+	
+	# Tropical adaptation
+	state_pop_growth_mult = 0.95  # Slightly reduced due to climate
+	building_plantation_throughput_mult = 0.15
+}
+
+tropical_pioneer_settlement = {
+	icon = "gfx/interface/icons/modifiers/modifier_tropical_settlement.dds"
+	
+	# Settlement challenges and benefits
+	state_infrastructure_mult = 0.30
+	building_construction_sector_max_level_mult = 0.35
+	
+	# Health challenges
+	state_pop_growth_mult = 0.90
+	
+	# Agricultural potential
+	building_plantation_throughput_mult = 0.20
+}
+
+revolutionary_jewish_state = {
+	icon = "gfx/interface/icons/modifiers/modifier_revolution.dds"
+	
+	# Revolutionary enthusiasm
+	country_authority_mult = 0.25
+	building_government_administration_throughput_mult = 0.30
+	
+	# Social transformation
+	country_cultural_acceptance_mult = 0.40
+	country_weekly_innovation_mult = 0.20
+	
+	# Economic redistribution effects
+	building_subsistence_farms_throughput_mult = 0.25
+	country_legitimacy_govt_total_votes_mult = 0.15
+}
+
+land_redistribution_program = {
+	icon = "gfx/interface/icons/modifiers/modifier_land_reform.dds"
+	
+	# Agricultural productivity from motivated farmers
+	building_subsistence_farms_throughput_mult = 0.40
+	building_food_industry_throughput_mult = 0.25
+	
+	# Social stability among peasants
+	state_revolution_threshold_mult = 0.20
+}
+
+converted_jewish_kingdom = {
+	icon = "gfx/interface/icons/modifiers/modifier_converted_kingdom.dds"
+	
+	# Religious transformation effects
+	country_cultural_acceptance_mult = 0.35
+	country_weekly_innovation_mult = 0.15
+	
+	# Political instability from major change
+	country_authority_mult = -0.20
+	country_revolution_threshold_mult = -0.10
+	
+	# Economic benefits from Jewish commercial networks
+	building_financial_district_throughput_mult = 0.20
+	building_trade_center_throughput_mult = 0.15
+}
+
+galician_jewish_autonomy = {
+	icon = "gfx/interface/icons/modifiers/modifier_autonomy.dds"
+	
+	# Regional autonomy benefits
+	country_cultural_acceptance_mult = 0.30
+	country_weekly_innovation_mult = 0.12
+	
+	# Traditional economic strengths
+	building_financial_district_throughput_mult = 0.15
+	building_arts_academy_throughput_mult = 0.20
+}
+
+traditional_jewish_economy = {
+	icon = "gfx/interface/icons/modifiers/modifier_traditional_economy.dds"
+	
+	# Focus on traditional Jewish economic roles
+	building_financial_district_throughput_mult = 0.25
+	building_trade_center_throughput_mult = 0.20
+	building_arts_academy_throughput_mult = 0.15
+	
+	# Artisan and craft focus
+	building_tooling_workshops_throughput_mult = 0.15
+}
+
+jewish_commercial_republic = {
+	icon = "gfx/interface/icons/modifiers/modifier_commercial_republic.dds"
+	
+	# Commercial excellence
+	building_financial_district_throughput_mult = 0.35
+	building_trade_center_throughput_mult = 0.30
+	building_port_throughput_mult = 0.20
+	
+	# Urban development
+	building_urban_center_throughput_mult = 0.15
+	
+	# Innovation through commerce
+	country_weekly_innovation_mult = 0.15
+}
+
+# New modifiers for Jewish homeland migration and religious reversion
+
+jewish_homeland_emigration_wave = {
+	icon = "gfx/interface/icons/modifiers/modifier_emigration.dds"
+	
+	# Increased emigration to Jewish homeland
+	country_migration_pull_mult = -0.30
+	
+	# Specifically affects Jewish pops more
+	state_migration_attraction_mult = -0.15
+	
+	# Some economic benefits from connections to homeland
+	building_financial_district_throughput_mult = 0.05
+}
+
+zionist_emigration_pull = {
+	icon = "gfx/interface/icons/modifiers/modifier_zionist_pull.dds"
+	
+	# Strong emigration effects for Jewish pops
+	state_migration_pull_mult = -0.40
+	
+	# Cultural excitement about homeland
+	state_pop_pol_str_mult = 0.10
+}
+
+restricted_jewish_emigration = {
+	icon = "gfx/interface/icons/modifiers/modifier_emigration_restrictions.dds"
+	
+	# Government restrictions on emigration
+	state_migration_pull_mult = 0.25
+	
+	# Jewish dissatisfaction
+	country_revolution_threshold_mult = -0.10
+	
+	# International consequences
+	country_influence_mult = -0.05
+}
+
+jewish_religious_revival = {
+	icon = "gfx/interface/icons/modifiers/modifier_religious_revival.dds"
+	
+	# Religious community strengthening
+	building_synagogue_throughput_mult = 0.30
+	building_yeshiva_throughput_mult = 0.25
+	
+	# Cultural cohesion benefits
+	country_cultural_acceptance_mult = 0.15
+	country_revolution_threshold_mult = 0.10
+}
+
+returned_to_ancestral_faith = {
+	icon = "gfx/interface/icons/modifiers/modifier_ancestral_return.dds"
+	
+	# Personal adjustment to religious reversion
+	pop_pol_str_mult = 0.05
+	pop_loyalties_mult = 1.10
+	
+	# Increased community engagement
+	pop_politicization_mult = 1.15
+}
+
+secular_jewish_identity_promoted = {
+	icon = "gfx/interface/icons/modifiers/modifier_secular_identity.dds"
+	
+	# Secular cultural identity benefits
+	country_weekly_innovation_mult = 0.08
+	building_university_throughput_mult = 0.10
+	
+	# Reduced religious tension
+	country_revolution_threshold_mult = 0.05
+}
+
+jewish_cultural_awakening = {
+	icon = "gfx/interface/icons/modifiers/modifier_cultural_awakening.dds"
+	
+	# Cultural renaissance effects
+	building_arts_academy_throughput_mult = 0.25
+	building_university_throughput_mult = 0.20
+	
+	# Innovation from cultural revival
+	country_weekly_innovation_mult = 0.12
+	
+	# Social cohesion
+	country_cultural_acceptance_mult = 0.20
+}
+
+cultural_revival_boost = {
+	icon = "gfx/interface/icons/modifiers/modifier_cultural_boost.dds"
+	
+	# Building-specific cultural benefits
+	building_throughput_mult = 0.25
+	building_employment_add = 200
+}
+
+intellectual_religious_awakening = {
+	icon = "gfx/interface/icons/modifiers/modifier_intellectual_awakening.dds"
+	
+	# Intellectual engagement with religion
+	pop_pol_str_mult = 0.15
+	pop_politicization_mult = 1.25
+	
+	# Innovation through religious study
+	pop_wealth_mult = 1.05
+}
+
+secular_jewish_heritage_preserved = {
+	icon = "gfx/interface/icons/modifiers/modifier_secular_heritage.dds"
+	
+	# Secular cultural preservation
+	building_university_throughput_mult = 0.15
+	country_weekly_innovation_mult = 0.10
+	
+	# Modern identity benefits
+	country_cultural_acceptance_mult = 0.12
+}
+
+generational_jewish_reconnection = {
+	icon = "gfx/interface/icons/modifiers/modifier_generational_change.dds"
+	
+	# Generational religious revival
+	building_synagogue_throughput_mult = 0.20
+	country_cultural_acceptance_mult = 0.15
+	
+	# Youth engagement
+	country_weekly_innovation_mult = 0.08
+}
+
+generational_faith_return = {
+	icon = "gfx/interface/icons/modifiers/modifier_faith_return.dds"
+	
+	# Young people returning to faith
+	pop_loyalties_mult = 1.08
+	pop_politicization_mult = 1.12
+}
+
+natural_generational_change = {
+	icon = "gfx/interface/icons/modifiers/modifier_natural_change.dds"
+	
+	# Organic social change
+	country_cultural_acceptance_mult = 0.08
+	country_revolution_threshold_mult = 0.05
+}
+
+immigration_religious_revival = {
+	icon = "gfx/interface/icons/modifiers/modifier_immigrant_revival.dds"
+	
+	# Religious revival through immigration
+	building_synagogue_throughput_mult = 0.25
+	country_migration_attraction_mult = 0.15
+	
+	# Cultural strengthening
+	country_cultural_acceptance_mult = 0.18
+}
+
+immigrant_religious_influence = {
+	icon = "gfx/interface/icons/modifiers/modifier_immigrant_influence.dds"
+	
+	# Religious immigrants influencing locals
+	pop_pol_str_mult = 0.08
+	pop_loyalties_mult = 1.06
+}
+
+separated_immigrant_communities = {
+	icon = "gfx/interface/icons/modifiers/modifier_separated_communities.dds"
+	
+	# Separate immigrant communities
+	state_migration_attraction_mult = 0.10
+	
+	# Reduced integration
+	country_cultural_acceptance_mult = -0.05
+}
+
+blood_libel_accusations = {
+	icon = "gfx/interface/icons/modifiers/modifier_blood_libel.dds"
+	
+	# Severe persecution effects
+	state_migration_pull_mult = -0.90
+	state_pop_pol_str_mult = -0.50
+	
+	# Economic disruption
+	state_building_financial_district_max_level_mult = -0.60
+	state_weekly_innovation_mult = -0.30
+	
+	# International condemnation
+	country_influence_mult = -0.25
+}
+
+economic_antisemitism = {
+	icon = "gfx/interface/icons/modifiers/modifier_economic_persecution.dds"
+	
+	# Economic restrictions on Jews
+	state_building_financial_district_max_level_mult = -0.40
+	state_building_trade_center_max_level_mult = -0.30
+	
+	# Brain drain
+	state_weekly_innovation_mult = -0.20
+	state_migration_pull_mult = -0.60
+}
+
+jewish_refuge_policies = {
+	icon = "gfx/interface/icons/modifiers/modifier_refuge.dds"
+	
+	# Attraction for Jewish refugees
+	country_migration_attraction_mult = 0.50
+	
+	# Economic benefits from skilled immigrants
+	country_weekly_innovation_mult = 0.15
+	building_financial_district_throughput_mult = 0.12
+	
+	# International goodwill
+	country_influence_mult = 0.05
+}
+
+newborn_nation_enthusiasm = {
+	icon = "gfx/interface/icons/modifiers/modifier_independence.dds"
+	
+	# New nation energy
+	country_authority_mult = 0.30
+	building_construction_sector_max_level_mult = 0.40
+	
+	# Pioneer spirit
+	state_infrastructure_mult = 0.25
+	country_weekly_innovation_mult = 0.20
+	
+	# Immigration attraction
+	country_migration_attraction_mult = 0.60
+}
+
+traditional_jewish_kingdom = {
+	icon = "gfx/interface/icons/modifiers/modifier_traditional_kingdom.dds"
+	
+	# Traditional monarchy benefits
+	country_legitimacy_govt_total_votes_mult = 0.15
+	country_authority_mult = 0.20
+	
+	# Cultural preservation
+	country_cultural_acceptance_mult = 0.25
+	building_arts_academy_throughput_mult = 0.20
+	
+	# Religious focus
+	building_synagogue_throughput_mult = 0.30
+}

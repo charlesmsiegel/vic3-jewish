@@ -1,0 +1,1538 @@
+namespace = jewish_heritage
+
+# First Zionist Congress - 1897
+jewish_heritage.1 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.1.t
+	desc = jewish_heritage.1.d
+	flavor = jewish_heritage.1.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1897.8.29
+		game_date < 1898.8.29
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 50000
+		}
+		
+		has_technology = nationalism
+		
+		NOT = { has_modifier = first_zionist_congress }
+	}
+	
+	immediate = {
+		# Create Herzl if he doesn't exist
+		if = {
+			limit = {
+				NOT = {
+					any_scope_character = {
+						first_name = "Theodor"
+						last_name = "Herzl"
+					}
+				}
+			}
+			create_character = {
+				first_name = "Theodor"
+				last_name = "Herzl"
+				culture = cu:ashkenazi_jewish
+				religion = rel:orthodox
+				ideology = ideology_radical
+				birth_date = 1860.5.2
+				
+				traits = {
+					charismatic
+					meticulous
+					persistent
+				}
+				
+				on_created = {
+					set_variable = is_theodor_herzl
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.1.a
+		default_option = yes
+		
+		add_modifier = {
+			name = first_zionist_congress
+			months = -1
+		}
+		
+		# Start Zionist movement journal if not active
+		if = {
+			limit = {
+				NOT = { has_journal_entry = je_zionist_movement }
+			}
+			add_journal_entry = { type = je_zionist_movement }
+		}
+		
+		# International awareness
+		every_country = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 25000
+				}
+			}
+			change_relations = {
+				country = root
+				value = 10
+			}
+		}
+		
+		ai_chance = {
+			factor = 90
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.1.b
+		
+		# Suppress the movement
+		add_modifier = {
+			name = zionist_movement_suppressed
+			months = 60
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -15
+				radical = 20
+			}
+		}
+		
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 3
+				has_law = law_state_religion
+			}
+		}
+	}
+}
+
+# Balfour Declaration - 1917
+jewish_heritage.2 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.2.t
+	desc = jewish_heritage.2.d
+	flavor = jewish_heritage.2.f
+	
+	duration = 3
+	
+	trigger = {
+		c:GBR = THIS
+		game_date > 1917.11.2
+		game_date < 1918.11.2
+		
+		OR = {
+			has_war_with = c:TUR
+			any_subject_country = {
+				any_scope_state = {
+					state_region = s:STATE_PALESTINE
+				}
+			}
+		}
+		
+		NOT = { has_modifier = balfour_declaration }
+	}
+	
+	option = {
+		name = jewish_heritage.2.a
+		default_option = yes
+		
+		add_modifier = {
+			name = balfour_declaration
+			months = -1
+		}
+		
+		# Improve relations with countries with large Jewish populations
+		every_country = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 100000
+				}
+			}
+			change_relations = {
+				country = root
+				value = 25
+			}
+		}
+		
+		# Increase Jewish immigration to Palestine
+		if = {
+			limit = {
+				any_subject_country = {
+					any_scope_state = {
+						state_region = s:STATE_PALESTINE
+					}
+				}
+			}
+			random_subject_country = {
+				limit = {
+					any_scope_state = {
+						state_region = s:STATE_PALESTINE
+					}
+				}
+				add_modifier = {
+					name = encouraged_jewish_immigration
+					months = 120
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 75
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.2.b
+		
+		# Reject the declaration
+		add_modifier = {
+			name = rejected_jewish_homeland
+			months = 60
+		}
+		
+		# Worsen relations
+		every_country = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 50000
+				}
+			}
+			change_relations = {
+				country = root
+				value = -15
+			}
+		}
+		
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 2
+				has_law = law_state_religion
+			}
+		}
+	}
+}
+
+# Russian Pogrom Response
+jewish_heritage.10 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.10.t
+	desc = jewish_heritage.10.d
+	flavor = jewish_heritage.10.f
+	
+	duration = 3
+	
+	trigger = {
+		has_journal_entry = je_russian_pogroms
+		
+		any_scope_state = {
+			has_modifier = jewish_pogrom_aftermath
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.10.a
+		
+		# Government investigation and protection
+		add_modifier = {
+			name = government_protection_jews
+			months = 60
+		}
+		
+		every_scope_state = {
+			limit = { has_modifier = jewish_pogrom_aftermath }
+			remove_modifier = jewish_pogrom_aftermath
+		}
+		
+		# Reduce radicalism
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 15
+				radical = -25
+			}
+		}
+		
+		# Cost prestige and authority
+		add_modifier = {
+			name = investigation_costs
+			months = 24
+		}
+		
+		ai_chance = {
+			factor = 30
+			modifier = {
+				factor = 2
+				has_law = law_guaranteed_liberties
+			}
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.10.b
+		default_option = yes
+		
+		# Do nothing - maintain status quo
+		add_modifier = {
+			name = government_inaction_pogroms
+			months = 36
+		}
+		
+		# Continued emigration
+		every_scope_pop = {
+			limit = { 
+				culture_is_jewish = yes
+				strata = poor
+			}
+			change_pop_loyalties = {
+				loyalty = -10
+				radical = 15
+			}
+		}
+		
+		ai_chance = {
+			factor = 60
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.10.c
+		
+		# Actively encourage persecution
+		every_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+				}
+			}
+			add_modifier = {
+				name = state_sponsored_antisemitism
+				months = 120
+			}
+		}
+		
+		# Massive emigration and international condemnation
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -50
+				radical = 50
+			}
+		}
+		
+		every_country = {
+			limit = {
+				NOT = { THIS = root }
+				has_law = law_guaranteed_liberties
+			}
+			change_relations = {
+				country = root
+				value = -30
+			}
+		}
+		
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 3
+				has_law = law_national_supremacy
+			}
+		}
+	}
+}
+
+# Jewish Immigration to America
+jewish_heritage.20 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.20.t
+	desc = jewish_heritage.20.d
+	flavor = jewish_heritage.20.f
+	
+	duration = 3
+	
+	trigger = {
+		c:USA = THIS
+		game_date > 1880.1.1
+		
+		any_country = {
+			any_scope_state = {
+				has_modifier = jewish_pogrom_aftermath
+			}
+		}
+		
+		has_law = law_no_migration_controls
+		
+		NOT = { has_modifier = jewish_mass_immigration_wave }
+	}
+	
+	option = {
+		name = jewish_heritage.20.a
+		default_option = yes
+		
+		# Welcome the immigrants
+		add_modifier = {
+			name = jewish_mass_immigration_wave
+			months = 60
+		}
+		
+		# Economic benefits but social tension
+		capital = {
+			add_modifier = {
+				name = new_immigrant_communities
+				months = 120
+			}
+		}
+		
+		# Add Jewish population to major cities
+		random_scope_state = {
+			limit = {
+				is_incorporated = yes
+				any_scope_building = {
+					is_building_type = building_urban_center
+				}
+			}
+			create_pop = {
+				culture = cu:ashkenazi_jewish
+				religion = rel:orthodox
+				pop_type = laborers
+				size = 25000
+			}
+		}
+		
+		ai_chance = {
+			factor = 80
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.20.b
+		
+		# Restrict immigration
+		add_modifier = {
+			name = jewish_immigration_restrictions
+			months = 120
+		}
+		
+		# Diplomatic consequences
+		every_country = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 50000
+				}
+			}
+			change_relations = {
+				country = root
+				value = -20
+			}
+		}
+		
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 3
+				has_law = law_migration_controls
+			}
+		}
+	}
+}
+
+# Global Jewish Migration Pattern Change
+jewish_heritage.600 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.600.t
+	desc = jewish_heritage.600.d
+	flavor = jewish_heritage.600.f
+	
+	duration = 3
+	
+	trigger = {
+		# Triggered by formation decisions
+	}
+	
+	immediate = {
+		# Save the new Jewish nation for reference
+		save_scope_as = new_jewish_homeland
+		
+		# Global modifier affecting all countries
+		set_global_variable = {
+			name = jewish_homeland_exists
+			value = yes
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.600.a
+		default_option = yes
+		
+		# Announce the new homeland to the world
+		custom_tooltip = "All Jewish populations worldwide will now be drawn to this homeland"
+		
+		# Global migration pattern change
+		every_country = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+				}
+				NOT = { THIS = root }
+			}
+			
+			# Trigger event for each country with Jewish pops
+			trigger_event = { id = jewish_heritage.601 days = 7 }
+		}
+		
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+# Response to Jewish Homeland Formation
+jewish_heritage.601 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.601.t
+	desc = jewish_heritage.601.d
+	flavor = jewish_heritage.601.f
+	
+	duration = 3
+	
+	trigger = {
+		# Triggered by homeland formation event
+	}
+	
+	option = {
+		name = jewish_heritage.601.a
+		
+		# Support emigration to the Jewish homeland
+		add_modifier = {
+			name = jewish_homeland_emigration_wave
+			months = 120
+		}
+		
+		# Reduce local Jewish population slightly over time
+		every_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 5000
+				}
+			}
+			add_modifier = {
+				name = zionist_emigration_pull
+				months = 180
+			}
+		}
+		
+		ai_chance = {
+			factor = 70
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.601.b
+		
+		# Restrict emigration
+		add_modifier = {
+			name = restricted_jewish_emigration
+			months = 60
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -20
+				radical = 25
+			}
+		}
+		
+		ai_chance = {
+			factor = 30
+			modifier = {
+				factor = 2
+				has_law = law_migration_controls
+			}
+		}
+	}
+}
+
+# Religious Reversion Events
+
+# Return to Judaism During Crisis
+jewish_heritage.700 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.700.t
+	desc = jewish_heritage.700.d
+	flavor = jewish_heritage.700.f
+	
+	duration = 3
+	
+	trigger = {
+		# Must have Jewish culture pops who aren't Jewish religion
+		any_scope_pop = {
+			culture_is_jewish = yes
+			NOT = { pop_has_religion = rel:jewish }
+			pop_size >= 10000
+		}
+		
+		# Crisis conditions that encourage return to roots
+		OR = {
+			has_modifier = revolutionary_fervor
+			has_modifier = economic_crisis
+			has_journal_entry = je_social_revolution
+			has_modifier = military_defeat_major
+			any_scope_state = {
+				has_modifier = state_sponsored_antisemitism
+			}
+		}
+		
+		# Religious freedom
+		has_law = law_total_separation
+		
+		NOT = { has_modifier = recent_jewish_religious_revival }
+	}
+	
+	option = {
+		name = jewish_heritage.700.a
+		default_option = yes
+		
+		# Encourage return to Jewish religion
+		add_modifier = {
+			name = jewish_religious_revival
+			months = 120
+		}
+		
+		# Convert Jewish culture pops back to Jewish religion
+		every_scope_state = {
+			every_scope_pop = {
+				limit = {
+					culture_is_jewish = yes
+					NOT = { pop_has_religion = rel:jewish }
+					random <= 40  # 40% reversion rate
+				}
+				change_pop_religion = rel:jewish
+				add_modifier = {
+					name = returned_to_ancestral_faith
+					months = 60
+				}
+			}
+		}
+		
+		add_modifier = {
+			name = recent_jewish_religious_revival
+			months = 120
+		}
+		
+		ai_chance = {
+			factor = 80
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.700.b
+		
+		# Discourage religious reversion
+		add_modifier = {
+			name = secular_jewish_identity_promoted
+			months = 60
+		}
+		
+		# Some still revert naturally
+		random_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					NOT = { pop_has_religion = rel:jewish }
+				}
+			}
+			every_scope_pop = {
+				limit = {
+					culture_is_jewish = yes
+					NOT = { pop_has_religion = rel:jewish }
+					random <= 15  # 15% natural reversion
+				}
+				change_pop_religion = rel:jewish
+			}
+		}
+		
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+
+# Jewish Cultural Awakening
+jewish_heritage.710 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.710.t
+	desc = jewish_heritage.710.d
+	flavor = jewish_heritage.710.f
+	
+	duration = 3
+	
+	trigger = {
+		# Jewish culture pops not of Jewish religion
+		any_scope_pop = {
+			culture_is_jewish = yes
+			NOT = { pop_has_religion = rel:jewish }
+			pop_size >= 25000
+		}
+		
+		# Jewish cultural institutions present
+		any_scope_state = {
+			OR = {
+				state_has_building = building_synagogue
+				state_has_building = building_yeshiva
+				state_has_building = building_university
+			}
+		}
+		
+		# Intellectual awakening conditions
+		OR = {
+			has_technology = nationalism
+			has_modifier = intellectual_jewish_influence
+			literacy_rate >= 0.60
+		}
+		
+		# Not recently occurred
+		NOT = { has_modifier = jewish_cultural_awakening }
+		
+		# Random chance
+		random <= 25
+	}
+	
+	option = {
+		name = jewish_heritage.710.a
+		
+		# Support Jewish cultural revival
+		add_modifier = {
+			name = jewish_cultural_awakening
+			months = 180
+		}
+		
+		# Cultural institutions benefit
+		every_scope_building = {
+			limit = {
+				OR = {
+					is_building_type = building_synagogue
+					is_building_type = building_yeshiva
+					is_building_type = building_university
+				}
+			}
+			add_modifier = {
+				name = cultural_revival_boost
+				months = 120
+			}
+		}
+		
+		# Some reversion to Judaism
+		every_scope_state = {
+			limit = {
+				OR = {
+					state_has_building = building_synagogue
+					state_has_building = building_yeshiva
+				}
+			}
+			every_scope_pop = {
+				limit = {
+					culture_is_jewish = yes
+					NOT = { pop_has_religion = rel:jewish }
+					OR = {
+						pop_type = intellectuals
+						pop_type = clergymen
+						pop_type = academics
+					}
+					random <= 50  # 50% reversion among intellectuals
+				}
+				change_pop_religion = rel:jewish
+				add_modifier = {
+					name = intellectual_religious_awakening
+					months = 120
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 70
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.710.b
+		
+		# Maintain secular Jewish identity
+		add_modifier = {
+			name = secular_jewish_heritage_preserved
+			months = 120
+		}
+		
+		# Still some natural reversion
+		random_scope_state = {
+			every_scope_pop = {
+				limit = {
+					culture_is_jewish = yes
+					NOT = { pop_has_religion = rel:jewish }
+					random <= 10  # 10% natural reversion
+				}
+				change_pop_religion = rel:jewish
+			}
+		}
+		
+		ai_chance = {
+			factor = 30
+		}
+	}
+}
+
+# Generational Return to Judaism
+jewish_heritage.720 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.720.t
+	desc = jewish_heritage.720.d
+	flavor = jewish_heritage.720.f
+	
+	duration = 3
+	
+	trigger = {
+		# Young Jewish culture pops not of Jewish religion
+		any_scope_pop = {
+			culture_is_jewish = yes
+			NOT = { pop_has_religion = rel:jewish }
+			pop_size >= 15000
+		}
+		
+		# Peaceful conditions and time passage
+		NOT = { has_modifier = revolutionary_fervor }
+		NOT = { has_modifier = economic_crisis }
+		
+		# Generational change - decades later
+		game_date > 1880.1.1
+		
+		# Jewish community institutions exist
+		any_scope_state = {
+			OR = {
+				state_has_building = building_synagogue
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_has_religion = rel:jewish
+					pop_size >= 20000
+				}
+			}
+		}
+		
+		# Random occurrence for generational change
+		random <= 15
+	}
+	
+	option = {
+		name = jewish_heritage.720.a
+		
+		# Support generational reconnection
+		add_modifier = {
+			name = generational_jewish_reconnection
+			months = 120
+		}
+		
+		# Young people return to Judaism
+		every_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_has_religion = rel:jewish
+				}
+			}
+			every_scope_pop = {
+				limit = {
+					culture_is_jewish = yes
+					NOT = { pop_has_religion = rel:jewish }
+					OR = {
+						strata = middle
+						strata = poor
+					}
+					random <= 25  # 25% generational return
+				}
+				change_pop_religion = rel:jewish
+				add_modifier = {
+					name = generational_faith_return
+					months = 36
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 60
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.720.b
+		
+		# Neutral stance
+		add_modifier = {
+			name = natural_generational_change
+			months = 60
+		}
+		
+		# Smaller natural return
+		random_scope_state = {
+			every_scope_pop = {
+				limit = {
+					culture_is_jewish = yes
+					NOT = { pop_has_religion = rel:jewish }
+					random <= 10  # 10% natural return
+				}
+				change_pop_religion = rel:jewish
+			}
+		}
+		
+		ai_chance = {
+			factor = 40
+		}
+	}
+}
+
+# Immigration-Driven Religious Revival
+jewish_heritage.730 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.730.t
+	desc = jewish_heritage.730.d
+	flavor = jewish_heritage.730.f
+	
+	duration = 3
+	
+	trigger = {
+		# Recent Jewish immigration
+		any_scope_state = {
+			has_modifier = new_immigrant_communities
+		}
+		
+		# Existing secular Jewish populations
+		any_scope_pop = {
+			culture_is_jewish = yes
+			NOT = { pop_has_religion = rel:jewish }
+			pop_size >= 10000
+		}
+		
+		# Religious freedom
+		has_law = law_total_separation
+		
+		# Not too recent
+		NOT = { has_modifier = immigration_religious_revival }
+	}
+	
+	option = {
+		name = jewish_heritage.730.a
+		
+		# Immigrant religious influence spreads
+		add_modifier = {
+			name = immigration_religious_revival
+			months = 120
+		}
+		
+		# Religious immigrants influence secular Jews
+		every_scope_state = {
+			limit = {
+				has_modifier = new_immigrant_communities
+			}
+			every_scope_pop = {
+				limit = {
+					culture_is_jewish = yes
+					NOT = { pop_has_religion = rel:jewish }
+					random <= 35  # 35% influenced by religious immigrants
+				}
+				change_pop_religion = rel:jewish
+				add_modifier = {
+					name = immigrant_religious_influence
+					months = 60
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 75
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.730.b
+		
+		# Maintain separation of immigrants and locals
+		add_modifier = {
+			name = separated_immigrant_communities
+			months = 60
+		}
+		
+		# Minimal religious influence
+		random_scope_state = {
+			limit = {
+				has_modifier = new_immigrant_communities
+			}
+			every_scope_pop = {
+				limit = {
+					culture_is_jewish = yes
+					NOT = { pop_has_religion = rel:jewish }
+					random <= 10  # 10% minimal influence
+				}
+				change_pop_religion = rel:jewish
+			}
+		}
+		
+		ai_chance = {
+			factor = 25
+		}
+	}
+}
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.500.t
+	desc = jewish_heritage.500.d
+	flavor = jewish_heritage.500.f
+	
+	duration = 3
+	
+	trigger = {
+		# Triggered by journal entry
+	}
+	
+	immediate = {
+		# Find the most influential Jewish character
+		random_scope_character = {
+			limit = {
+				culture_is_jewish = yes
+				OR = {
+					has_role = agitator
+					has_role = general
+					has_role = admiral
+				}
+			}
+			save_scope_as = conversion_leader
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.500.a
+		default_option = yes
+		
+		# Encourage the conversion movement
+		add_modifier = {
+			name = mass_conversion_to_judaism
+			months = 120
+		}
+		
+		# Convert a significant portion of the population
+		random_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 10000
+				}
+			}
+			
+			every_scope_pop = {
+				limit = {
+					NOT = { culture_is_jewish = yes }
+					strata = middle
+					random <= 25  # 25% conversion rate for middle class
+				}
+				change_pop_culture = cu:ashkenazi_jewish
+				change_pop_religion = rel:jewish
+				add_modifier = {
+					name = recent_conversion_to_judaism
+					months = 60
+				}
+			}
+			
+			every_scope_pop = {
+				limit = {
+					NOT = { culture_is_jewish = yes }
+					strata = rich
+					random <= 40  # Higher rate for wealthy
+				}
+				change_pop_culture = cu:ashkenazi_jewish
+				change_pop_religion = rel:jewish
+				add_modifier = {
+					name = recent_conversion_to_judaism
+					months = 60
+				}
+			}
+		}
+		
+		# International reactions
+		every_country = {
+			limit = {
+				has_law = law_state_religion
+				NOT = { primary_culture = { culture_is_jewish = yes } }
+			}
+			change_relations = {
+				country = root
+				value = -25
+			}
+		}
+		
+		ai_chance = {
+			factor = 60
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.500.b
+		
+		# Allow natural conversion but don't encourage
+		add_modifier = {
+			name = gradual_religious_change
+			months = 180
+		}
+		
+		# Slower, smaller conversion
+		random_scope_state = {
+			every_scope_pop = {
+				limit = {
+					NOT = { culture_is_jewish = yes }
+					strata = rich
+					random <= 15  # 15% conversion rate
+				}
+				change_pop_religion = rel:jewish
+				add_modifier = {
+					name = recent_conversion_to_judaism
+					months = 60
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 30
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.500.c
+		
+		# Suppress the conversion movement
+		add_modifier = {
+			name = religious_conversion_suppressed
+			months = 60
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -25
+				radical = 35
+			}
+		}
+		
+		# Potential revolt
+		if = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_politicization >= 0.50
+				}
+			}
+			trigger_event = { id = jewish_heritage.501 days = 60 }
+		}
+		
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 4
+				has_law = law_state_religion
+			}
+		}
+	}
+}
+
+# Jewish Religious Revival and Conversion
+jewish_heritage.510 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.510.t
+	desc = jewish_heritage.510.d
+	flavor = jewish_heritage.510.f
+	
+	duration = 3
+	
+	trigger = {
+		# Intellectual and economic prominence of Jews
+		any_scope_pop = {
+			culture_is_jewish = yes
+			OR = {
+				pop_type = intellectuals
+				pop_type = capitalists
+			}
+			pop_size >= 25000
+		}
+		
+		# Religious freedom context
+		has_law = law_total_separation
+		
+		# Modern era
+		has_technology = nationalism
+		
+		# Not already majority Jewish
+		NOT = {
+			country_population_percent = {
+				target_culture_is_jewish = yes
+				value >= 0.30
+			}
+		}
+		
+		NOT = { has_modifier = recent_conversion_wave }
+	}
+	
+	option = {
+		name = jewish_heritage.510.a
+		
+		# Embrace Jewish intellectual influence
+		add_modifier = {
+			name = intellectual_jewish_influence
+			months = 120
+		}
+		
+		# Conversion among intellectuals and professionals
+		every_scope_state = {
+			limit = {
+				state_has_building = building_university
+			}
+			every_scope_pop = {
+				limit = {
+					OR = {
+						pop_type = intellectuals
+						pop_type = engineers
+						pop_type = bureaucrats
+					}
+					random <= 20
+				}
+				change_pop_religion = rel:jewish
+				add_modifier = {
+					name = intellectual_conversion
+					months = 36
+				}
+			}
+		}
+		
+		add_modifier = {
+			name = recent_conversion_wave
+			months = 60
+		}
+		
+		ai_chance = {
+			factor = 70
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.510.b
+		
+		# Maintain religious status quo
+		add_modifier = {
+			name = religious_status_quo_maintained
+			months = 24
+		}
+		
+		ai_chance = {
+			factor = 30
+		}
+	}
+}
+
+# Interfaith Marriage and Gradual Conversion
+jewish_heritage.520 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.520.t
+	desc = jewish_heritage.520.d
+	flavor = jewish_heritage.520.f
+	
+	duration = 3
+	
+	trigger = {
+		# Significant Jewish urban population
+		any_scope_state = {
+			any_scope_pop = {
+				culture_is_jewish = yes
+				strata = middle
+				pop_size >= 15000
+			}
+		}
+		
+		# Progressive marriage laws
+		OR = {
+			has_law = law_total_separation
+			has_law = law_guaranteed_liberties
+		}
+		
+		# Urban, educated society
+		literacy_rate >= 0.40
+		
+		NOT = { has_modifier = interfaith_marriage_wave }
+	}
+	
+	option = {
+		name = jewish_heritage.520.a
+		
+		# Encourage interfaith marriages and integration
+		add_modifier = {
+			name = interfaith_marriage_acceptance
+			months = 180
+		}
+		
+		# Gradual conversion through marriage
+		random_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					strata = middle
+				}
+			}
+			every_scope_pop = {
+				limit = {
+					NOT = { culture_is_jewish = yes }
+					strata = middle
+					random <= 10
+				}
+				change_pop_religion = rel:jewish
+				add_modifier = {
+					name = marriage_conversion
+					months = 120
+				}
+			}
+		}
+		
+		add_modifier = {
+			name = interfaith_marriage_wave
+			months = 120
+		}
+		
+		ai_chance = {
+			factor = 80
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.520.b
+		
+		# Restrict interfaith marriages
+		add_modifier = {
+			name = traditional_marriage_laws
+			months = 60
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -10
+				radical = 15
+			}
+		}
+		
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 3
+				has_law = law_state_religion
+			}
+		}
+	}
+}
+
+# Ruler Conversion Event
+jewish_heritage.530 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_heritage.530.t
+	desc = jewish_heritage.530.d
+	flavor = jewish_heritage.530.f
+	
+	duration = 3
+	
+	trigger = {
+		# Must have influential Jewish characters
+		any_scope_character = {
+			culture_is_jewish = yes
+			OR = {
+				has_role = general
+				has_role = admiral
+				has_role = politician
+			}
+		}
+		
+		# Personal crisis or philosophical questioning
+		ruler = {
+			OR = {
+				has_trait = philosophical
+				has_trait = innovative
+				has_modifier = personal_crisis
+			}
+		}
+		
+		# Religious freedom
+		has_law = law_total_separation
+		
+		# Not already Jewish
+		ruler = {
+			NOT = { culture_is_jewish = yes }
+		}
+		
+		# Rare event
+		random <= 5
+	}
+	
+	immediate = {
+		ruler = {
+			save_scope_as = converting_ruler
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.530.a
+		
+		# Ruler converts to Judaism
+		ruler = {
+			change_character_culture = cu:ashkenazi_jewish
+			change_character_religion = rel:jewish
+			add_modifier = {
+				name = royal_conversion_to_judaism
+				months = -1
+			}
+		}
+		
+		# Major political and social effects
+		add_modifier = {
+			name = ruler_converted_to_judaism
+			months = 240
+		}
+		
+		# Court follows suit
+		every_scope_character = {
+			limit = {
+				OR = {
+					has_role = politician
+					has_role = general
+					has_role = admiral
+				}
+				random <= 30
+			}
+			change_character_religion = rel:jewish
+		}
+		
+		# International diplomatic consequences
+		every_country = {
+			limit = {
+				has_law = law_state_religion
+				NOT = { primary_culture = { culture_is_jewish = yes } }
+			}
+			change_relations = {
+				country = root
+				value = -40
+			}
+		}
+		
+		# Domestic reactions
+		every_scope_pop = {
+			limit = { 
+				NOT = { culture_is_jewish = yes }
+				strata = devout
+			}
+			change_pop_loyalties = {
+				loyalty = -30
+				radical = 25
+			}
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 40
+				radical = -20
+			}
+		}
+		
+		ai_chance = {
+			factor = 20
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.530.b
+		
+		# Ruler rejects conversion but shows sympathy
+		add_modifier = {
+			name = philosemitic_policies
+			months = 120
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 15
+				radical = -10
+			}
+		}
+		
+		ai_chance = {
+			factor = 60
+		}
+	}
+	
+	option = {
+		name = jewish_heritage.530.c
+		
+		# Ruler reaffirms traditional faith
+		add_modifier = {
+			name = traditional_faith_reaffirmed
+			months = 60
+		}
+		
+		every_scope_pop = {
+			limit = { 
+				NOT = { culture_is_jewish = yes }
+				strata = devout
+			}
+			change_pop_loyalties = {
+				loyalty = 15
+			}
+		}
+		
+		ai_chance = {
+			factor = 20
+		}
+	}
+}

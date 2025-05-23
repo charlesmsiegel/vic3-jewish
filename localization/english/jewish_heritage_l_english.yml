@@ -1,0 +1,506 @@
+l_english:
+ # Countries - Updated with Hebrew/Yiddish Names
+ EYI:0 "Eretz Yisrael"
+ EYI_ADJ:0 "Eretz Yisraeli"
+ POY:0 "Pale Oytonom"
+ POY_ADJ:0 "Pale"
+ NJU:0 "Nueva Judea"
+ NJU_ADJ:0 "Nueva Judean"
+ QSR:0 "Qrim Sovetishe Republik"
+ QSR_ADJ:0 "Crimean Soviet"
+ BYO:0 "Birobidzhaner Yidish Oytonom"
+ BYO_ADJ:0 "Birobidzhani"
+ MUG:0 "Medinat Uganda"
+ MUG_ADJ:0 "Ugandan"
+ YRR:0 "Yidishe Revolutsyonere Republik"
+ YRR_ADJ:0 "Revolutionary Jewish"
+ POL:0 "Polin Yidish"
+ POL_ADJ:0 "Polish Jewish"
+ GYR:0 "Galitsye Yidish Republik"
+ GYR_ADJ:0 "Galician Jewish"
+ FYS:0 "Fraye Yidishe Shtot"
+ FYS_ADJ:0 "Free Jewish"
+ 
+ # New European Jewish Formables
+ KHZ:0 "Khazaria"
+ KHZ_ADJ:0 "Khazar"
+ ASK:0 "Ashkenaz"
+ ASK_ADJ:0 "Ashkenazi"
+ SEP:0 "Sepharad"
+ SEP_ADJ:0 "Sephardic"
+ NAM:0 "New Amsterdam"
+ NAM_ADJ:0 "New Amsterdam"
+ 
+ # Middle Eastern Jewish Formables
+ BAB:0 "Babylon"
+ BAB_ADJ:0 "Babylonian"
+ TEM:0 "Teiman"
+ TEM_ADJ:0 "Yemenite"
+ 
+ # North African Jewish Formables
+ MAG:0 "Maghreb"
+ MAG_ADJ:0 "Maghrebi"
+ 
+ # Alternative Major Power Names
+ MTZ:0 "Malkhut Tzarfat"
+ MTZ_ADJ:0 "French Jewish"
+ BYI:0 "Brit Yisrael"
+ BYI_ADJ:0 "British Jewish"
+ 
+ # Religious Communities
+ SHO:0 "Shomron"
+ SHO_ADJ:0 "Samaritan"
+ KAR:0 "Karaite Principality"
+ KAR_ADJ:0 "Karaite"
+ 
+ # Expanded Cultures
+ ashkenazi_jewish:0 "Ashkenazi Jewish"
+ sephardic_jewish:0 "Sephardic Jewish"
+ mizrahi_jewish:0 "Mizrahi Jewish"
+ eretz_yisrael_jewish:0 "Eretz Yisrael Jewish"
+ beta_israel_jewish:0 "Beta Israel"
+ cochin_jewish:0 "Cochin Jewish"
+ samaritan:0 "Samaritan"
+ karaite_jewish:0 "Karaite Jewish"
+ mountain_jewish:0 "Mountain Jewish"
+ bukharan_jewish:0 "Bukharan Jewish"
+ yemenite_jewish:0 "Yemenite Jewish"
+ georgian_jewish:0 "Georgian Jewish"
+ 
+ # Religions
+ samaritan:0 "Samaritanism"
+ karaite:0 "Karaite Judaism"
+ jewish:0 "Judaism"
+ reform_judaism:0 "Reform Judaism"
+ conservative_judaism:0 "Conservative Judaism"
+ hasidic_judaism:0 "Hasidic Judaism"
+ 
+ # Formation Decisions - All New Names
+ form_eretz_yisrael_title:0 "Form Eretz Yisrael"
+ form_eretz_yisrael_desc:0 "Establish the modern Jewish homeland in the ancient Land of Israel, fulfilling the Zionist dream of national restoration."
+ 
+ form_pale_oytonom_title:0 "Form Pale Oytonom"
+ form_pale_oytonom_desc:0 "Create an autonomous Jewish region within the Russian Empire, providing self-governance for Jewish communities."
+ 
+ form_nueva_judea_title:0 "Form Nueva Judea"
+ form_nueva_judea_desc:0 "Establish a Jewish agricultural homeland in South America, based on Baron de Hirsch's colonization plans."
+ 
+ form_qrim_sovetishe_republik_title:0 "Form Qrim Sovetishe Republik"
+ form_qrim_sovetishe_republik_desc:0 "Create a Jewish Soviet Republic in Crimea, combining Zionist aspirations with revolutionary ideals."
+ 
+ form_birobidzhaner_yidish_oytonom_title:0 "Form Birobidzhaner Yidish Oytonom"
+ form_birobidzhaner_yidish_oytonom_desc:0 "Establish the Jewish Autonomous Oblast in the Far East, creating a Yiddish-speaking Jewish homeland."
+ 
+ form_medinat_uganda_title:0 "Form Medinat Uganda"
+ form_medinat_uganda_desc:0 "Implement the British Uganda Proposal as an alternative Jewish homeland in East Africa."
+ 
+ form_yidishe_revolutsyonere_republik_title:0 "Form Yidishe Revolutsyonere Republik"
+ form_yidishe_revolutsyonere_republik_desc:0 "Establish a revolutionary Jewish state that combines national liberation with radical social transformation."
+ 
+ form_polin_yidish_title:0 "Form Polin Yidish"
+ form_polin_yidish_desc:0 "Transform Poland into a Jewish-majority nation through conversion and immigration."
+ 
+ form_galitsye_yidish_republik_title:0 "Form Galitsye Yidish Republik"
+ form_galitsye_yidish_republik_desc:0 "Create an independent Jewish republic in Galicia following the collapse of Austria-Hungary."
+ 
+ form_fraye_yidishe_shtot_title:0 "Form Fraye Yidishe Shtot"
+ form_fraye_yidishe_shtot_desc:0 "Establish an independent Jewish commercial republic based on traditional mercantile expertise."
+ 
+ # European Jewish Formables
+ form_khazaria_title:0 "Revive Khazaria"
+ form_khazaria_desc:0 "Restore the ancient Jewish kingdom of Khazaria in the steppes north of the Black Sea."
+ 
+ form_ashkenaz_title:0 "Form Ashkenaz"
+ form_ashkenaz_desc:0 "Transform Germany into the heartland of Ashkenazi Jewish civilization and learning."
+ 
+ form_sepharad_title:0 "Restore Sepharad"
+ form_sepharad_desc:0 "Revive the golden age of Spanish Jewry in a modern Sephardic homeland."
+ 
+ form_new_amsterdam_jewish_title:0 "Form Jewish New Amsterdam"
+ form_new_amsterdam_jewish_desc:0 "Create a Jewish cultural and commercial center in New York, the modern equivalent of Amsterdam's golden age."
+ 
+ # Middle Eastern Formables
+ form_babylon_jewish_title:0 "Restore Jewish Babylon"
+ form_babylon_jewish_desc:0 "Revive the ancient center of Jewish learning and scholarship in Mesopotamia."
+ 
+ form_teiman_title:0 "Form Teiman"
+ form_teiman_desc:0 "Establish an independent Yemenite Jewish state preserving ancient traditions and craftsmanship."
+ 
+ # North African Formables
+ form_maghreb_jewish_title:0 "Form Maghreb Jewish Republic"
+ form_maghreb_jewish_desc:0 "Unite the Jewish communities of North Africa into an independent republic."
+ 
+ # Alternative Major Power Names
+ form_malkhut_tzarfat_title:0 "Form Malkhut Tzarfat"
+ form_malkhut_tzarfat_desc:0 "Transform France into a Jewish kingdom through conversion and cultural change."
+ 
+ form_brit_yisrael_title:0 "Form Brit Yisrael"
+ form_brit_yisrael_desc:0 "Establish a Jewish Commonwealth encompassing the British Isles."
+ 
+ # Religious Community Formables
+ form_shomron_title:0 "Form Shomron"
+ form_shomron_desc:0 "Establish an independent Samaritan state centered on Mount Gerizim and ancient traditions."
+ 
+ form_karaite_principality_title:0 "Form Karaite Principality"
+ form_karaite_principality_desc:0 "Create an independent Karaite Jewish state based on scriptural interpretation and scholarship."
+ 
+ # Journal Entries
+ je_zionist_movement:0 "The Zionist Movement"
+ je_zionist_movement_desc:0 "The idea of a Jewish homeland in Palestine is gaining momentum among Jewish intellectuals and communities worldwide."
+ 
+ je_great_jewish_migration:0 "The Great Jewish Migration"
+ je_great_jewish_migration_desc:0 "Persecution and economic hardship are driving massive waves of Jewish emigration from Eastern Europe."
+ 
+ je_dreyfus_affair:0 "The Dreyfus Affair"
+ je_dreyfus_affair_desc:0 "A Jewish army officer has been accused of treason, dividing French society and highlighting anti-Semitic attitudes."
+ 
+ je_russian_pogroms:0 "Russian Pogroms"
+ je_russian_pogroms_desc:0 "Violent attacks against Jewish communities are spreading across the Russian Empire."
+ 
+ je_religious_conversion_movement:0 "Religious Conversion Movement"
+ je_religious_conversion_movement_desc:0 "Intellectual and social currents are leading to increased interest in Jewish faith and culture among the broader population."
+ 
+ je_mass_jewish_conversion:0 "Mass Conversion to Judaism"
+ je_mass_jewish_conversion_desc:0 "Social upheaval and the influence of Jewish intellectuals have sparked widespread conversion to Judaism."
+ 
+ je_judaization_of_state:0 "Judaization of the State"
+ je_judaization_of_state_desc:0 "With significant Jewish political influence and population, the state is gradually adopting Jewish cultural and religious characteristics."
+ 
+ # Migration and Homeland Events
+ jewish_heritage.600.t:0 "A Jewish Homeland Established"
+ jewish_heritage.600.d:0 "The establishment of our independent Jewish state has sent shockwaves through Jewish communities worldwide. For nearly two millennia, Jews have dreamed of returning to their ancient homeland. Now that dream has become reality, and Jewish populations across the globe are looking to us as the fulfillment of their deepest aspirations."
+ jewish_heritage.600.f:0 "Next year in Jerusalem - no longer a prayer, but a possibility"
+ jewish_heritage.600.a:0 "Welcome all Jews who wish to return to their homeland"
+ 
+ jewish_heritage.601.t:0 "The Call of the Homeland"
+ jewish_heritage.601.d:0 "News of the Jewish homeland's establishment has electrified our Jewish population. Community leaders speak of a historic opportunity to join the first Jewish state in centuries. Young and old alike are discussing whether to leave everything behind for the chance to build a new society. How should we respond to this wave of Zionist enthusiasm?"
+ jewish_heritage.601.f:0 "From exile to homeland - the ancient dream awakens"
+ jewish_heritage.601.a:0 "Support those who wish to make aliyah"
+ jewish_heritage.601.b:0 "We need our Jewish citizens here"
+ 
+ # Religious Reversion Events
+ jewish_heritage.700.t:0 "Return to Ancient Faith"
+ jewish_heritage.700.d:0 "During these turbulent times, many of our citizens of Jewish heritage who had drifted from their ancestral religion are rediscovering their roots. Synagogues report increased attendance, and there's growing interest in Jewish customs and traditions among those whose families had abandoned them generations ago. This spiritual revival reflects a search for meaning and identity during uncertain times."
+ jewish_heritage.700.f:0 "In times of crisis, people turn to their deepest roots"
+ jewish_heritage.700.a:0 "Support this spiritual awakening"
+ jewish_heritage.700.b:0 "Maintain secular Jewish identity"
+ 
+ jewish_heritage.710.t:0 "Jewish Cultural Renaissance"
+ jewish_heritage.710.d:0 "A remarkable cultural revival is taking place among our Jewish population. Universities report increased enrollment in Hebrew and Jewish studies, while cultural centers are flourishing. Many citizens of Jewish descent who had little connection to their heritage are now exploring their ancestral traditions, languages, and beliefs. This intellectual awakening is reshaping Jewish identity in our society."
+ jewish_heritage.710.f:0 "Knowledge and tradition intertwine in unexpected ways"
+ jewish_heritage.710.a:0 "Encourage this cultural flowering"
+ jewish_heritage.710.b:0 "Maintain current cultural balance"
+ 
+ jewish_heritage.720.t:0 "Children of the Diaspora"
+ jewish_heritage.720.d:0 "A new generation of young people with Jewish ancestry is showing unexpected interest in their heritage. Unlike their parents who may have assimilated fully into broader society, these youth are seeking to reconnect with Jewish traditions, community, and faith. This generational shift represents a quiet but significant change in our social fabric."
+ jewish_heritage.720.f:0 "What was lost in one generation may be found in the next"
+ jewish_heritage.720.a:0 "Support generational reconnection"
+ jewish_heritage.720.b:0 "Allow natural evolution of identity"
+ 
+ jewish_heritage.730.t:0 "Religious Immigrants, Secular Locals"
+ jewish_heritage.730.d:0 "The arrival of religious Jewish immigrants has created an interesting dynamic in our established Jewish communities. These new arrivals, many fleeing persecution abroad, maintain strong religious practices that contrast with the more secular lifestyle of our longtime Jewish residents. Some local Jews are finding themselves drawn back to religious observance through contact with these devout newcomers."
+ jewish_heritage.730.f:0 "Old world faith meets new world freedom"
+ jewish_heritage.730.a:0 "Encourage religious revival through immigrant influence"
+ jewish_heritage.730.b:0 "Maintain separation between immigrant and local communities"
+ 
+ # New Formable Nation Modifiers
+ khazar_revival:0 "Khazar Revival"
+ khazar_revival_desc:0 "The restoration of the ancient Jewish kingdom of Khazaria has inspired Jewish communities across the steppe regions."
+ 
+ german_jewish_renaissance:0 "German Jewish Renaissance"
+ german_jewish_renaissance_desc:0 "The transformation of Germany into Ashkenaz has sparked a renaissance of Jewish learning and culture."
+ 
+ ashkenazi_intellectual_tradition:0 "Ashkenazi Intellectual Tradition"
+ ashkenazi_intellectual_tradition_desc:0 "Enhanced focus on scholarship and intellectual development in the Ashkenazi tradition."
+ 
+ sephardic_golden_age_revival:0 "Sephardic Golden Age Revival"
+ sephardic_golden_age_revival_desc:0 "Revival of the cultural and intellectual achievements of medieval Spanish Jewry."
+ 
+ ladino_cultural_renaissance:0 "Ladino Cultural Renaissance"
+ ladino_cultural_renaissance_desc:0 "Flourishing of Ladino language and Sephardic cultural traditions."
+ 
+ american_jewish_metropolis:0 "American Jewish Metropolis"
+ american_jewish_metropolis_desc:0 "New York has become the center of American Jewish life and culture."
+ 
+ jewish_cultural_melting_pot:0 "Jewish Cultural Melting Pot"
+ jewish_cultural_melting_pot_desc:0 "Diverse Jewish communities have created a vibrant multicultural center."
+ 
+ babylonian_jewish_revival:0 "Babylonian Jewish Revival"
+ babylonian_jewish_revival_desc:0 "Restoration of the ancient center of Jewish learning in Mesopotamia."
+ 
+ babylonian_talmudic_tradition:0 "Babylonian Talmudic Tradition"
+ babylonian_talmudic_tradition_desc:0 "Enhanced religious scholarship following the ancient Babylonian tradition."
+ 
+ yemenite_jewish_emirate:0 "Yemenite Jewish Emirate"
+ yemenite_jewish_emirate_desc:0 "Independent Yemenite Jewish state preserving ancient Arabian Jewish traditions."
+ 
+ yemenite_silversmith_tradition:0 "Yemenite Silversmith Tradition"
+ yemenite_silversmith_tradition_desc:0 "Traditional Yemenite Jewish craftsmanship in precious metals and jewelry."
+ 
+ north_african_jewish_republic:0 "North African Jewish Republic"
+ north_african_jewish_republic_desc:0 "United Jewish communities of the Maghreb have formed an independent republic."
+ 
+ trans_saharan_jewish_trade:0 "Trans-Saharan Jewish Trade"
+ trans_saharan_jewish_trade_desc:0 "Revival of ancient Jewish trading networks across North Africa."
+ 
+ french_jewish_republic:0 "French Jewish Republic"
+ french_jewish_republic_desc:0 "France has been transformed into a Jewish-majority republic through conversion and immigration."
+ 
+ british_jewish_commonwealth:0 "British Jewish Commonwealth"
+ british_jewish_commonwealth_desc:0 "The British Isles have become the center of a Jewish commonwealth."
+ 
+ samaritan_religious_state:0 "Samaritan Religious State"
+ samaritan_religious_state_desc:0 "Independent Samaritan state centered on ancient religious traditions."
+ 
+ gerizim_pilgrimage_center:0 "Mount Gerizim Pilgrimage Center"
+ gerizim_pilgrimage_center_desc:0 "Mount Gerizim has become the sacred center of Samaritan religious life."
+ 
+ karaite_scholarly_state:0 "Karaite Scholarly State"
+ karaite_scholarly_state_desc:0 "Independent Karaite state emphasizing scriptural scholarship and rational inquiry."
+ 
+ karaite_rational_inquiry:0 "Karaite Rational Inquiry"
+ karaite_rational_inquiry_desc:0 "Enhanced scholarly tradition based on rational interpretation of scripture."
+ 
+ # Events (Existing ones kept for reference)
+ jewish_heritage.1.t:0 "The First Zionist Congress"
+ jewish_heritage.1.d:0 "In Basel, delegates from across the Jewish diaspora have gathered for an unprecedented congress. Theodor Herzl, a Viennese journalist, has called for the establishment of a Jewish homeland in Palestine. The congress has adopted the Basel Program, calling for 'a home for the Jewish people in Palestine secured by public law.'"
+ jewish_heritage.1.f:0 "Der Judenstaat - The Jewish State"
+ jewish_heritage.1.a:0 "Support this vision of a Jewish homeland"
+ jewish_heritage.1.b:0 "This movement threatens the established order"
+ 
+ # Timeline Events
+ jewish_timeline.1840.t:0 "The Damascus Affair"
+ jewish_timeline.1840.d:0 "A French monk has disappeared in Damascus, and local authorities are claiming that Jewish residents murdered him for ritual purposes. This blood libel accusation has sparked violence against the Jewish community and drawn international attention to the treatment of Jews in the Ottoman Empire."
+ jewish_timeline.1840.f:0 "Ancient prejudices resurface in modern times"
+ jewish_timeline.1840.a:0 "Investigate these serious accusations thoroughly"
+ jewish_timeline.1840.b:0 "The accusations must have merit"
+ 
+ # Additional Culture and Religion Descriptions
+ samaritan_desc:0 "The Samaritans are an ethnoreligious group claiming descent from the northern Kingdom of Israel, maintaining their own version of the Torah and worshipping at Mount Gerizim."
+ 
+ karaite_jewish_desc:0 "Karaite Jews follow a form of Judaism that relies solely on written scripture, rejecting the authority of the Oral Torah and rabbinic interpretation."
+ 
+ mountain_jewish_desc:0 "Mountain Jews of the Caucasus have maintained their Jewish identity while adapting to the highland environment and warrior culture of the region."
+ 
+ bukharan_jewish_desc:0 "Bukharan Jews developed a distinct culture along the Silk Road, blending Jewish tradition with Central Asian influences."
+ 
+ yemenite_jewish_desc:0 "Yemenite Jews preserved ancient Jewish traditions in the Arabian Peninsula, developing distinctive religious practices and craftsmanship."
+ 
+ georgian_jewish_desc:0 "Georgian Jews have lived in the Caucasus for over two millennia, developing unique traditions while maintaining their Jewish identity."
+ 
+ # Religious Denomination Descriptions
+ reform_judaism_desc:0 "Reform Judaism emphasizes ethical teachings over ritual observance and adapts Jewish practice to modern conditions."
+ 
+ conservative_judaism_desc:0 "Conservative Judaism seeks to preserve tradition while allowing for adaptation to changing circumstances through scholarly interpretation."
+ 
+ hasidic_judaism_desc:0 "Hasidic Judaism emphasizes mystical experience, charismatic leadership, and strict observance of traditional practices."
+ 
+ # Achievement Integration
+ achievement_khazar_kingdom:0 "The Third Khazar Kingdom"
+ achievement_khazar_kingdom_desc:0 "Restore the Kingdom of Khazaria with a Jewish majority population."
+ 
+ achievement_sephardic_golden_age:0 "New Golden Age"
+ achievement_sephardic_golden_age_desc:0 "Form Sepharad and achieve cultural renaissance comparable to medieval Al-Andalus."
+ 
+ achievement_worldwide_jewish_network:0 "Global Jewish Network"
+ achievement_worldwide_jewish_network_desc:0 "Have Jewish formable nations exist on every continent simultaneously."
+ 
+ achievement_religious_revival:0 "Return to the Source"
+ achievement_religious_revival_desc:0 "Convert 100,000+ Jewish culture pops back to Jewish religion through reversion events."
+ 
+ achievement_conversion_empire:0 "The New Covenant"
+ achievement_conversion_empire_desc:0 "Convert a major European power to Judaism through mass conversion events."
+ 
+ # Journal Entries
+ je_zionist_movement:0 "The Zionist Movement"
+ je_zionist_movement_desc:0 "The idea of a Jewish homeland in Palestine is gaining momentum among Jewish intellectuals and communities worldwide."
+ 
+ je_great_jewish_migration:0 "The Great Jewish Migration"
+ je_great_jewish_migration_desc:0 "Persecution and economic hardship are driving massive waves of Jewish emigration from Eastern Europe."
+ 
+ je_dreyfus_affair:0 "The Dreyfus Affair"
+ je_dreyfus_affair_desc:0 "A Jewish army officer has been accused of treason, dividing French society and highlighting anti-Semitic attitudes."
+ 
+ je_russian_pogroms:0 "Russian Pogroms"
+ je_russian_pogroms_desc:0 "Violent attacks against Jewish communities are spreading across the Russian Empire."
+ 
+ je_religious_conversion_movement:0 "Religious Conversion Movement"
+ je_religious_conversion_movement_desc:0 "Intellectual and social currents are leading to increased interest in Jewish faith and culture among the broader population."
+ 
+ je_mass_jewish_conversion:0 "Mass Conversion to Judaism"
+ je_mass_jewish_conversion_desc:0 "Social upheaval and the influence of Jewish intellectuals have sparked widespread conversion to Judaism."
+ 
+ je_judaization_of_state:0 "Judaization of the State"
+ je_judaization_of_state_desc:0 "With significant Jewish political influence and population, the state is gradually adopting Jewish cultural and religious characteristics."
+ 
+ # Migration and Homeland Events
+ jewish_heritage.600.t:0 "A Jewish Homeland Established"
+ jewish_heritage.600.d:0 "The establishment of our independent Jewish state has sent shockwaves through Jewish communities worldwide. For nearly two millennia, Jews have dreamed of returning to their ancient homeland. Now that dream has become reality, and Jewish populations across the globe are looking to us as the fulfillment of their deepest aspirations."
+ jewish_heritage.600.f:0 "Next year in Jerusalem - no longer a prayer, but a possibility"
+ jewish_heritage.600.a:0 "Welcome all Jews who wish to return to their homeland"
+ 
+ jewish_heritage.601.t:0 "The Call of the Homeland"
+ jewish_heritage.601.d:0 "News of the Jewish homeland's establishment has electrified our Jewish population. Community leaders speak of a historic opportunity to join the first Jewish state in centuries. Young and old alike are discussing whether to leave everything behind for the chance to build a new society. How should we respond to this wave of Zionist enthusiasm?"
+ jewish_heritage.601.f:0 "From exile to homeland - the ancient dream awakens"
+ jewish_heritage.601.a:0 "Support those who wish to make aliyah"
+ jewish_heritage.601.b:0 "We need our Jewish citizens here"
+ 
+ # Religious Reversion Events
+ jewish_heritage.700.t:0 "Return to Ancient Faith"
+ jewish_heritage.700.d:0 "During these turbulent times, many of our citizens of Jewish heritage who had drifted from their ancestral religion are rediscovering their roots. Synagogues report increased attendance, and there's growing interest in Jewish customs and traditions among those whose families had abandoned them generations ago. This spiritual revival reflects a search for meaning and identity during uncertain times."
+ jewish_heritage.700.f:0 "In times of crisis, people turn to their deepest roots"
+ jewish_heritage.700.a:0 "Support this spiritual awakening"
+ jewish_heritage.700.b:0 "Maintain secular Jewish identity"
+ 
+ jewish_heritage.710.t:0 "Jewish Cultural Renaissance"
+ jewish_heritage.710.d:0 "A remarkable cultural revival is taking place among our Jewish population. Universities report increased enrollment in Hebrew and Jewish studies, while cultural centers are flourishing. Many citizens of Jewish descent who had little connection to their heritage are now exploring their ancestral traditions, languages, and beliefs. This intellectual awakening is reshaping Jewish identity in our society."
+ jewish_heritage.710.f:0 "Knowledge and tradition intertwine in unexpected ways"
+ jewish_heritage.710.a:0 "Encourage this cultural flowering"
+ jewish_heritage.710.b:0 "Maintain current cultural balance"
+ 
+ jewish_heritage.720.t:0 "Children of the Diaspora"
+ jewish_heritage.720.d:0 "A new generation of young people with Jewish ancestry is showing unexpected interest in their heritage. Unlike their parents who may have assimilated fully into broader society, these youth are seeking to reconnect with Jewish traditions, community, and faith. This generational shift represents a quiet but significant change in our social fabric."
+ jewish_heritage.720.f:0 "What was lost in one generation may be found in the next"
+ jewish_heritage.720.a:0 "Support generational reconnection"
+ jewish_heritage.720.b:0 "Allow natural evolution of identity"
+ 
+ jewish_heritage.730.t:0 "Religious Immigrants, Secular Locals"
+ jewish_heritage.730.d:0 "The arrival of religious Jewish immigrants has created an interesting dynamic in our established Jewish communities. These new arrivals, many fleeing persecution abroad, maintain strong religious practices that contrast with the more secular lifestyle of our longtime Jewish residents. Some local Jews are finding themselves drawn back to religious observance through contact with these devout newcomers."
+ jewish_heritage.730.f:0 "Old world faith meets new world freedom"
+ jewish_heritage.730.a:0 "Encourage religious revival through immigrant influence"
+ jewish_heritage.730.b:0 "Maintain separation between immigrant and local communities"
+ 
+ # Events (Existing ones)
+ jewish_heritage.1.t:0 "The First Zionist Congress"
+ jewish_heritage.1.d:0 "In Basel, delegates from across the Jewish diaspora have gathered for an unprecedented congress. Theodor Herzl, a Viennese journalist, has called for the establishment of a Jewish homeland in Palestine. The congress has adopted the Basel Program, calling for 'a home for the Jewish people in Palestine secured by public law.'"
+ jewish_heritage.1.f:0 "Der Judenstaat - The Jewish State"
+ jewish_heritage.1.a:0 "Support this vision of a Jewish homeland"
+ jewish_heritage.1.b:0 "This movement threatens the established order"
+ 
+ jewish_heritage.2.t:0 "The Balfour Declaration"
+ jewish_heritage.2.d:0 "Foreign Secretary Arthur Balfour has issued a public statement expressing British support for 'the establishment in Palestine of a national home for the Jewish people.' This declaration could fundamentally change the future of Palestine and Jewish settlement there."
+ jewish_heritage.2.f:0 "His Majesty's Government view with favour..."
+ jewish_heritage.2.a:0 "Issue the declaration publicly"
+ jewish_heritage.2.b:0 "This commitment is premature"
+ 
+ jewish_heritage.10.t:0 "Response to the Pogroms"
+ jewish_heritage.10.d:0 "Violent attacks against Jewish communities have erupted across our territories. Homes and businesses have been destroyed, and many innocent people have been killed or injured. The government must decide how to respond to this crisis."
+ jewish_heritage.10.f:0 "The sound of breaking glass echoes through the night..."
+ jewish_heritage.10.a:0 "Launch a full investigation and protect Jewish communities"
+ jewish_heritage.10.b:0 "Maintain order but avoid taking sides"
+ jewish_heritage.10.c:0 "The violence serves our national interests"
+ 
+ jewish_heritage.20.t:0 "The New Colossus"
+ jewish_heritage.20.d:0 "Thousands of Jewish immigrants fleeing persecution in Eastern Europe are arriving at our ports. They come with little more than the clothes on their backs, but they bring skills, determination, and dreams of a better life. How should we respond to this wave of immigration?"
+ jewish_heritage.20.f:0 "Give me your tired, your poor, your huddled masses..."
+ jewish_heritage.20.a:0 "Welcome them with open arms"
+ jewish_heritage.20.b:0 "We cannot absorb so many immigrants"
+ 
+ # Conversion Events (Existing)
+ jewish_heritage.500.t:0 "The Great Conversion"
+ jewish_heritage.500.d:0 "During this time of social upheaval, many of our citizens have begun to question their traditional beliefs. Jewish intellectuals and community leaders have gained significant influence, and their faith is attracting converts from all walks of life. Some see this as spiritual renewal, others as dangerous change."
+ jewish_heritage.500.f:0 "A new faith for a new era?"
+ jewish_heritage.500.a:0 "Encourage this spiritual awakening"
+ jewish_heritage.500.b:0 "Allow natural conversion but remain neutral"
+ jewish_heritage.500.c:0 "This threatens our traditional order"
+ 
+ jewish_heritage.510.t:0 "Jewish Intellectual Renaissance"
+ jewish_heritage.510.d:0 "Jewish scholars, scientists, and artists have risen to prominence in our society. Their influence extends beyond their traditional communities, inspiring others to explore Jewish philosophy, ethics, and traditions. Universities report increased interest in Hebrew studies and Jewish thought."
+ jewish_heritage.510.f:0 "Wisdom knows no boundaries"
+ jewish_heritage.510.a:0 "Embrace this intellectual flowering"
+ jewish_heritage.510.b:0 "Maintain our traditional academic focus"
+ 
+ jewish_heritage.520.t:0 "Love Knows No Faith"
+ jewish_heritage.520.d:0 "Interfaith marriages between Jewish and non-Jewish citizens have become increasingly common, particularly among the educated middle classes. These unions often result in conversion to Judaism and the establishment of Jewish households. How should we respond to this social trend?"
+ jewish_heritage.520.f:0 "The heart has its own reasons"
+ jewish_heritage.520.a:0 "Marriage is a personal choice - support integration"
+ jewish_heritage.520.b:0 "Preserve traditional marriage customs"
+ 
+ jewish_heritage.530.t:0 "The Ruler's Contemplation"
+ jewish_heritage.530.d:0 "Our ruler has been in deep consultation with Jewish advisors and scholars, studying their ancient texts and modern interpretations. Palace rumors suggest a profound spiritual journey is taking place. Some whisper of potential conversion, while others speak of mere intellectual curiosity."
+ jewish_heritage.530.f:0 "The crown weighs heavy on a questioning soul"
+ jewish_heritage.530.a:0 "Embrace the Jewish faith"
+ jewish_heritage.530.b:0 "Show sympathy while maintaining tradition"
+ jewish_heritage.530.c:0 "Reaffirm our ancestral faith"
+ 
+ # Modifiers (Existing and New)
+ first_zionist_congress:0 "First Zionist Congress"
+ first_zionist_congress_desc:0 "The Basel Congress has organized the global Jewish community around the goal of establishing a homeland in Palestine."
+ 
+ jewish_homeland_established:0 "Jewish Homeland Established"
+ jewish_homeland_established_desc:0 "The establishment of a Jewish homeland has energized Jewish communities worldwide and attracted massive immigration."
+ 
+ balfour_declaration:0 "Balfour Declaration"
+ balfour_declaration_desc:0 "British support for a Jewish homeland in Palestine has increased our international standing and encouraged Jewish settlement."
+ 
+ jewish_pogrom_aftermath:0 "Pogrom Aftermath"
+ jewish_pogrom_aftermath_desc:0 "Recent violent attacks have traumatized the Jewish community and disrupted local economic activity."
+ 
+ # New Migration and Reversion Modifiers
+ jewish_homeland_emigration_wave:0 "Jewish Homeland Emigration Wave"
+ jewish_homeland_emigration_wave_desc:0 "The establishment of a Jewish homeland has inspired mass emigration among Jewish populations worldwide."
+ 
+ zionist_emigration_pull:0 "Zionist Emigration Pull"
+ zionist_emigration_pull_desc:0 "Local Jewish populations are drawn to emigrate to the newly established Jewish homeland."
+ 
+ restricted_jewish_emigration:0 "Restricted Jewish Emigration"
+ restricted_jewish_emigration_desc:0 "Government restrictions on Jewish emigration to the homeland have created tension and dissatisfaction."
+ 
+ jewish_religious_revival:0 "Jewish Religious Revival"
+ jewish_religious_revival_desc:0 "A return to Jewish religious practice is strengthening community bonds and cultural identity."
+ 
+ returned_to_ancestral_faith:0 "Returned to Ancestral Faith"
+ returned_to_ancestral_faith_desc:0 "These individuals have reconnected with their Jewish religious heritage during times of crisis."
+ 
+ secular_jewish_identity_promoted:0 "Secular Jewish Identity Promoted"
+ secular_jewish_identity_promoted_desc:0 "Emphasis on secular Jewish cultural identity rather than religious observance has been encouraged."
+ 
+ jewish_cultural_awakening:0 "Jewish Cultural Awakening"
+ jewish_cultural_awakening_desc:0 "A renaissance of Jewish culture, learning, and identity is flourishing among the population."
+ 
+ generational_jewish_reconnection:0 "Generational Jewish Reconnection"
+ generational_jewish_reconnection_desc:0 "Young people are rediscovering and embracing their Jewish heritage in ways their parents did not."
+ 
+ immigration_religious_revival:0 "Immigration-Driven Religious Revival"
+ immigration_religious_revival_desc:0 "Religious Jewish immigrants are inspiring local secular Jews to return to traditional practices."
+ 
+ # Buildings
+ building_synagogue:0 "Synagogue"
+ building_synagogue_desc:0 "Religious and community centers serving the spiritual and social needs of Jewish populations."
+ 
+ building_kibbutz:0 "Kibbutz"
+ building_kibbutz_desc:0 "Collective agricultural communities that combine farming with socialist principles, pioneered by Jewish settlers."
+ 
+ building_yeshiva:0 "Yeshiva"
+ building_yeshiva_desc:0 "Traditional Jewish educational institutions focused on religious and secular learning."
+ 
+ # Formation Decisions - Updated Names
+ form_eretz_yisrael_title:0 "Form Eretz Yisrael"
+ form_eretz_yisrael_desc:0 "Establish the modern Jewish homeland in the ancient Land of Israel, fulfilling the Zionist dream of national restoration."
+ 
+ form_pale_oytonom_title:0 "Form Pale Oytonom"
+ form_pale_oytonom_desc:0 "Create an autonomous Jewish region within the Russian Empire, providing self-governance for Jewish communities."
+ 
+ form_nueva_judea_title:0 "Form Nueva Judea"
+ form_nueva_judea_desc:0 "Establish a Jewish agricultural homeland in South America, based on Baron de Hirsch's colonization plans."
+ 
+ form_qrim_sovetishe_republik_title:0 "Form Qrim Sovetishe Republik"
+ form_qrim_sovetishe_republik_desc:0 "Create a Jewish Soviet Republic in Crimea, combining Zionist aspirations with revolutionary ideals."
+ 
+ form_birobidzhaner_yidish_oytonom_title:0 "Form Birobidzhaner Yidish Oytonom"
+ form_birobidzhaner_yidish_oytonom_desc:0 "Establish the Jewish Autonomous Oblast in the Far East, creating a Yiddish-speaking Jewish homeland."
+ 
+ form_medinat_uganda_title:0 "Form Medinat Uganda"
+ form_medinat_uganda_desc:0 "Implement the British Uganda Proposal as an alternative Jewish homeland in East Africa."
+ 
+ form_yidishe_revolutsyonere_republik_title:0 "Form Yidishe Revolutsyonere Republik"
+ form_yidishe_revolutsyonere_republik_desc:0 "Establish a revolutionary Jewish state that combines national liberation with radical social transformation."
+ 
+ form_polin_yidish_title:0 "Form Polin Yidish"
+ form_polin_yidish_desc:0 "Transform Poland into a Jewish-majority nation through conversion and immigration."
+ 
+ form_galitsye_yidish_republik_title:0 "Form Galitsye Yidish Republik"
+ form_galitsye_yidish_republik_desc:0 "Create an independent Jewish republic in Galicia following the collapse of Austria-Hungary."
+ 
+ form_fraye_yidishe_shtot_title:0 "Form Fraye Yidishe Shtot"
+ form_fraye_yidishe_shtot_desc:0 "Establish an independent Jewish commercial republic based on traditional mercantile expertise."

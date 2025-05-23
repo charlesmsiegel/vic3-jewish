@@ -1,0 +1,330 @@
+je_zionist_movement = {
+	icon = "gfx/interface/icons/journal_entries/je_zionism.dds"
+	
+	group = je_group_internal_affairs
+	
+	complete = {
+		any_scope_state = {
+			state_region = s:STATE_PALESTINE
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_size >= 100000
+			}
+		}
+		has_technology = nationalism
+	}
+	
+	on_start = {
+		add_modifier = {
+			name = early_zionist_organizing
+			months = 60
+		}
+	}
+	
+	on_complete = {
+		add_modifier = {
+			name = zionist_movement_success
+			months = -1
+		}
+		
+		custom_tooltip = "Can now form Judea if conditions are met"
+		
+		trigger_event = { id = jewish_heritage.200 }
+	}
+	
+	timeout = 3650  # 10 years
+	
+	fail_actions = {
+		add_modifier = {
+			name = failed_zionist_organizing
+			months = 120
+		}
+	}
+	
+	progressbar = yes
+	
+	scripted_progress_bar = {
+		value = {
+			add = 0
+			
+			# Progress from Jewish immigration to Palestine
+			if = {
+				limit = {
+					any_scope_state = {
+						state_region = s:STATE_PALESTINE
+						any_scope_pop = {
+							culture_is_jewish = yes
+							pop_size >= 10000
+						}
+					}
+				}
+				add = 25
+			}
+			
+			# Progress from Zionist organization events
+			if = { limit = { has_modifier = first_zionist_congress } add = 20 }
+			if = { limit = { has_modifier = herzl_influence } add = 15 }
+			if = { limit = { has_modifier = kibbutz_movement } add = 20 }
+			
+			# Progress from international support
+			if = { limit = { has_modifier = balfour_declaration } add = 30 }
+			
+			# Setbacks
+			if = { limit = { has_modifier = arab_resistance_palestine } add = -10 }
+			if = { limit = { has_modifier = ottoman_restrictions } add = -15 }
+		}
+	}
+}
+
+je_great_jewish_migration = {
+	icon = "gfx/interface/icons/journal_entries/je_migration.dds"
+	
+	group = je_group_internal_affairs
+	
+	immediate = {
+		# Triggers mass migration mechanics
+		every_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 50000
+				}
+				OR = {
+					has_modifier = jewish_pogrom_aftermath
+					owner = { 
+						OR = {
+							has_law = law_state_religion
+							has_law = law_national_supremacy
+						}
+					}
+				}
+			}
+			
+			# Increase emigration desire
+			add_modifier = {
+				name = jewish_mass_emigration
+				months = 120
+			}
+		}
+	}
+	
+	complete = {
+		# Completes when migration stabilizes
+		NOT = {
+			any_scope_state = {
+				has_modifier = jewish_mass_emigration
+			}
+		}
+	}
+	
+	timeout = 1825  # 5 years
+}
+
+je_dreyfus_affair = {
+	icon = "gfx/interface/icons/journal_entries/je_dreyfus.dds"
+	
+	group = je_group_internal_affairs
+	
+	possible = {
+		c:FRA = THIS
+		has_technology = nationalism
+		game_date > 1894.1.1
+		game_date < 1900.1.1
+		
+		any_scope_character = {
+			culture = cu:ashkenazi_jewish
+			has_role = general
+		}
+	}
+	
+	immediate = {
+		# Find or create Jewish officer
+		random_scope_character = {
+			limit = {
+				culture = cu:ashkenazi_jewish
+				has_role = general
+			}
+			save_scope_as = dreyfus_character
+		}
+		
+		add_modifier = {
+			name = dreyfus_affair_crisis
+			months = 60
+		}
+	}
+	
+	complete = {
+		# Player chooses resolution
+		OR = {
+			has_modifier = dreyfus_vindicated
+			has_modifier = dreyfus_condemned
+		}
+	}
+}
+
+je_religious_conversion_movement = {
+	icon = "gfx/interface/icons/journal_entries/je_conversion.dds"
+	
+	group = je_group_internal_affairs
+	
+	possible = {
+		# Can occur in countries with religious tension
+		OR = {
+			has_modifier = religious_persecution
+			has_modifier = revolutionary_fervor
+			has_law = law_total_separation
+		}
+		
+		# Must have significant Jewish population or influence
+		OR = {
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_size >= 100000
+			}
+			ruler = {
+				culture_is_jewish = yes
+			}
+			any_scope_character = {
+				culture_is_jewish = yes
+				has_role = agitator
+			}
+		}
+		
+		# Modern era for ideological conversion
+		has_technology = nationalism
+	}
+	
+	immediate = {
+		add_modifier = {
+			name = religious_questioning_movement
+			months = 60
+		}
+	}
+	
+	complete = {
+		# Completes when significant conversion has occurred
+		OR = {
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_size >= 50000
+				has_modifier = recent_conversion_to_judaism
+			}
+			has_modifier = mass_conversion_to_judaism
+		}
+	}
+	
+	timeout = 2555  # 7 years
+	
+	progressbar = yes
+	
+	scripted_progress_bar = {
+		value = {
+			add = 0
+			
+			# Progress from conversion events
+			if = { limit = { has_modifier = intellectual_jewish_influence } add = 15 }
+			if = { limit = { has_modifier = economic_jewish_prominence } add = 10 }
+			if = { limit = { has_modifier = interfaith_marriage_acceptance } add = 20 }
+			if = { limit = { has_modifier = religious_revival_movement } add = 25 }
+			
+			# Setbacks from persecution
+			if = { limit = { has_modifier = state_sponsored_antisemitism } add = -20 }
+			if = { limit = { has_law = law_state_religion } add = -10 }
+		}
+	}
+}
+
+je_mass_jewish_conversion = {
+	icon = "gfx/interface/icons/journal_entries/je_mass_conversion.dds"
+	
+	group = je_group_internal_affairs
+	
+	possible = {
+		# Major social upheaval context
+		OR = {
+			has_modifier = revolutionary_fervor
+			has_journal_entry = je_social_revolution
+			has_modifier = economic_collapse
+			has_modifier = military_defeat_major
+		}
+		
+		# Significant Jewish cultural influence
+		any_scope_pop = {
+			culture_is_jewish = yes
+			OR = {
+				strata = rich
+				pop_type = intellectuals
+				pop_type = bureaucrats
+			}
+			pop_size >= 25000
+		}
+		
+		# Religious freedom laws
+		has_law = law_total_separation
+	}
+	
+	immediate = {
+		# Trigger the conversion process
+		trigger_event = { id = jewish_heritage.500 days = 30 }
+		
+		add_modifier = {
+			name = social_upheaval_conversions
+			months = 24
+		}
+	}
+	
+	complete = {
+		# Large-scale conversion achieved
+		country_population_percent = {
+			target_culture_is_jewish = yes
+			value >= 0.25
+		}
+	}
+}
+
+je_judaization_of_state = {
+	icon = "gfx/interface/icons/journal_entries/je_state_judaization.dds"
+	
+	group = je_group_internal_affairs
+	
+	possible = {
+		# Jewish political control
+		OR = {
+			ruler = {
+				culture_is_jewish = yes
+			}
+			government_legitimacy_from_pops = {
+				target_culture_is_jewish = yes
+				value >= 0.40
+			}
+		}
+		
+		# Significant Jewish population
+		country_population_percent = {
+			target_culture_is_jewish = yes
+			value >= 0.30
+		}
+		
+		# Progressive laws
+		has_law = law_total_separation
+		has_law = law_multiculturalism
+	}
+	
+	immediate = {
+		add_modifier = {
+			name = state_judaization_process
+			months = 120
+		}
+	}
+	
+	complete = {
+		# State has become functionally Jewish
+		OR = {
+			country_population_percent = {
+				target_culture_is_jewish = yes
+				value >= 0.51
+			}
+			has_modifier = jewish_state_established
+		}
+	}
+}

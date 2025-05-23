@@ -1,0 +1,181 @@
+building_synagogue = {
+	building_group = bg_service
+	city_type = city
+	
+	levels_per_mesh = 5
+	
+	required_construction = construction_cost_low
+	
+	production_method_groups = {
+		pmg_base_building_synagogue
+		pmg_synagogue_services
+		pmg_ownership_capital_building
+	}
+	
+	can_build = {
+		any_scope_pop = {
+			culture_is_jewish = yes
+		}
+	}
+	
+	ai_value = 100
+}
+
+building_kibbutz = {
+	building_group = bg_agriculture
+	city_type = farm
+	
+	levels_per_mesh = 10
+	
+	required_construction = construction_cost_medium
+	
+	required_technology = agricultural_cooperatives
+	
+	production_method_groups = {
+		pmg_base_building_kibbutz
+		pmg_kibbutz_organization
+		pmg_ownership_capital_building
+	}
+	
+	can_build = {
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_type = farmers
+		}
+	}
+	
+	ai_value = 150
+}
+
+building_yeshiva = {
+	building_group = bg_service
+	city_type = city
+	
+	levels_per_mesh = 3
+	
+	required_construction = construction_cost_medium
+	
+	production_method_groups = {
+		pmg_base_building_yeshiva
+		pmg_yeshiva_curriculum
+		pmg_ownership_capital_building
+	}
+	
+	can_build = {
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 25000
+		}
+		has_technology = academia
+	}
+	
+	# Provides education and cultural services
+	ai_value = 125
+}
+
+# Production Methods for Synagogue
+pmg_base_building_synagogue = {
+	production_methods = {
+		pm_simple_synagogue
+		pm_grand_synagogue
+		pm_community_center_synagogue
+	}
+}
+
+pm_simple_synagogue = {
+	building_modifiers = {
+		workforce_scaled = {
+			building_employment_clergymen_add = 500
+			building_employment_bureaucrats_add = 100
+		}
+		
+		level_scaled = {
+			building_input_fabric_add = 5
+			building_input_wood_add = 10
+		}
+		
+		unscaled = {
+			# Cultural preservation
+			country_cultural_acceptance_mult = 0.02
+			state_revolution_threshold_mult = 0.01
+		}
+	}
+}
+
+pm_grand_synagogue = {
+	building_modifiers = {
+		workforce_scaled = {
+			building_employment_clergymen_add = 750
+			building_employment_bureaucrats_add = 200
+			building_employment_academics_add = 100
+		}
+		
+		level_scaled = {
+			building_input_fabric_add = 10
+			building_input_wood_add = 15
+			building_input_glass_add = 5
+		}
+		
+		unscaled = {
+			# Enhanced cultural and educational benefits
+			country_cultural_acceptance_mult = 0.04
+			state_revolution_threshold_mult = 0.02
+			state_weekly_innovation_mult = 0.01
+		}
+	}
+	
+	required_technology = steel_frame_buildings
+}
+
+# Production Methods for Kibbutz  
+pmg_base_building_kibbutz = {
+	production_methods = {
+		pm_agricultural_kibbutz
+		pm_mixed_kibbutz
+		pm_industrial_kibbutz
+	}
+}
+
+pm_agricultural_kibbutz = {
+	building_modifiers = {
+		workforce_scaled = {
+			building_employment_farmers_add = 2000
+			building_employment_laborers_add = 500
+		}
+		
+		level_scaled = {
+			building_output_grain_add = 60
+			building_output_meat_add = 30
+			building_output_fabric_add = 20
+		}
+		
+		unscaled = {
+			# Cooperative efficiency
+			building_food_industry_throughput_mult = 0.10
+		}
+	}
+}
+
+pm_mixed_kibbutz = {
+	building_modifiers = {
+		workforce_scaled = {
+			building_employment_farmers_add = 1000
+			building_employment_machinists_add = 750
+			building_employment_laborers_add = 750
+		}
+		
+		level_scaled = {
+			building_output_grain_add = 30
+			building_output_tools_add = 15
+			building_output_fabric_add = 25
+		}
+		
+		unscaled = {
+			# Mixed economy benefits
+			building_food_industry_throughput_mult = 0.05
+			building_manufacturing_throughput_mult = 0.05
+		}
+	}
+	
+	required_technology = steel_working
+}

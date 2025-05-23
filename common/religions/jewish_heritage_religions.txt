@@ -1,0 +1,128 @@
+# Samaritan Religion
+samaritan = {
+	color = { 0.3 0.6 0.4 }
+	texture = "gfx/interface/icons/religion_icons/samaritan.dds"
+	
+	traits = {
+		taboo_meat_consumption
+		holy_sites_requirement
+		traditional_gender_roles
+	}
+	
+	# Samaritans worship at Mount Gerizim specifically
+	holy_sites = {
+		gerizim_temple
+	}
+	
+	# Very conservative religious practices
+	pop_conversion_mult = 0.10  # Extremely difficult to convert
+	discriminated_pop_growth_mult = 0.85
+	
+	# Special mechanics
+	requires_mountain_worship = yes
+	rejects_jerusalem_temple = yes
+}
+
+# Karaite Religion 
+karaite = {
+	color = { 0.8 0.6 0.2 }
+	texture = "gfx/interface/icons/religion_icons/karaite.dds"
+	
+	traits = {
+		scriptural_fundamentalism
+		rejects_oral_law
+		rational_interpretation
+	}
+	
+	# More open to conversion than traditional Judaism
+	pop_conversion_mult = 1.25
+	
+	# Emphasis on learning and scholarship
+	building_university_throughput_mult = 0.05
+	country_weekly_innovation_mult = 0.02
+}
+
+# Enhanced Jewish Religion
+jewish = {
+	color = { 0.2 0.3 0.7 }
+	texture = "gfx/interface/icons/religion_icons/jewish.dds"
+	
+	traits = {
+		taboo_meat_consumption
+		diaspora_community
+		education_focus
+	}
+	
+	# Enhanced mechanics for Jewish populations
+	building_synagogue_throughput_mult = 0.10
+	building_yeshiva_throughput_mult = 0.15
+	
+	# Cultural preservation
+	country_cultural_acceptance_mult = 0.05
+	
+	# Various denominations can emerge
+	can_reform_into = {
+		reform_judaism
+		conservative_judaism
+		hasidic_judaism
+	}
+}
+
+# Reform Judaism (modernist movement)
+reform_judaism = {
+	color = { 0.4 0.5 0.8 }
+	texture = "gfx/interface/icons/religion_icons/reform_judaism.dds"
+	
+	traits = {
+		modernist_interpretation
+		gender_equality
+		social_integration
+	}
+	
+	# More integrated with broader society
+	country_cultural_acceptance_mult = 0.15
+	pop_conversion_mult = 1.50
+	building_university_throughput_mult = 0.08
+	
+	# Emerges in modern era
+	unlocking_technologies = { nationalism }
+}
+
+# Conservative Judaism (middle path)
+conservative_judaism = {
+	color = { 0.3 0.4 0.6 }
+	texture = "gfx/interface/icons/religion_icons/conservative_judaism.dds"
+	
+	traits = {
+		traditional_adaptation
+		scholarly_approach
+		community_focus
+	}
+	
+	# Balance of tradition and modernity
+	building_synagogue_throughput_mult = 0.08
+	building_yeshiva_throughput_mult = 0.10
+	country_cultural_acceptance_mult = 0.10
+	
+	unlocking_technologies = { nationalism }
+}
+
+# Hasidic Judaism (mystical movement)
+hasidic_judaism = {
+	color = { 0.1 0.2 0.5 }
+	texture = "gfx/interface/icons/religion_icons/hasidic_judaism.dds"
+	
+	traits = {
+		mystical_tradition
+		charismatic_leadership
+		community_isolation
+	}
+	
+	# Strong community cohesion but less integration
+	building_synagogue_throughput_mult = 0.20
+	country_cultural_acceptance_mult = 0.05
+	pop_conversion_mult = 0.75
+	
+	# Emerges in response to modernity
+	unlocking_technologies = { nationalism }
+}

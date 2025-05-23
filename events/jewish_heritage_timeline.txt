@@ -1,0 +1,934 @@
+namespace = jewish_timeline
+
+# 1840s - Damascus Affair
+jewish_timeline.1840 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1840.t
+	desc = jewish_timeline.1840.d
+	flavor = jewish_timeline.1840.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1840.2.5
+		game_date < 1841.8.28
+		
+		OR = {
+			c:TUR = THIS
+			c:FRA = THIS
+			c:GBR = THIS
+		}
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 10000
+		}
+		
+		NOT = { has_variable = damascus_affair_occurred }
+	}
+	
+	immediate = {
+		set_variable = damascus_affair_occurred
+	}
+	
+	option = {
+		name = jewish_timeline.1840.a
+		
+		# Investigate blood libel claims
+		add_modifier = {
+			name = blood_libel_investigation
+			months = 12
+		}
+		
+		# International attention
+		every_country = {
+			limit = {
+				OR = {
+					c:FRA = THIS
+					c:GBR = THIS
+					c:AUS = THIS
+				}
+			}
+			change_relations = {
+				country = root
+				value = 10
+			}
+		}
+		
+		ai_chance = {
+			factor = 80
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1840.b
+		
+		# Support the accusations
+		add_modifier = {
+			name = blood_libel_accusations
+			months = 36
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -40
+				radical = 50
+			}
+		}
+		
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+
+# 1850s - Mortara Case
+jewish_timeline.1858 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1858.t
+	desc = jewish_timeline.1858.d
+	flavor = jewish_timeline.1858.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1858.6.23
+		game_date < 1859.6.23
+		
+		c:PAP = THIS  # Papal States
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 5000
+		}
+		
+		has_law = law_state_religion
+	}
+	
+	option = {
+		name = jewish_timeline.1858.a
+		
+		# Return the child to his family
+		add_modifier = {
+			name = religious_tolerance_gesture
+			months = 60
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 20
+			}
+		}
+		
+		# International approval
+		every_country = {
+			limit = {
+				has_law = law_guaranteed_liberties
+			}
+			change_relations = {
+				country = root
+				value = 15
+			}
+		}
+		
+		ai_chance = {
+			factor = 30
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1858.b
+		
+		# Maintain church authority
+		add_modifier = {
+			name = church_authority_maintained
+			months = 60
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -30
+				radical = 40
+			}
+		}
+		
+		# International condemnation
+		every_country = {
+			limit = {
+				OR = {
+					has_law = law_guaranteed_liberties
+					any_scope_pop = {
+						culture_is_jewish = yes
+						pop_size >= 25000
+					}
+				}
+			}
+			change_relations = {
+				country = root
+				value = -20
+			}
+		}
+		
+		ai_chance = {
+			factor = 70
+		}
+	}
+}
+
+# 1860s - Jewish Emancipation Wave
+jewish_timeline.1867 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1867.t
+	desc = jewish_timeline.1867.d
+	flavor = jewish_timeline.1867.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1867.1.1
+		game_date < 1872.1.1
+		
+		OR = {
+			c:AUS = THIS
+			c:PRU = THIS
+			c:ITA = THIS
+		}
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 50000
+		}
+		
+		NOT = { has_law = law_guaranteed_liberties }
+		
+		has_technology = nationalism
+	}
+	
+	option = {
+		name = jewish_timeline.1867.a
+		
+		# Grant full civic equality
+		if = {
+			limit = {
+				can_enact_law = law_guaranteed_liberties
+			}
+			activate_law = law_guaranteed_liberties
+		}
+		
+		add_modifier = {
+			name = jewish_emancipation
+			months = -1
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 30
+				radical = -20
+			}
+		}
+		
+		ai_chance = {
+			factor = 70
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1867.b
+		
+		# Gradual reform
+		add_modifier = {
+			name = gradual_jewish_reform
+			months = 120
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 10
+				radical = 10
+			}
+		}
+		
+		ai_chance = {
+			factor = 30
+		}
+	}
+}
+
+# 1870s - Rise of Modern Antisemitism
+jewish_timeline.1873 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1873.t
+	desc = jewish_timeline.1873.d
+	flavor = jewish_timeline.1873.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1873.5.1
+		game_date < 1874.12.31
+		
+		OR = {
+			c:GER = THIS
+			c:AUS = THIS
+			c:FRA = THIS
+		}
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 75000
+		}
+		
+		# Economic downturn context
+		OR = {
+			has_modifier = economic_crisis
+			average_sol <= 12
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1873.a
+		
+		# Combat antisemitic propaganda
+		add_modifier = {
+			name = anti_antisemitism_campaign
+			months = 120
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 15
+			}
+		}
+		
+		# Some political cost
+		add_modifier = {
+			name = political_capital_spent
+			months = 60
+		}
+		
+		ai_chance = {
+			factor = 60
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1873.b
+		
+		# Allow scapegoating to continue
+		add_modifier = {
+			name = economic_antisemitism
+			months = 180
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -25
+				radical = 30
+			}
+		}
+		
+		# Some political benefits from majority
+		add_modifier = {
+			name = populist_scapegoating
+			months = 60
+		}
+		
+		ai_chance = {
+			factor = 40
+		}
+	}
+}
+
+# 1880s - May Laws in Russia
+jewish_timeline.1882 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1882.t
+	desc = jewish_timeline.1882.d
+	flavor = jewish_timeline.1882.f
+	
+	duration = 3
+	
+	trigger = {
+		c:RUS = THIS
+		game_date > 1882.5.3
+		game_date < 1883.5.3
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 200000
+		}
+		
+		OR = {
+			has_modifier = revolutionary_fervor
+			ruler = {
+				ideology = ideology_traditionalist
+			}
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1882.a
+		
+		# Implement the May Laws
+		add_modifier = {
+			name = may_laws_restrictions
+			months = -1
+		}
+		
+		every_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 10000
+				}
+			}
+			add_modifier = {
+				name = jewish_residential_restrictions
+				months = -1
+			}
+		}
+		
+		# Mass emigration begins
+		add_journal_entry = { type = je_great_jewish_migration }
+		
+		ai_chance = {
+			factor = 85
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1882.b
+		
+		# Reject restrictive legislation
+		add_modifier = {
+			name = refused_antisemitic_laws
+			months = 120
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 25
+			}
+		}
+		
+		# Conservative backlash
+		add_modifier = {
+			name = conservative_opposition
+			months = 180
+		}
+		
+		ai_chance = {
+			factor = 15
+		}
+	}
+}
+
+# 1890s - Bund Formation
+jewish_timeline.1897_bund = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1897_bund.t
+	desc = jewish_timeline.1897_bund.d
+	flavor = jewish_timeline.1897_bund.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1897.10.7
+		game_date < 1898.10.7
+		
+		OR = {
+			c:RUS = THIS
+			any_scope_state = {
+				OR = {
+					state_region = s:STATE_LITHUANIA
+					state_region = s:STATE_POLAND
+					state_region = s:STATE_BELARUS
+				}
+			}
+		}
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_type = laborers
+			pop_size >= 50000
+		}
+		
+		has_technology = labor_movement
+	}
+	
+	option = {
+		name = jewish_timeline.1897_bund.a
+		
+		# Allow the Bund to organize
+		add_modifier = {
+			name = jewish_labor_movement
+			months = -1
+		}
+		
+		every_scope_pop = {
+			limit = { 
+				culture_is_jewish = yes
+				pop_type = laborers
+			}
+			change_pop_loyalties = {
+				loyalty = -10
+				radical = 25
+			}
+		}
+		
+		# Labor organization benefits
+		add_modifier = {
+			name = organized_jewish_workers
+			months = 180
+		}
+		
+		ai_chance = {
+			factor = 40
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1897_bund.b
+		
+		# Suppress Jewish socialist organizing
+		add_modifier = {
+			name = suppressed_jewish_organizations
+			months = 120
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -20
+				radical = 35
+			}
+		}
+		
+		# Underground organizing continues
+		add_modifier = {
+			name = underground_jewish_activism
+			months = 240
+		}
+		
+		ai_chance = {
+			factor = 60
+		}
+	}
+}
+
+# 1900s - Kishinev Pogrom
+jewish_timeline.1903 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1903.t
+	desc = jewish_timeline.1903.d
+	flavor = jewish_timeline.1903.f
+	
+	duration = 3
+	
+	trigger = {
+		c:RUS = THIS
+		game_date > 1903.4.6
+		game_date < 1903.8.19
+		
+		any_scope_state = {
+			state_region = s:STATE_MOLDAVIA
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_size >= 20000
+			}
+		}
+		
+		OR = {
+			has_modifier = revolutionary_fervor
+			has_modifier = economic_crisis
+		}
+	}
+	
+	immediate = {
+		random_scope_state = {
+			limit = {
+				state_region = s:STATE_MOLDAVIA
+			}
+			save_scope_as = kishinev_state
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1903.a
+		
+		# Thorough investigation and punishment
+		scope:kishinev_state = {
+			add_modifier = {
+				name = pogrom_justice_served
+				months = 120
+			}
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 10
+				radical = -15
+			}
+		}
+		
+		# International approval
+		every_country = {
+			limit = {
+				has_law = law_guaranteed_liberties
+			}
+			change_relations = {
+				country = root
+				value = 20
+			}
+		}
+		
+		ai_chance = {
+			factor = 25
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1903.b
+		
+		# Minimal response
+		scope:kishinev_state = {
+			add_modifier = {
+				name = jewish_pogrom_aftermath
+				months = 60
+			}
+		}
+		
+		# International outrage
+		every_country = {
+			limit = {
+				OR = {
+					has_law = law_guaranteed_liberties
+					any_scope_pop = {
+						culture_is_jewish = yes
+						pop_size >= 50000
+					}
+				}
+			}
+			change_relations = {
+				country = root
+				value = -30
+			}
+		}
+		
+		# Domestic radicalization
+		add_journal_entry = { type = je_great_jewish_migration }
+		
+		ai_chance = {
+			factor = 75
+		}
+	}
+}
+
+# 1910s - Beilis Trial
+jewish_timeline.1913 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1913.t
+	desc = jewish_timeline.1913.d
+	flavor = jewish_timeline.1913.f
+	
+	duration = 3
+	
+	trigger = {
+		c:RUS = THIS
+		game_date > 1913.9.25
+		game_date < 1913.11.28
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 100000
+		}
+		
+		OR = {
+			has_modifier = blood_libel_accusations
+			random <= 40
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1913.a
+		
+		# Ensure fair trial and acquittal
+		add_modifier = {
+			name = fair_justice_system
+			months = 120
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 20
+				radical = -10
+			}
+		}
+		
+		# International respect
+		every_country = {
+			limit = {
+				has_law = law_guaranteed_liberties
+			}
+			change_relations = {
+				country = root
+				value = 15
+			}
+		}
+		
+		ai_chance = {
+			factor = 60
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1913.b
+		
+		# Allow prejudiced prosecution
+		add_modifier = {
+			name = blood_libel_accusations
+			months = 180
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -35
+				radical = 45
+			}
+		}
+		
+		# Mass emigration
+		every_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 10000
+				}
+			}
+			add_modifier = {
+				name = jewish_mass_emigration
+				months = 240
+			}
+		}
+		
+		ai_chance = {
+			factor = 40
+		}
+	}
+}
+
+# 1920s - University Quotas
+jewish_timeline.1922 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1922.t
+	desc = jewish_timeline.1922.d
+	flavor = jewish_timeline.1922.f
+	
+	duration = 3
+	
+	trigger = {
+		c:USA = THIS
+		game_date > 1922.1.1
+		game_date < 1925.12.31
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_type = intellectuals
+			pop_size >= 15000
+		}
+		
+		literacy_rate >= 0.70
+		
+		any_scope_state = {
+			state_has_building = building_university
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1922.a
+		
+		# Reject discriminatory quotas
+		add_modifier = {
+			name = meritocratic_university_system
+			months = -1
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 25
+			}
+		}
+		
+		# Educational benefits
+		every_scope_building = {
+			limit = { is_building_type = building_university }
+			add_modifier = {
+				name = diverse_university_excellence
+				months = -1
+			}
+		}
+		
+		ai_chance = {
+			factor = 40
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1922.b
+		
+		# Implement informal quotas
+		add_modifier = {
+			name = university_quotas_system
+			months = 240
+		}
+		
+		every_scope_pop = {
+			limit = { 
+				culture_is_jewish = yes
+				pop_type = intellectuals
+			}
+			change_pop_loyalties = {
+				loyalty = -30
+				radical = 20
+			}
+		}
+		
+		# Brain drain
+		every_scope_building = {
+			limit = { is_building_type = building_university }
+			add_modifier = {
+				name = restricted_university_access
+				months = 240
+			}
+		}
+		
+		ai_chance = {
+			factor = 60
+		}
+	}
+}
+
+# 1930s - Rise of Fascism Response
+jewish_timeline.1933 = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1933.t
+	desc = jewish_timeline.1933.d
+	flavor = jewish_timeline.1933.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1933.1.30
+		game_date < 1934.1.30
+		
+		NOT = { c:GER = THIS }
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 25000
+		}
+		
+		# Nazi Germany exists
+		c:GER = {
+			has_law = law_single_party_state
+		}
+		
+		has_law = law_guaranteed_liberties
+	}
+	
+	option = {
+		name = jewish_timeline.1933.a
+		
+		# Welcome Jewish refugees
+		add_modifier = {
+			name = jewish_refuge_policies
+			months = -1
+		}
+		
+		# Immigration wave
+		capital = {
+			create_pop = {
+				culture = cu:ashkenazi_jewish
+				religion = rel:jewish
+				pop_type = intellectuals
+				size = 5000
+			}
+			create_pop = {
+				culture = cu:ashkenazi_jewish
+				religion = rel:jewish
+				pop_type = shopkeepers
+				size = 8000
+			}
+		}
+		
+		# Economic and cultural benefits
+		add_modifier = {
+			name = refugee_intellectual_contribution
+			months = 240
+		}
+		
+		ai_chance = {
+			factor = 70
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1933.b
+		
+		# Restrict immigration
+		add_modifier = {
+			name = immigration_restrictions
+			months = 120
+		}
+		
+		# International consequences
+		every_country = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 50000
+				}
+			}
+			change_relations = {
+				country = root
+				value = -25
+			}
+		}
+		
+		ai_chance = {
+			factor = 30
+		}
+	}
+}

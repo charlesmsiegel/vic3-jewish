@@ -1,0 +1,212 @@
+# Major Historical Figures
+theodor_herzl_template = {
+	first_name = "Theodor"
+	last_name = "Herzl"
+	culture = cu:ashkenazi_jewish
+	religion = rel:jewish
+	ideology = ideology_radical
+	birth_date = 1860.5.2
+	
+	traits = {
+		charismatic
+		meticulous
+		persistent
+	}
+	
+	character_event = {
+		event = jewish_heritage.herzl_appears
+	}
+}
+
+baron_rothschild_template = {
+	first_name = "Edmond"
+	last_name = "de Rothschild"
+	culture = cu:sephardic_jewish
+	religion = rel:jewish
+	ideology = ideology_liberal
+	birth_date = 1845.8.19
+	
+	traits = {
+		meticulous
+		bankers
+		ambitious
+	}
+	
+	wealth = very_rich
+}
+
+emma_goldman_template = {
+	first_name = "Emma"
+	last_name = "Goldman"
+	culture = cu:ashkenazi_jewish
+	religion = rel:jewish
+	ideology = ideology_anarchist
+	birth_date = 1869.6.27
+	
+	traits = {
+		charismatic
+		firebrand
+		persistent
+	}
+}
+
+chaim_weizmann_template = {
+	first_name = "Chaim"
+	last_name = "Weizmann"
+	culture = cu:ashkenazi_jewish
+	religion = rel:jewish
+	ideology = ideology_liberal
+	birth_date = 1874.11.27
+	
+	traits = {
+		innovative
+		meticulous
+		diplomatic
+	}
+}
+
+abraham_cahan_template = {
+	first_name = "Abraham"
+	last_name = "Cahan"
+	culture = cu:ashkenazi_jewish
+	religion = rel:jewish
+	ideology = ideology_radical
+	birth_date = 1860.7.7
+	
+	traits = {
+		literary
+		charismatic
+		persistent
+	}
+}
+
+# Dynamic character generation templates
+haskalah_intellectual_template = {
+	culture = cu:ashkenazi_jewish
+	religion = rel:jewish
+	ideology = ideology_liberal
+	
+	traits = {
+		meticulous
+		innovative
+		persistent
+	}
+	
+	# High chance of academic roles
+	role_chance = {
+		factor = 3
+		modifier = {
+			factor = 2
+			has_technology = nationalism
+		}
+	}
+}
+
+rabbinical_leader_template = {
+	culture_group = jewish
+	religion = rel:jewish
+	ideology = ideology_traditionalist
+	
+	traits = {
+		pious
+		meticulous
+		charismatic
+	}
+	
+	# More likely in religious communities
+	spawn_chance = {
+		factor = 2
+		modifier = {
+			factor = 3
+			state_has_building = building_synagogue
+		}
+	}
+}
+
+jewish_merchant_template = {
+	culture = cu:sephardic_jewish
+	religion = rel:jewish
+	ideology = ideology_liberal
+	
+	traits = {
+		ambitious
+		bankers
+		charismatic
+	}
+	
+	wealth = rich
+	
+	# Commercial focus
+	spawn_chance = {
+		factor = 2
+		modifier = {
+			factor = 2
+			state_has_building = building_financial_district
+		}
+	}
+}
+
+bundist_organizer_template = {
+	culture = cu:ashkenazi_jewish
+	religion = rel:jewish
+	ideology = ideology_radical
+	
+	traits = {
+		firebrand
+		persistent
+		charismatic
+	}
+	
+	# More likely during revolutionary periods
+	spawn_chance = {
+		factor = 4
+		modifier = {
+			factor = 3
+			has_modifier = revolutionary_fervor
+		}
+	}
+}
+
+zionist_pioneer_template = {
+	culture = cu:eretz_yisrael_jewish
+	religion = rel:jewish
+	ideology = ideology_radical
+	
+	traits = {
+		persistent
+		hardy
+		ambitious
+	}
+	
+	# Only appears in Palestine settlement context
+	spawn_chance = {
+		factor = 5
+		modifier = {
+			factor = 0
+			NOT = { state_region = s:STATE_PALESTINE }
+		}
+	}
+}
+
+court_jew_template = {
+	culture_group = jewish
+	religion = rel:jewish
+	ideology = ideology_liberal
+	
+	traits = {
+		meticulous
+		bankers
+		diplomatic
+	}
+	
+	wealth = very_rich
+	
+	# More likely in monarchical governments
+	spawn_chance = {
+		factor = 2
+		modifier = {
+			factor = 3
+			has_law = law_monarchy
+		}
+	}
+}
