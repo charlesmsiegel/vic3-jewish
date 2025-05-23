@@ -40,7 +40,7 @@ jewish_heritage.1 = {
 				first_name = "Theodor"
 				last_name = "Herzl"
 				culture = cu:ashkenazi_jewish
-				religion = rel:orthodox
+				religion = rel:jewish
 				ideology = ideology_radical
 				birth_date = 1860.5.2
 				
@@ -415,7 +415,7 @@ jewish_heritage.20 = {
 			}
 			create_pop = {
 				culture = cu:ashkenazi_jewish
-				religion = rel:orthodox
+				religion = rel:jewish
 				pop_type = laborers
 				size = 25000
 			}
