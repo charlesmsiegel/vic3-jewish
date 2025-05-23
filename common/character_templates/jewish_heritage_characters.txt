@@ -1,3 +1,6 @@
+# Enhanced Character Templates with Detailed Spawn Logic
+# Replace content in common/character_templates/jewish_heritage_characters.txt
+
 # Major Historical Figures
 theodor_herzl_template = {
 	first_name = "Theodor"
@@ -16,6 +19,49 @@ theodor_herzl_template = {
 	character_event = {
 		event = jewish_heritage.herzl_appears
 	}
+	
+	# Enhanced spawn conditions
+	spawn_chance = {
+		factor = 100
+		
+		# Only appears if Zionist conditions are right
+		modifier = {
+			factor = 0
+			NOT = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 50000
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0
+			game_date < 1890.1.1
+		}
+		
+		modifier = {
+			factor = 0
+			game_date > 1905.1.1
+		}
+		
+		# More likely in countries with persecution
+		modifier = {
+			factor = 2
+			has_modifier = state_sponsored_antisemitism
+		}
+		
+		# More likely in liberal countries where he can organize
+		modifier = {
+			factor = 1.5
+			has_law = law_guaranteed_liberties
+		}
+	}
+	
+	# Tooltip explaining Herzl's role
+	custom_tooltip = {
+		text = "Theodor Herzl will emerge as the leader of the Zionist movement if conditions are right for Jewish national awakening."
+	}
 }
 
 baron_rothschild_template = {
@@ -33,6 +79,49 @@ baron_rothschild_template = {
 	}
 	
 	wealth = very_rich
+	
+	spawn_chance = {
+		factor = 80
+		
+		# Only in countries with significant banking
+		modifier = {
+			factor = 0
+			NOT = {
+				any_scope_building = {
+					is_building_type = building_financial_district
+				}
+			}
+		}
+		
+		# More likely in financial centers
+		modifier = {
+			factor = 2
+			capital = {
+				state_has_building = building_financial_district
+			}
+		}
+		
+		# Historical period
+		modifier = {
+			factor = 0
+			game_date < 1870.1.1
+		}
+		
+		modifier = {
+			factor = 0
+			game_date > 1920.1.1
+		}
+		
+		# Liberal economic policies encourage banking
+		modifier = {
+			factor = 1.5
+			has_law = law_laissez_faire
+		}
+	}
+	
+	custom_tooltip = {
+		text = "Baron Rothschild represents Jewish financial expertise and will support Jewish settlement projects if he appears."
+	}
 }
 
 emma_goldman_template = {
@@ -47,6 +136,57 @@ emma_goldman_template = {
 		charismatic
 		firebrand
 		persistent
+	}
+	
+	spawn_chance = {
+		factor = 60
+		
+		# Revolutionary periods favor her appearance
+		modifier = {
+			factor = 3
+			has_modifier = revolutionary_fervor
+		}
+		
+		# Industrial societies with worker movements
+		modifier = {
+			factor = 2
+			any_scope_pop = {
+				pop_type = laborers
+				pop_politicization >= 0.50
+			}
+		}
+		
+		# Historical period
+		modifier = {
+			factor = 0
+			game_date < 1885.1.1
+		}
+		
+		modifier = {
+			factor = 0
+			game_date > 1930.1.1
+		}
+		
+		# Less likely in conservative governments
+		modifier = {
+			factor = 0.3
+			has_law = law_autocracy
+		}
+		
+		# More likely with Jewish persecution
+		modifier = {
+			factor = 1.8
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_loyalties = {
+					loyalty < 0.3
+				}
+			}
+		}
+	}
+	
+	custom_tooltip = {
+		text = "Emma Goldman will emerge during periods of social upheaval to lead Jewish workers and radical movements."
 	}
 }
 
@@ -63,6 +203,53 @@ chaim_weizmann_template = {
 		meticulous
 		diplomatic
 	}
+	
+	spawn_chance = {
+		factor = 70
+		
+		# Requires academic institutions
+		modifier = {
+			factor = 0
+			NOT = {
+				any_scope_building = {
+					is_building_type = building_university
+				}
+			}
+		}
+		
+		# More likely in scientifically advanced countries
+		modifier = {
+			factor = 2
+			has_technology = organic_chemistry
+		}
+		
+		# Historical period
+		modifier = {
+			factor = 0
+			game_date < 1900.1.1
+		}
+		
+		modifier = {
+			factor = 0
+			game_date > 1950.1.1
+		}
+		
+		# Wartime increases his importance (due to historical acetone production)
+		modifier = {
+			factor = 3
+			is_at_war = yes
+		}
+		
+		# Zionist movement context
+		modifier = {
+			factor = 2
+			has_journal_entry = je_zionist_movement
+		}
+	}
+	
+	custom_tooltip = {
+		text = "Chaim Weizmann will appear as a scientist-diplomat who can bridge Jewish aspirations with state interests, especially during wartime."
+	}
 }
 
 abraham_cahan_template = {
@@ -78,9 +265,61 @@ abraham_cahan_template = {
 		charismatic
 		persistent
 	}
+	
+	spawn_chance = {
+		factor = 50
+		
+		# Requires mass media development
+		modifier = {
+			factor = 0
+			NOT = {
+				has_technology = mass_communication
+			}
+		}
+		
+		# More likely with Jewish immigration
+		modifier = {
+			factor = 2
+			has_modifier = jewish_mass_immigration_wave
+		}
+		
+		# Urban, industrial context
+		modifier = {
+			factor = 1.5
+			any_scope_pop = {
+				pop_type = laborers
+				pop_size >= 100000
+			}
+		}
+		
+		# Historical period
+		modifier = {
+			factor = 0
+			game_date < 1880.1.1
+		}
+		
+		modifier = {
+			factor = 0
+			game_date > 1930.1.1
+		}
+		
+		# Socialist movements
+		modifier = {
+			factor = 1.8
+			any_political_movement = {
+				movement_ideology = ideology_radical
+				movement_support >= 0.15
+			}
+		}
+	}
+	
+	custom_tooltip = {
+		text = "Abraham Cahan will emerge to organize Jewish immigrant workers and establish Yiddish-language media."
+	}
 }
 
-# Dynamic character generation templates
+# Dynamic character generation templates with enhanced AI
+
 haskalah_intellectual_template = {
 	culture = cu:ashkenazi_jewish
 	religion = rel:jewish
@@ -99,6 +338,58 @@ haskalah_intellectual_template = {
 			factor = 2
 			has_technology = nationalism
 		}
+		modifier = {
+			factor = 1.5
+			has_technology = academia
+		}
+	}
+	
+	spawn_chance = {
+		factor = 2
+		
+		# Enlightenment period favors Haskalah
+		modifier = {
+			factor = 3
+			game_date > 1780.1.1
+			game_date < 1880.1.1
+		}
+		
+		# Educational institutions required
+		modifier = {
+			factor = 0
+			NOT = {
+				any_scope_building = {
+					is_building_type = building_university
+				}
+			}
+		}
+		
+		# Liberal societies
+		modifier = {
+			factor = 2
+			has_law = law_guaranteed_liberties
+		}
+		
+		# Jewish population requirement
+		modifier = {
+			factor = 0
+			NOT = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 25000
+				}
+			}
+		}
+		
+		# Literacy requirement
+		modifier = {
+			factor = 1.5
+			literacy_rate >= 0.40
+		}
+	}
+	
+	custom_tooltip = {
+		text = "Haskalah intellectuals emerge in enlightened societies to modernize Jewish education and integrate Jewish communities into broader society."
 	}
 }
 
@@ -116,10 +407,51 @@ rabbinical_leader_template = {
 	# More likely in religious communities
 	spawn_chance = {
 		factor = 2
+		
+		# Synagogues increase likelihood
 		modifier = {
 			factor = 3
 			state_has_building = building_synagogue
 		}
+		
+		# Yeshivas even more so
+		modifier = {
+			factor = 5
+			state_has_building = building_yeshiva
+		}
+		
+		# Religious laws favor religious leaders
+		modifier = {
+			factor = 2
+			has_law = law_state_religion
+		}
+		
+		# Persecution can strengthen religious identity
+		modifier = {
+			factor = 1.8
+			has_modifier = state_sponsored_antisemitism
+		}
+		
+		# Modern secular societies reduce their influence
+		modifier = {
+			factor = 0.5
+			has_law = law_total_separation
+		}
+		
+		# Requires Jewish population
+		modifier = {
+			factor = 0
+			NOT = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 15000
+				}
+			}
+		}
+	}
+	
+	custom_tooltip = {
+		text = "Rabbinical leaders provide spiritual guidance and preserve traditional Jewish practices, especially important during times of persecution or rapid change."
 	}
 }
 
@@ -139,10 +471,46 @@ jewish_merchant_template = {
 	# Commercial focus
 	spawn_chance = {
 		factor = 2
+		
+		# Financial districts increase likelihood
 		modifier = {
 			factor = 2
 			state_has_building = building_financial_district
 		}
+		
+		# Ports and trade centers
+		modifier = {
+			factor = 1.5
+			OR = {
+				state_has_building = building_port
+				state_has_building = building_trade_center
+			}
+		}
+		
+		# Free trade policies
+		modifier = {
+			factor = 1.8
+			has_law = law_free_trade
+		}
+		
+		# Commercial law
+		modifier = {
+			factor = 1.5
+			has_law = law_laissez_faire
+		}
+		
+		# Traditional Jewish commercial areas
+		modifier = {
+			factor = 2
+			OR = {
+				region = sr:region_middle_east
+				region = sr:region_mediterranean
+			}
+		}
+	}
+	
+	custom_tooltip = {
+		text = "Jewish merchants excel in international trade and finance, establishing commercial networks that benefit the broader economy."
 	}
 }
 
@@ -160,10 +528,61 @@ bundist_organizer_template = {
 	# More likely during revolutionary periods
 	spawn_chance = {
 		factor = 4
+		
+		# Revolutionary fervor essential
 		modifier = {
 			factor = 3
 			has_modifier = revolutionary_fervor
 		}
+		
+		# Industrial working class required
+		modifier = {
+			factor = 0
+			NOT = {
+				any_scope_pop = {
+					pop_type = laborers
+					pop_size >= 50000
+				}
+			}
+		}
+		
+		# Jewish workers specifically
+		modifier = {
+			factor = 2
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_type = laborers
+				pop_size >= 25000
+			}
+		}
+		
+		# Post-1890s historical context
+		modifier = {
+			factor = 0
+			game_date < 1890.1.1
+		}
+		
+		# Eastern European context
+		modifier = {
+			factor = 2
+			OR = {
+				country_has_primary_culture = cu:russian
+				country_has_primary_culture = cu:polish
+			}
+		}
+		
+		# Socialist movements
+		modifier = {
+			factor = 2
+			any_political_movement = {
+				movement_ideology = ideology_radical
+				movement_support >= 0.20
+			}
+		}
+	}
+	
+	custom_tooltip = {
+		text = "Bundist organizers emerge during revolutionary periods to lead Jewish workers in their struggle for both class and national liberation."
 	}
 }
 
@@ -181,10 +600,54 @@ zionist_pioneer_template = {
 	# Only appears in Palestine settlement context
 	spawn_chance = {
 		factor = 5
+		
+		# Must be in Palestine
 		modifier = {
 			factor = 0
 			NOT = { state_region = s:STATE_PALESTINE }
 		}
+		
+		# Zionist movement must be active
+		modifier = {
+			factor = 2
+			has_journal_entry = je_zionist_movement
+		}
+		
+		# Jewish settlement required
+		modifier = {
+			factor = 0
+			NOT = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 5000
+				}
+			}
+		}
+		
+		# Agricultural cooperatives technology helps
+		modifier = {
+			factor = 2
+			has_technology = agricultural_cooperatives
+		}
+		
+		# Post-1880s context
+		modifier = {
+			factor = 0
+			game_date < 1880.1.1
+		}
+		
+		# Young pioneer demographics
+		modifier = {
+			factor = 1.5
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_type = farmers
+			}
+		}
+	}
+	
+	custom_tooltip = {
+		text = "Zionist pioneers are young Jewish settlers who come to Palestine to build a new society through agricultural work and cooperative living."
 	}
 }
 
@@ -204,9 +667,124 @@ court_jew_template = {
 	# More likely in monarchical governments
 	spawn_chance = {
 		factor = 2
+		
+		# Monarchies favor court Jews
 		modifier = {
 			factor = 3
 			has_law = law_monarchy
 		}
+		
+		# Autocracies also use them
+		modifier = {
+			factor = 2
+			has_law = law_autocracy
+		}
+		
+		# Financial systems required
+		modifier = {
+			factor = 0
+			NOT = {
+				any_scope_building = {
+					is_building_type = building_financial_district
+				}
+			}
+		}
+		
+		# Historical period (decline after emancipation)
+		modifier = {
+			factor = 0.3
+			game_date > 1870.1.1
+		}
+		
+		# Requires Jewish population
+		modifier = {
+			factor = 0
+			NOT = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 10000
+				}
+			}
+		}
+		
+		# Less likely in republics
+		modifier = {
+			factor = 0.5
+			has_law = law_parliamentary_republic
+		}
+	}
+	
+	custom_tooltip = {
+		text = "Court Jews serve traditional monarchies as financial advisors and intermediaries, often facilitating state finances and international trade."
+	}
+}
+
+# New Template: Modern Jewish Scientist
+jewish_scientist_template = {
+	culture_group = jewish
+	religion = rel:jewish
+	ideology = ideology_liberal
+	
+	traits = {
+		innovative
+		meticulous
+		academic
+	}
+	
+	spawn_chance = {
+		factor = 1
+		
+		# Requires modern universities
+		modifier = {
+			factor = 0
+			NOT = {
+				any_scope_building = {
+					is_building_type = building_university
+				}
+			}
+		}
+		
+		# Scientific advancement era
+		modifier = {
+			factor = 3
+			game_date > 1870.1.1
+		}
+		
+		# Advanced technologies
+		modifier = {
+			factor = 2
+			has_technology = organic_chemistry
+		}
+		
+		modifier = {
+			factor = 1.5
+			has_technology = electricity
+		}
+		
+		# Liberal societies
+		modifier = {
+			factor = 2
+			has_law = law_guaranteed_liberties
+		}
+		
+		# Scientific Judaism technology
+		modifier = {
+			factor = 3
+			has_technology = scientific_judaism
+		}
+		
+		# Jewish intellectual population
+		modifier = {
+			factor = 2
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_type = intellectuals
+				pop_size >= 10000
+			}
+		}
+	}
+	
+	custom_tooltip = {
+		text = "Jewish scientists contribute significantly to modern research and development, often emerging from communities that value education and intellectual achievement."
 	}
 }

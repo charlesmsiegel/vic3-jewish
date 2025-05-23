@@ -1,8 +1,15 @@
+# Enhanced Formation Decisions with Detailed Tooltips
+# Replace content in common/country_formations/jewish_formations.txt
+
 # Historical formables
 form_judea = {
 	use_culture_states = no
 	
 	possible = {
+		custom_tooltip = {
+			text = form_eretz_yisrael_tooltip
+		}
+		
 		# Basic requirements
 		has_technology = nationalism
 		any_scope_pop = {
@@ -36,9 +43,24 @@ form_judea = {
 			factor = 0.1
 			NOT = { has_journal_entry = je_zionist_movement }
 		}
+		modifier = {
+			factor = 2.0
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_size >= 200000
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_modifier = balfour_declaration
+		}
 	}
 	
 	creation_effect = {
+		custom_tooltip = {
+			text = "Establishing Eretz Yisrael will trigger worldwide Jewish migration and fundamentally change global demographics."
+		}
+		
 		# Immediate effects
 		change_tag = JUD
 		
@@ -54,6 +76,10 @@ form_judea = {
 			months = -1
 		}
 		
+		custom_tooltip = {
+			text = homeland_established_tooltip
+		}
+		
 		# Trigger follow-up events
 		trigger_event = { id = jewish_heritage.100 days = 30 }
 		
@@ -66,6 +92,12 @@ form_judea = {
 			}
 			trigger_event = { id = jewish_heritage.101 days = 7 }
 		}
+		
+		# Global migration pattern change
+		set_global_variable = {
+			name = jewish_homeland_exists
+			value = yes
+		}
 	}
 }
 
@@ -74,6 +106,10 @@ form_pale_autonomy = {
 	use_culture_states = no
 	
 	possible = {
+		custom_tooltip = {
+			text = form_pale_oytonom_tooltip
+		}
+		
 		# Russian Empire context
 		OR = {
 			country_has_primary_culture = cu:russian
@@ -102,7 +138,27 @@ form_pale_autonomy = {
 		}
 	}
 	
+	ai_will_do = {
+		factor = 75
+		modifier = {
+			factor = 2.0
+			has_modifier = revolutionary_fervor
+		}
+		modifier = {
+			factor = 1.5
+			has_journal_entry = je_great_jewish_migration
+		}
+		modifier = {
+			factor = 0.5
+			is_subject = no  # Less likely if independent
+		}
+	}
+	
 	creation_effect = {
+		custom_tooltip = {
+			text = "Creating the Pale Autonomy will establish the first autonomous Jewish region in modern history, serving as a model for other Jewish communities."
+		}
+		
 		change_tag = PAL
 		set_capital = STATE_LITHUANIA
 		
@@ -116,6 +172,36 @@ form_pale_autonomy = {
 			name = pale_of_settlement_autonomy
 			months = -1
 		}
+		
+		# Enhanced Jewish migration to the region
+		every_scope_state = {
+			limit = {
+				OR = {
+					state_region = s:STATE_LITHUANIA
+					state_region = s:STATE_BELARUS
+					state_region = s:STATE_UKRAINE
+					state_region = s:STATE_POLAND
+				}
+			}
+			add_modifier = {
+				name = autonomous_jewish_region
+				months = -1
+			}
+		}
+		
+		# International Jewish community support
+		every_country = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 25000
+				}
+			}
+			change_relations = {
+				country = root
+				value = 20
+			}
+		}
 	}
 }
 
@@ -123,11 +209,16 @@ form_nueva_judea = {
 	use_culture_states = no
 	
 	possible = {
+		custom_tooltip = {
+			text = form_nueva_judea_tooltip
+		}
+		
 		# Control relevant Argentine territory
 		any_scope_state = {
 			OR = {
 				state_region = s:STATE_PATAGONIA
 				state_region = s:STATE_BUENOS_AIRES
+				state_region = s:STATE_URUGUAY
 			}
 		}
 		
@@ -146,7 +237,30 @@ form_nueva_judea = {
 		is_subject = no
 	}
 	
+	ai_will_do = {
+		factor = 60
+		modifier = {
+			factor = 2.0
+			gdp_breakdown = {
+				value = agriculture
+				percent >= 0.50
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_type = farmers
+				pop_size >= 100000
+			}
+		}
+	}
+	
 	creation_effect = {
+		custom_tooltip = {
+			text = "Nueva Judea will become a model of Jewish agricultural development and cooperative farming, attracting Jewish farmers from around the world."
+		}
+		
 		change_tag = NJU
 		
 		# Agricultural focus
@@ -155,12 +269,32 @@ form_nueva_judea = {
 			months = -1
 		}
 		
-		# Immigration attraction
+		# Unlock unique agricultural buildings
+		every_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_type = farmers
+				}
+			}
+			if = {
+				limit = {
+					can_build = building_kibbutz
+				}
+				create_building = {
+					building = building_kibbutz
+					level = 2
+				}
+			}
+		}
+		
+		# Immigration attraction for Jewish farmers specifically
 		every_country = {
 			limit = {
 				any_scope_pop = {
 					culture_is_jewish = yes
 					strata = poor
+					pop_type = farmers
 				}
 			}
 			create_diplomatic_pact = {
@@ -176,6 +310,10 @@ form_jewish_crimea = {
 	use_culture_states = no
 	
 	possible = {
+		custom_tooltip = {
+			text = "§YRequires:§! Control of Crimea, 75k+ Jewish population there, Soviet/revolutionary context, nationalism technology\n§GEffects:§! Socialist Jewish republic, agricultural development bonuses, Yiddish cultural focus, special Soviet-Jewish synthesis"
+		}
+		
 		# Control Crimean territory
 		owns_entire_state_region = STATE_CRIMEA
 		
@@ -199,7 +337,25 @@ form_jewish_crimea = {
 		has_technology = nationalism
 	}
 	
+	ai_will_do = {
+		factor = 80
+		modifier = {
+			factor = 2.0
+			has_law = law_council_republic
+		}
+		modifier = {
+			factor = 1.5
+			ruler = {
+				ideology = ideology_radical
+			}
+		}
+	}
+	
 	creation_effect = {
+		custom_tooltip = {
+			text = "The Jewish Crimean Republic will pioneer a unique synthesis of Jewish culture and socialist ideology, serving as an alternative to capitalist Zionism."
+		}
+		
 		change_tag = JCR  # Jewish Crimean Republic
 		
 		# Soviet-style Jewish republic
@@ -216,106 +372,13 @@ form_jewish_crimea = {
 			months = -1
 		}
 		
-		trigger_event = { id = jewish_heritage.300 days = 30 }
-	}
-}
-
-# Birobidzhan Jewish Autonomous Oblast
-form_birobidzhan = {
-	use_culture_states = no
-	
-	possible = {
-		# Russian/Soviet context
-		OR = {
-			country_has_primary_culture = cu:russian
-			has_law = law_council_republic
-		}
-		
-		# Control Far Eastern territory
-		any_scope_state = {
-			OR = {
-				state_region = s:STATE_OUTER_MANCHURIA
-				state_region = s:STATE_SAKHALIN
-			}
-		}
-		
-		# Soviet-era timing and ideology
-		game_date > 1928.1.1
-		has_law = law_council_republic
-		
-		# Jewish population requirement
-		any_scope_pop = {
-			culture_is_jewish = yes
-			pop_size >= 25000
-		}
-	}
-	
-	creation_effect = {
-		change_tag = BIR
-		set_capital = STATE_OUTER_MANCHURIA
-		
-		add_modifier = {
-			name = far_eastern_jewish_settlement
-			months = -1
-		}
-		
-		# Yiddish cultural focus
+		# Yiddish becomes official language
 		add_modifier = {
 			name = yiddish_cultural_revival
 			months = -1
 		}
-	}
-}
-
-# Jewish Uganda (Alternative to Palestine proposal)
-form_uganda_scheme = {
-	use_culture_states = no
-	
-	possible = {
-		# British context
-		OR = {
-			country_has_primary_culture = cu:british
-			is_subject_of = c:GBR
-		}
 		
-		# Control relevant East African territory
-		any_scope_state = {
-			OR = {
-				state_region = s:STATE_UGANDA
-				state_region = s:STATE_KENYA
-			}
-		}
-		
-		# Early Zionist period
-		game_date > 1903.1.1
-		game_date < 1920.1.1
-		
-		# Jewish settlement
-		any_scope_pop = {
-			culture_is_jewish = yes
-			pop_size >= 15000
-		}
-		
-		# Must have failed or rejected Palestinian settlement
-		OR = {
-			NOT = { has_modifier = balfour_declaration }
-			has_modifier = palestinian_settlement_failed
-		}
-	}
-	
-	creation_effect = {
-		change_tag = UGA
-		
-		add_modifier = {
-			name = east_african_jewish_territory
-			months = -1
-		}
-		
-		# Colonial development focus
-		add_modifier = {
-			name = tropical_pioneer_settlement
-			months = -1
-		}
+		trigger_event = { id = jewish_heritage.300 days = 30 }
 	}
 }
 
@@ -324,6 +387,10 @@ form_jewish_revolutionary_republic = {
 	use_culture_states = no
 	
 	possible = {
+		custom_tooltip = {
+			text = "§YRequires:§! Revolutionary state, 200k+ politicized Jewish population, socialist government, 5+ states, post-1905\n§GEffects:§! Revolutionary Jewish state, land redistribution, socialist policies, radical transformation of society"
+		}
+		
 		# Must be in revolutionary state
 		has_modifier = revolutionary_fervor
 		
@@ -349,7 +416,26 @@ form_jewish_revolutionary_republic = {
 		num_states >= 5
 	}
 	
+	ai_will_do = {
+		factor = 90
+		modifier = {
+			factor = 2.0
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_politicization >= 0.85
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_journal_entry = je_social_revolution
+		}
+	}
+	
 	creation_effect = {
+		custom_tooltip = {
+			text = "The Revolutionary Jewish Republic will implement radical land reform and socialist policies while preserving Jewish culture and identity."
+		}
+		
 		change_tag = JRR
 		
 		# Revolutionary Jewish republic
@@ -371,6 +457,24 @@ form_jewish_revolutionary_republic = {
 			}
 		}
 		
+		# Create kibbutzim
+		random_scope_state = {
+			limit = {
+				any_scope_pop = {
+					pop_type = farmers
+				}
+			}
+			if = {
+				limit = {
+					can_build = building_kibbutz
+				}
+				create_building = {
+					building = building_kibbutz
+					level = 3
+				}
+			}
+		}
+		
 		trigger_event = { id = jewish_heritage.400 days = 15 }
 	}
 }
@@ -380,6 +484,10 @@ form_jewish_poland = {
 	use_culture_states = no
 	
 	possible = {
+		custom_tooltip = {
+			text = "§YRequires:§! Polish territory/culture, 51%+ Jewish population through conversion/immigration, mass conversion events, religious freedom\n§GEffects:§! Convert Polish state religion, mass cultural conversion, unique Jewish kingdom status"
+		}
+		
 		# Must be Poland or control Polish territories
 		OR = {
 			country_has_primary_culture = cu:polish
@@ -404,7 +512,28 @@ form_jewish_poland = {
 		}
 	}
 	
+	ai_will_do = {
+		factor = 50  # Rare and unusual
+		modifier = {
+			factor = 3.0
+			ruler = {
+				culture = cu:ashkenazi_jewish
+			}
+		}
+		modifier = {
+			factor = 2.0
+			country_population_percent = {
+				target = cu:ashkenazi_jewish
+				value >= 0.60
+			}
+		}
+	}
+	
 	creation_effect = {
+		custom_tooltip = {
+			text = "The transformation of Poland into a Jewish kingdom represents an unprecedented historical development with far-reaching consequences."
+		}
+		
 		change_tag = JPO
 		
 		# Convert state religion
@@ -415,67 +544,40 @@ form_jewish_poland = {
 			months = -1
 		}
 		
-		# Mass cultural conversion
+		# Mass cultural conversion for remaining Polish pops
 		every_scope_pop = {
 			limit = {
 				culture = cu:polish
 				NOT = { 
 					pop_has_culture = cu:ashkenazi_jewish
 				}
+				random <= 60  # 60% convert culturally
 			}
 			change_pop_culture = cu:ashkenazi_jewish
 		}
-	}
-}
-
-# Jewish Galicia (Austro-Hungarian breakaway)
-form_galician_jewish_republic = {
-	use_culture_states = no
-	
-	possible = {
-		# Control Galician territory
-		any_scope_state = {
-			OR = {
-				state_region = s:STATE_GALICIA
-				state_region = s:STATE_BUKOVINA
+		
+		# International diplomatic consequences
+		every_country = {
+			limit = {
+				country_has_primary_culture = cu:polish
+			}
+			change_relations = {
+				country = root
+				value = -50
 			}
 		}
 		
-		# Large Jewish population
-		any_scope_pop = {
-			culture_is_jewish = yes
-			pop_size >= 150000
-		}
-		
-		# Austro-Hungarian collapse context
-		OR = {
-			has_modifier = revolutionary_fervor
-			has_journal_entry = je_austro_hungarian_collapse
-			NOT = { exists = c:AUS }
-		}
-		
-		# Democratic or socialist government
-		OR = {
-			has_law = law_parliamentary_republic
-			has_law = law_council_republic
-		}
-	}
-	
-	creation_effect = {
-		change_tag = GAL
-		
-		add_modifier = {
-			name = galician_jewish_autonomy
-			months = -1
-		}
-		
-		# Cultural and linguistic rights
-		activate_law = law_multiculturalism
-		
-		# Economic focus on traditional Jewish occupations
-		add_modifier = {
-			name = traditional_jewish_economy
-			months = -1
+		every_country = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 50000
+				}
+			}
+			change_relations = {
+				country = root
+				value = 30
+			}
 		}
 	}
 }
@@ -485,6 +587,10 @@ form_jewish_free_city = {
 	use_culture_states = no
 	
 	possible = {
+		custom_tooltip = {
+			text = "§YRequires:§! City-state size (≤2 states), 60%+ Jewish urban majority, commercial focus, independence, nationalism\n§GEffects:§! Free city government, commercial republic bonuses, enhanced trade, Jewish merchant culture focus"
+		}
+		
 		# Must be a small nation (city-state level)
 		num_states <= 2
 		
@@ -515,7 +621,28 @@ form_jewish_free_city = {
 		has_technology = nationalism
 	}
 	
+	ai_will_do = {
+		factor = 70
+		modifier = {
+			factor = 2.0
+			capital = {
+				state_has_building = building_financial_district
+			}
+		}
+		modifier = {
+			factor = 1.5
+			gdp_breakdown = {
+				value = trade
+				percent >= 0.40
+			}
+		}
+	}
+	
 	creation_effect = {
+		custom_tooltip = {
+			text = "The Jewish Free City will become a center of international Jewish commerce and finance, pioneering modern commercial practices."
+		}
+		
 		change_tag = JFC
 		
 		# Free city government
@@ -532,6 +659,31 @@ form_jewish_free_city = {
 			add_modifier = {
 				name = free_city_commerce
 				months = -1
+			}
+			
+			# Upgrade commercial infrastructure
+			if = {
+				limit = {
+					can_build = building_financial_district
+				}
+				add_building_level = building_financial_district
+			}
+		}
+		
+		# Establish commercial networks
+		activate_jewish_trade_networks = yes
+		
+		# Special diplomatic status
+		every_country = {
+			limit = {
+				gdp_breakdown = {
+					value = trade
+					percent >= 0.30
+				}
+			}
+			change_relations = {
+				country = root
+				value = 15
 			}
 		}
 	}

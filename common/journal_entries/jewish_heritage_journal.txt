@@ -1,3 +1,6 @@
+# Enhanced Journal Entries with Tooltips
+# Replace the journal entries in common/journal_entries/jewish_heritage_journal.txt
+
 je_zionist_movement = {
 	icon = "gfx/interface/icons/journal_entries/je_zionism.dds"
 	
@@ -19,6 +22,11 @@ je_zionist_movement = {
 			name = early_zionist_organizing
 			months = 60
 		}
+		
+		# Tooltip explaining the mechanics
+		custom_tooltip = {
+			text = je_zionist_movement_tooltip
+		}
 	}
 	
 	on_complete = {
@@ -27,7 +35,13 @@ je_zionist_movement = {
 			months = -1
 		}
 		
-		custom_tooltip = "Can now form Judea if conditions are met"
+		custom_tooltip = {
+			text = "Can now form Eretz Yisrael if conditions are met"
+		}
+		
+		custom_tooltip = {
+			text = homeland_established_tooltip
+		}
 		
 		trigger_event = { id = jewish_heritage.200 }
 	}
@@ -38,6 +52,10 @@ je_zionist_movement = {
 		add_modifier = {
 			name = failed_zionist_organizing
 			months = 120
+		}
+		
+		custom_tooltip = {
+			text = "Zionist movement loses momentum, making future homeland formation more difficult"
 		}
 	}
 	
@@ -82,6 +100,10 @@ je_great_jewish_migration = {
 	group = je_group_internal_affairs
 	
 	immediate = {
+		custom_tooltip = {
+			text = je_great_jewish_migration_tooltip
+		}
+		
 		# Triggers mass migration mechanics
 		every_scope_state = {
 			limit = {
@@ -106,6 +128,10 @@ je_great_jewish_migration = {
 				months = 120
 			}
 		}
+		
+		custom_tooltip = {
+			text = jewish_migration_attraction_tooltip
+		}
 	}
 	
 	complete = {
@@ -118,6 +144,12 @@ je_great_jewish_migration = {
 	}
 	
 	timeout = 1825  # 5 years
+	
+	on_complete = {
+		custom_tooltip = {
+			text = "Jewish migration patterns have stabilized. Diaspora communities are now established in their new homes."
+		}
+	}
 }
 
 je_dreyfus_affair = {
@@ -138,6 +170,10 @@ je_dreyfus_affair = {
 	}
 	
 	immediate = {
+		custom_tooltip = {
+			text = je_dreyfus_affair_tooltip
+		}
+		
 		# Find or create Jewish officer
 		random_scope_character = {
 			limit = {
@@ -158,6 +194,12 @@ je_dreyfus_affair = {
 		OR = {
 			has_modifier = dreyfus_vindicated
 			has_modifier = dreyfus_condemned
+		}
+	}
+	
+	on_complete = {
+		custom_tooltip = {
+			text = "The Dreyfus Affair has concluded, but its effects on French society and Jewish relations will be long-lasting."
 		}
 	}
 }
@@ -199,6 +241,14 @@ je_religious_conversion_movement = {
 			name = religious_questioning_movement
 			months = 60
 		}
+		
+		custom_tooltip = {
+			text = je_religious_conversion_movement_tooltip
+		}
+		
+		custom_tooltip = {
+			text = conversion_mechanics_tooltip
+		}
 	}
 	
 	complete = {
@@ -230,6 +280,12 @@ je_religious_conversion_movement = {
 			# Setbacks from persecution
 			if = { limit = { has_modifier = state_sponsored_antisemitism } add = -20 }
 			if = { limit = { has_law = law_state_religion } add = -10 }
+		}
+	}
+	
+	on_complete = {
+		custom_tooltip = {
+			text = "Significant religious conversion has occurred, potentially altering the demographic and cultural balance of the nation."
 		}
 	}
 }
@@ -264,6 +320,14 @@ je_mass_jewish_conversion = {
 	}
 	
 	immediate = {
+		custom_tooltip = {
+			text = je_mass_jewish_conversion_tooltip
+		}
+		
+		custom_tooltip = {
+			text = "This represents a major demographic transformation that could fundamentally alter the nation's character."
+		}
+		
 		# Trigger the conversion process
 		trigger_event = { id = jewish_heritage.500 days = 30 }
 		
@@ -278,6 +342,12 @@ je_mass_jewish_conversion = {
 		country_population_percent = {
 			target_culture_is_jewish = yes
 			value >= 0.25
+		}
+	}
+	
+	on_complete = {
+		custom_tooltip = {
+			text = "Mass conversion has fundamentally transformed the nation. Consider forming a Jewish state if conditions permit."
 		}
 	}
 }
@@ -311,6 +381,14 @@ je_judaization_of_state = {
 	}
 	
 	immediate = {
+		custom_tooltip = {
+			text = je_judaization_of_state_tooltip
+		}
+		
+		custom_tooltip = {
+			text = "This process will gradually transform state institutions, culture, and policies to reflect Jewish values and practices."
+		}
+		
 		add_modifier = {
 			name = state_judaization_process
 			months = 120
@@ -325,6 +403,16 @@ je_judaization_of_state = {
 				value >= 0.51
 			}
 			has_modifier = jewish_state_established
+		}
+	}
+	
+	on_complete = {
+		custom_tooltip = {
+			text = "The state has been successfully judaized. All Jewish formable nations are now available if territorial requirements are met."
+		}
+		
+		custom_tooltip = {
+			text = multiple_formation_paths_tooltip
 		}
 	}
 }

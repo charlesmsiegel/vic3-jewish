@@ -1,3 +1,6 @@
+# Enhanced Buildings with Detailed Tooltips
+# Replace content in common/buildings/jewish_heritage_buildings.txt
+
 building_synagogue = {
 	building_group = bg_service
 	city_type = city
@@ -18,7 +21,51 @@ building_synagogue = {
 		}
 	}
 	
+	buildable = {
+		custom_tooltip = {
+			text = building_synagogue_tooltip
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_size >= 1000
+			}
+		}
+	}
+	
 	ai_value = 100
+	
+	# Enhanced AI logic
+	ai_building_weight = {
+		value = 0
+		
+		if = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 5000
+				}
+			}
+			add = 100
+		}
+		
+		# Higher priority in states with large Jewish populations
+		if = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 25000
+				}
+			}
+			add = 200
+		}
+		
+		# Lower priority if already have synagogues
+		if = {
+			limit = {
+				state_has_building = building_synagogue
+			}
+			multiply = 0.5
+		}
+	}
 }
 
 building_kibbutz = {
@@ -44,7 +91,67 @@ building_kibbutz = {
 		}
 	}
 	
+	buildable = {
+		custom_tooltip = {
+			text = building_kibbutz_tooltip
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_type = farmers
+				pop_size >= 2500
+			}
+		}
+	}
+	
 	ai_value = 150
+	
+	ai_building_weight = {
+		value = 0
+		
+		# Base value for agricultural states
+		if = {
+			limit = {
+				gdp_breakdown = {
+					value = agriculture
+					percent >= 0.30
+				}
+			}
+			add = 100
+		}
+		
+		# Higher value for Jewish farming communities
+		if = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_type = farmers
+					pop_size >= 10000
+				}
+			}
+			add = 200
+		}
+		
+		# Bonus for socialist governments
+		if = {
+			limit = {
+				has_law = law_council_republic
+			}
+			add = 150
+		}
+		
+		# Penalty if not enough Jewish farmers
+		if = {
+			limit = {
+				NOT = {
+					any_scope_pop = {
+						culture_is_jewish = yes
+						pop_type = farmers
+						pop_size >= 5000
+					}
+				}
+			}
+			multiply = 0.1
+		}
+	}
 }
 
 building_yeshiva = {
@@ -69,16 +176,82 @@ building_yeshiva = {
 		has_technology = academia
 	}
 	
+	buildable = {
+		custom_tooltip = {
+			text = building_yeshiva_tooltip
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_size >= 25000
+			}
+		}
+		
+		custom_tooltip = {
+			text = "Yeshivas enhance Jewish education and preserve religious traditions while contributing to general innovation."
+		}
+	}
+	
 	# Provides education and cultural services
 	ai_value = 125
+	
+	ai_building_weight = {
+		value = 0
+		
+		# Base value for educated societies
+		if = {
+			limit = {
+				literacy_rate >= 0.40
+			}
+			add = 75
+		}
+		
+		# Higher value for large Jewish communities
+		if = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 50000
+				}
+			}
+			add = 150
+		}
+		
+		# Bonus for religious societies
+		if = {
+			limit = {
+				has_law = law_state_religion
+			}
+			add = 100
+		}
+		
+		# Bonus for multicultural societies
+		if = {
+			limit = {
+				has_law = law_multiculturalism
+			}
+			add = 125
+		}
+		
+		# Penalty if already have many educational institutions
+		if = {
+			limit = {
+				state_has_building = building_university
+			}
+			multiply = 0.8
+		}
+	}
 }
 
-# Production Methods for Synagogue
+# Enhanced Production Methods for Synagogue
 pmg_base_building_synagogue = {
 	production_methods = {
 		pm_simple_synagogue
 		pm_grand_synagogue
 		pm_community_center_synagogue
+	}
+	
+	# Tooltip explaining options
+	custom_tooltip = {
+		text = "Choose between simple religious services, grand ceremonial worship, or comprehensive community center approach."
 	}
 }
 
@@ -99,6 +272,11 @@ pm_simple_synagogue = {
 			country_cultural_acceptance_mult = 0.02
 			state_revolution_threshold_mult = 0.01
 		}
+	}
+	
+	# Tooltip explaining effects
+	custom_tooltip = {
+		text = "Basic synagogue providing essential religious services and modest cultural preservation benefits."
 	}
 }
 
@@ -125,14 +303,51 @@ pm_grand_synagogue = {
 	}
 	
 	required_technology = steel_frame_buildings
+	
+	custom_tooltip = {
+		text = "Magnificent synagogue serving as a center of learning and culture, providing enhanced benefits but requiring more resources."
+	}
 }
 
-# Production Methods for Kibbutz  
+pm_community_center_synagogue = {
+	building_modifiers = {
+		workforce_scaled = {
+			building_employment_clergymen_add = 400
+			building_employment_bureaucrats_add = 300
+			building_employment_laborers_add = 200
+		}
+		
+		level_scaled = {
+			building_input_fabric_add = 8
+			building_input_wood_add = 12
+			building_input_paper_add = 3
+		}
+		
+		unscaled = {
+			# Community integration benefits
+			country_cultural_acceptance_mult = 0.03
+			state_revolution_threshold_mult = 0.03
+			state_pop_qualifications_mult = 0.01
+		}
+	}
+	
+	required_technology = nationalism
+	
+	custom_tooltip = {
+		text = "Modern community center combining religious services with social programs, emphasizing integration and education."
+	}
+}
+
+# Enhanced Production Methods for Kibbutz  
 pmg_base_building_kibbutz = {
 	production_methods = {
 		pm_agricultural_kibbutz
 		pm_mixed_kibbutz
 		pm_industrial_kibbutz
+	}
+	
+	custom_tooltip = {
+		text = "Kibbutzim can focus on pure agriculture, mixed economy, or industrial production based on local needs and technology."
 	}
 }
 
@@ -153,6 +368,10 @@ pm_agricultural_kibbutz = {
 			# Cooperative efficiency
 			building_food_industry_throughput_mult = 0.10
 		}
+	}
+	
+	custom_tooltip = {
+		text = "Traditional agricultural kibbutz focused on farming and food production with cooperative efficiency bonuses."
 	}
 }
 
@@ -178,4 +397,132 @@ pm_mixed_kibbutz = {
 	}
 	
 	required_technology = steel_working
+	
+	custom_tooltip = {
+		text = "Mixed economy kibbutz combining agriculture with light industry, requiring more advanced technology but providing diverse output."
+	}
+}
+
+pm_industrial_kibbutz = {
+	building_modifiers = {
+		workforce_scaled = {
+			building_employment_machinists_add = 1500
+			building_employment_engineers_add = 300
+			building_employment_laborers_add = 700
+		}
+		
+		level_scaled = {
+			building_output_tools_add = 40
+			building_output_steel_add = 20
+			building_output_engines_add = 5
+		}
+		
+		unscaled = {
+			# Industrial efficiency
+			building_manufacturing_throughput_mult = 0.15
+			state_weekly_innovation_mult = 0.02
+		}
+	}
+	
+	required_technology = steel_working
+	required_technology = precision_tooling
+	
+	custom_tooltip = {
+		text = "Industrial kibbutz focusing on manufacturing and engineering, providing innovation bonuses and advanced goods production."
+	}
+}
+
+# Enhanced Production Methods for Yeshiva
+pmg_base_building_yeshiva = {
+	production_methods = {
+		pm_traditional_yeshiva
+		pm_modern_orthodox_yeshiva
+		pm_secular_yeshiva
+	}
+	
+	custom_tooltip = {
+		text = "Yeshivas can emphasize traditional religious study, modern Orthodox education, or secular Jewish learning."
+	}
+}
+
+pm_traditional_yeshiva = {
+	building_modifiers = {
+		workforce_scaled = {
+			building_employment_clergymen_add = 800
+			building_employment_academics_add = 200
+		}
+		
+		level_scaled = {
+			building_input_paper_add = 20
+			building_input_fabric_add = 5
+		}
+		
+		unscaled = {
+			# Religious and cultural focus
+			country_cultural_acceptance_mult = 0.05
+			building_synagogue_throughput_mult = 0.20
+		}
+	}
+	
+	custom_tooltip = {
+		text = "Traditional yeshiva emphasizing religious scholarship and cultural preservation, enhancing synagogue effectiveness."
+	}
+}
+
+pm_modern_orthodox_yeshiva = {
+	building_modifiers = {
+		workforce_scaled = {
+			building_employment_clergymen_add = 500
+			building_employment_academics_add = 400
+			building_employment_bureaucrats_add = 100
+		}
+		
+		level_scaled = {
+			building_input_paper_add = 25
+			building_input_fabric_add = 3
+			building_input_tools_add = 5
+		}
+		
+		unscaled = {
+			# Balanced religious and secular education
+			country_cultural_acceptance_mult = 0.03
+			state_weekly_innovation_mult = 0.02
+			country_legitimacy_govt_total_votes_mult = 0.01
+		}
+	}
+	
+	required_technology = nationalism
+	
+	custom_tooltip = {
+		text = "Modern Orthodox yeshiva combining religious study with secular education, contributing to innovation and governance."
+	}
+}
+
+pm_secular_yeshiva = {
+	building_modifiers = {
+		workforce_scaled = {
+			building_employment_academics_add = 700
+			building_employment_clergymen_add = 200
+			building_employment_bureaucrats_add = 100
+		}
+		
+		level_scaled = {
+			building_input_paper_add = 30
+			building_input_tools_add = 10
+		}
+		
+		unscaled = {
+			# Secular Jewish education focus
+			state_weekly_innovation_mult = 0.04
+			building_university_throughput_mult = 0.15
+			country_cultural_acceptance_mult = 0.02
+		}
+	}
+	
+	required_technology = academia
+	required_technology = nationalism
+	
+	custom_tooltip = {
+		text = "Secular yeshiva focusing on Jewish cultural education and modern learning, significantly boosting innovation and university effectiveness."
+	}
 }

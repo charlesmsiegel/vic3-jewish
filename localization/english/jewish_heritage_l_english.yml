@@ -504,3 +504,92 @@ l_english:
  
  form_fraye_yidishe_shtot_title:0 "Form Fraye Yidishe Shtot"
  form_fraye_yidishe_shtot_desc:0 "Establish an independent Jewish commercial republic based on traditional mercantile expertise."
+ 
+ # Enhanced Tooltips for Jewish Heritage Mod
+ 
+ # Add these to localization/english/jewish_heritage_l_english.yml
+ 
+ # Journal Entry Tooltips
+ je_zionist_movement_tooltip:0 "Tracks progress toward establishing a Jewish homeland in Palestine. Gains progress from Jewish immigration, Zionist organizing, and international support. Completion allows formation of Eretz Yisrael."
+ 
+ je_great_jewish_migration_tooltip:0 "Mass emigration from persecution-affected areas. Jewish populations flee countries with pogroms or discriminatory laws toward more tolerant nations or Jewish homelands."
+ 
+ je_dreyfus_affair_tooltip:0 "A complex legal and social crisis testing French justice and tolerance. Your response will affect Jewish loyalty, international relations, and domestic stability."
+ 
+ je_religious_conversion_movement_tooltip:0 "Tracks growing interest in Jewish faith among non-Jewish populations. Can lead to significant demographic changes if conditions are right."
+ 
+ je_mass_jewish_conversion_tooltip:0 "Large-scale conversion to Judaism during social upheaval. Success depends on Jewish influence, religious freedom, and social conditions."
+ 
+ je_judaization_of_state_tooltip:0 "Progressive adoption of Jewish characteristics by the state. Occurs when Jewish political influence and population reach critical thresholds."
+ 
+ # Formation Decision Tooltips
+ form_eretz_yisrael_tooltip:0 "§YRequires:§! Control of Palestine, 100k+ Jewish population, nationalism technology, and either cultural policies or completed Zionist movement\n§GEffects:§! Massive Jewish immigration attraction, international recognition events, claims on Palestine, special government type"
+ 
+ form_pale_oytonom_tooltip:0 "§YRequires:§! Russian Empire context, 200k+ Jewish population in specific regions, and revolutionary or reform conditions\n§GEffects:§! Autonomous status, reduced persecution, special migration bonuses for Eastern European Jews"
+ 
+ form_nueva_judea_tooltip:0 "§YRequires:§! Argentine territory control, 75k+ Jewish farmers, steel-working technology, and independence\n§GEffects:§! Agricultural focus bonuses, immigration pacts with persecution-affected countries, economic development"
+ 
+ # Technology Tooltips
+ cultural_autonomy_tooltip:0 "§GUnlocks:§! Cultural preservation policies\n§GEffects:§! +25% cultural acceptance, +10% migration attraction\n§YExtra Value:§! AI prioritizes if country has Jewish populations over 50k"
+ 
+ modern_hebrew_revival_tooltip:0 "§GUnlocks:§! Hebrew language revival programs\n§GEffects:§! +5% innovation, reduced ideological incoherence\n§YBest For:§! Jewish nations or countries with 100k+ Jewish populations"
+ 
+ agricultural_cooperatives_tooltip:0 "§GUnlocks:§! Kibbutz building type\n§GEffects:§! +15% food industry throughput, +10% livestock ranch throughput, +3% innovation\n§YSpecial:§! Extra valuable for agricultural economies and Jewish farming communities"
+ 
+ # Building Tooltips
+ building_synagogue_tooltip:0 "§YFunction:§! Provides religious services and cultural preservation for Jewish communities\n§GRequired:§! Any Jewish population in state\n§YProduction Methods:§! Simple (basic services), Grand (enhanced cultural benefits), Community Center (broader social services)"
+ 
+ building_kibbutz_tooltip:0 "§YFunction:§! Collective agricultural communities combining farming with cooperative economics\n§GRequired:§! Jewish farmers population and Agricultural Cooperatives technology\n§YTypes:§! Agricultural (pure farming), Mixed (farming + industry), Industrial (manufacturing focus)"
+ 
+ building_yeshiva_tooltip:0 "§YFunction:§! Traditional Jewish educational institutions providing religious and secular learning\n§GRequired:§! 25k+ Jewish population and Academia technology\n§YBenefits:§! Enhanced education, cultural preservation, innovation bonuses"
+ 
+ # Migration Mechanic Tooltips
+ jewish_migration_attraction_tooltip:0 "§YAttracts Jewish Immigration:§! Universities (+35), Financial Districts (+35), Religious freedom laws (+35), Tolerance policies (+35)\n§RRepels Jewish Immigration:§! Pogrom aftermath (-75), State antisemitism (-75), Religious persecution (-75)"
+ 
+ jewish_homeland_migration_tooltip:0 "§YWhen Jewish Homeland Exists:§! All Jewish populations worldwide experience emigration pressure toward the homeland. Countries can support or restrict this emigration with different consequences."
+ 
+ religious_reversion_tooltip:0 "§YReversion Triggers:§! Crisis periods, cultural institutions, generational change, religious immigration\n§YReversion Rates:§! Crisis (40%), Cultural awakening (50% intellectuals), Generational (25%), Immigration influence (35%)"
+ 
+ # Conversion Mechanic Tooltips
+ conversion_mechanics_tooltip:0 "§YConversion Factors:§! Jewish intellectual influence, interfaith marriages, social upheaval, ruler conversion\n§YConversion Rates:§! Intellectuals (20%), Middle class (25%), Wealthy (40%), Crisis periods (+15%)"
+ 
+ # Modifier Effect Tooltips
+ persecution_effects_tooltip:0 "§RNegative Effects:§! Reduced innovation (-25%), emigration pressure (-80%), economic disruption (-50% financial districts), international isolation (-20% influence)"
+ 
+ tolerance_benefits_tooltip:0 "§GPositive Effects:§! Immigration attraction (+50%), innovation bonus (+15%), commercial networks (+10% financial throughput), international goodwill (+5% influence)"
+ 
+ homeland_established_tooltip:0 "§YMassive Effects:§! Global Jewish migration redirection, +50% immigration attraction, +10% innovation, +25% construction, reduced unrest among Jewish populations worldwide"
+ 
+ # Event Choice Tooltips (examples for major events)
+ zionist_congress_support_tooltip:0 "§GSupport Zionism:§! Starts Zionist movement journal, improves relations with Jewish populations globally, attracts Jewish intellectuals\n§YAI Likelihood:§! 90% (higher if liberal laws)"
+ 
+ zionist_congress_oppose_tooltip:0 "§ROppose Zionism:§! Suppresses movement temporarily, radicalizes Jewish populations, may harm international relations\n§YAI Likelihood:§! 10% (higher if state religion)"
+ 
+ balfour_support_tooltip:0 "§GIssue Declaration:§! Permanent modifier attracting Jewish immigration to Palestine, improves relations with Jewish communities, may create Arab tensions\n§YConsequences:§! Affects Middle Eastern politics for decades"
+ 
+ balfour_reject_tooltip:0 "§RReject Declaration:§! Maintains status quo but disappoints Jewish expectations, may harm relations with Jewish populations globally"
+ 
+ pogrom_investigate_tooltip:0 "§GFull Investigation:§! Restores Jewish loyalty (+15), removes pogrom effects, gains international respect, costs political capital\n§YEffectiveness:§! Depends on government authority and liberal laws"
+ 
+ pogrom_ignore_tooltip:0 "§YMaintain Order:§! Minimal response maintains status quo, continued Jewish emigration pressure, some radicalization"
+ 
+ pogrom_encourage_tooltip:0 "§REncourage Persecution:§! State-sponsored antisemitism, massive Jewish emigration (-50 loyalty), severe international condemnation, economic disruption"
+ 
+ # Character Generation Tooltips
+ jewish_characters_tooltip:0 "§YHistorical Figures:§! Theodor Herzl (Zionist leader), Baron Rothschild (banker), Emma Goldman (anarchist), Chaim Weizmann (scientist/diplomat)\n§YDynamic Types:§! Haskalah intellectuals, Rabbinical leaders, Zionist pioneers, Bundist organizers, Court Jews"
+ 
+ character_spawn_conditions_tooltip:0 "§YSpawn Rates Modified By:§! Religious buildings (+3x rabbis), Revolutionary periods (+3x bundists), Financial districts (+2x merchants), Palestinian settlement (+5x pioneers), Monarchies (+3x court Jews)"
+ 
+ # Economic Network Tooltips
+ jewish_commercial_networks_tooltip:0 "§YRequirements:§! 5k+ Jewish capitalists or shopkeepers in state\n§GEffects:§! Enhanced trade relations with other Jewish communities, automatic trade agreements, improved commercial throughput"
+ 
+ kosher_industry_tooltip:0 "§YDevelopment:§! Automatically creates kosher food production in Jewish population centers\n§GBenefits:§! Specialized food industry, cultural preservation, economic niche development"
+ 
+ jewish_banking_tooltip:0 "§YNetworks:§! Establishes financial districts in Jewish commercial centers\n§GAdvantages:§! Enhanced banking throughput, international financial connections, capital formation"
+ 
+ # Formation Paths Tooltip
+ multiple_formation_paths_tooltip:0 "§YZionist Path:§! Palestine-focused, requires immigration and international support\n§YRevolutionary Path:§! Socialist Jewish states, requires revolutionary conditions\n§YConversion Path:§! Transform existing nations through demographic change\n§YAutonomous Path:§! Self-governance within larger empires"
+ 
+ # Achievement Integration Tooltips
+ achievement_hints_tooltip:0 "§YAchievements Available:§! Restore Khazaria, Create worldwide Jewish network, Convert major power to Judaism, Achieve religious revival, Form multiple Jewish homelands"
+ 

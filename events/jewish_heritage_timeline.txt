@@ -932,3 +932,1314 @@ jewish_timeline.1933 = {
 		}
 	}
 }
+
+# Expanded Dreyfus Affair Chain
+# Add to events/jewish_heritage_timeline.txt
+
+# 1894 - Initial Arrest and Conviction
+jewish_timeline.1894_dreyfus_arrest = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1894_dreyfus_arrest.t
+	desc = jewish_timeline.1894_dreyfus_arrest.d
+	flavor = jewish_timeline.1894_dreyfus_arrest.f
+	
+	duration = 3
+	
+	trigger = {
+		c:FRA = THIS
+		game_date > 1894.10.15
+		game_date < 1895.10.15
+		
+		any_scope_character = {
+			culture = cu:ashkenazi_jewish
+			has_role = general
+		}
+		
+		NOT = { has_variable = dreyfus_affair_started }
+	}
+	
+	immediate = {
+		set_variable = dreyfus_affair_started
+		
+		# Create or find Dreyfus character
+		if = {
+			limit = {
+				NOT = {
+					any_scope_character = {
+						first_name = "Alfred"
+						last_name = "Dreyfus"
+					}
+				}
+			}
+			create_character = {
+				first_name = "Alfred"
+				last_name = "Dreyfus"
+				culture = cu:ashkenazi_jewish
+				religion = rel:jewish
+				birth_date = 1859.10.9
+				
+				traits = {
+					meticulous
+					loyal
+					honorable
+				}
+				
+				roles = { general }
+				
+				on_created = {
+					set_variable = is_alfred_dreyfus
+				}
+			}
+		}
+		
+		random_scope_character = {
+			limit = {
+				OR = {
+					has_variable = is_alfred_dreyfus
+					AND = {
+						first_name = "Alfred"
+						last_name = "Dreyfus"
+					}
+				}
+			}
+			save_scope_as = dreyfus_character
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1894_dreyfus_arrest.a
+		default_option = yes
+		
+		# Proceed with court martial
+		add_modifier = {
+			name = dreyfus_affair_begins
+			months = 48
+		}
+		
+		scope:dreyfus_character = {
+			add_modifier = {
+				name = accused_of_treason
+				months = 48
+			}
+		}
+		
+		# Schedule follow-up events
+		trigger_event = { id = jewish_timeline.1898_jaccuse days = 1460 } # 4 years later
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -10
+				radical = 15
+			}
+		}
+		
+		ai_chance = {
+			factor = 95
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1894_dreyfus_arrest.b
+		
+		# Conduct thorough investigation before proceeding
+		add_modifier = {
+			name = careful_military_investigation
+			months = 12
+		}
+		
+		# Chance to avoid the scandal
+		random_list = {
+			70 = {
+				# Investigation reveals problems, case dropped
+				add_modifier = {
+					name = avoided_dreyfus_scandal
+					months = 60
+				}
+				
+				every_scope_pop = {
+					limit = { culture_is_jewish = yes }
+					change_pop_loyalties = {
+						loyalty = 15
+					}
+				}
+			}
+			30 = {
+				# Investigation still leads to conviction
+				trigger_event = { id = jewish_timeline.1898_jaccuse days = 1460 }
+			}
+		}
+		
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+# 1898 - Emile Zola's "J'Accuse" Letter
+jewish_timeline.1898_jaccuse = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1898_jaccuse.t
+	desc = jewish_timeline.1898_jaccuse.d
+	flavor = jewish_timeline.1898_jaccuse.f
+	
+	duration = 3
+	
+	trigger = {
+		# Triggered by previous event
+		has_modifier = dreyfus_affair_begins
+	}
+	
+	immediate = {
+		# Create Emile Zola character if doesn't exist
+		if = {
+			limit = {
+				NOT = {
+					any_scope_character = {
+						first_name = "Emile"
+						last_name = "Zola"
+					}
+				}
+			}
+			create_character = {
+				first_name = "Emile"
+				last_name = "Zola"
+				culture = cu:french
+				religion = rel:catholic
+				birth_date = 1840.4.2
+				ideology = ideology_liberal
+				
+				traits = {
+					literary
+					charismatic
+					brave
+				}
+				
+				on_created = {
+					set_variable = is_emile_zola
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1898_jaccuse.a
+		
+		# Allow Zola's letter to be published
+		add_modifier = {
+			name = jaccuse_letter_published
+			months = 36
+		}
+		
+		# Society becomes deeply divided
+		add_modifier = {
+			name = dreyfus_affair_divides_france
+			months = 60
+		}
+		
+		# Dreyfusards vs Anti-Dreyfusards
+		every_scope_pop = {
+			limit = { 
+				OR = {
+					pop_type = intellectuals
+					pop_type = academics
+				}
+			}
+			change_pop_loyalties = {
+				radical = 25  # Intellectuals become radicalized
+			}
+		}
+		
+		# Schedule retrial event
+		trigger_event = { id = jewish_timeline.1899_retrial days = 365 }
+		
+		ai_chance = {
+			factor = 80
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1898_jaccuse.b
+		
+		# Suppress Zola's letter and prosecute him
+		add_modifier = {
+			name = zola_letter_suppressed
+			months = 24
+		}
+		
+		# Increased authoritarianism
+		add_modifier = {
+			name = press_censorship_increased
+			months = 36
+		}
+		
+		every_scope_pop = {
+			limit = { 
+				culture_is_jewish = yes
+			}
+			change_pop_loyalties = {
+				loyalty = -20
+				radical = 30
+			}
+		}
+		
+		# International condemnation
+		every_country = {
+			limit = {
+				has_law = law_guaranteed_liberties
+			}
+			change_relations = {
+				country = root
+				value = -15
+			}
+		}
+		
+		# Still leads to retrial eventually
+		trigger_event = { id = jewish_timeline.1899_retrial days = 730 }
+		
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+
+# 1899 - Rennes Retrial
+jewish_timeline.1899_retrial = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1899_retrial.t
+	desc = jewish_timeline.1899_retrial.d
+	flavor = jewish_timeline.1899_retrial.f
+	
+	duration = 3
+	
+	trigger = {
+		# Triggered by previous events
+		OR = {
+			has_modifier = jaccuse_letter_published
+			has_modifier = zola_letter_suppressed
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1899_retrial.a
+		
+		# Fair retrial - reduce sentence but maintain conviction
+		add_modifier = {
+			name = dreyfus_retrial_compromise
+			months = 84  # 7 years until final vindication
+		}
+		
+		# Some restoration of faith in justice
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 5
+				radical = -10
+			}
+		}
+		
+		# But affair continues to simmer
+		add_modifier = {
+			name = ongoing_dreyfus_controversy
+			months = 84
+		}
+		
+		# Schedule final vindication
+		trigger_event = { id = jewish_timeline.1906_vindication days = 2555 } # ~7 years
+		
+		ai_chance = {
+			factor = 60
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1899_retrial.b
+		
+		# Reaffirm original conviction
+		add_modifier = {
+			name = dreyfus_conviction_reaffirmed
+			months = 84
+		}
+		
+		# Massive domestic and international backlash
+		every_scope_pop = {
+			limit = { 
+				OR = {
+					culture_is_jewish = yes
+					pop_type = intellectuals
+				}
+			}
+			change_pop_loyalties = {
+				loyalty = -25
+				radical = 40
+			}
+		}
+		
+		# International isolation
+		every_country = {
+			limit = {
+				has_law = law_guaranteed_liberties
+			}
+			change_relations = {
+				country = root
+				value = -30
+			}
+		}
+		
+		# Eventually forced to vindicate anyway
+		trigger_event = { id = jewish_timeline.1906_vindication days = 2555 }
+		
+		ai_chance = {
+			factor = 40
+		}
+	}
+}
+
+# 1906 - Final Vindication
+jewish_timeline.1906_vindication = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1906_vindication.t
+	desc = jewish_timeline.1906_vindication.d
+	flavor = jewish_timeline.1906_vindication.f
+	
+	duration = 3
+	
+	trigger = {
+		# Triggered by previous events
+		OR = {
+			has_modifier = dreyfus_retrial_compromise
+			has_modifier = dreyfus_conviction_reaffirmed
+		}
+	}
+	
+	immediate = {
+		# Find Dreyfus character if still alive
+		if = {
+			limit = {
+				any_scope_character = {
+					has_variable = is_alfred_dreyfus
+					NOT = { has_trait = deceased }
+				}
+			}
+			random_scope_character = {
+				limit = {
+					has_variable = is_alfred_dreyfus
+				}
+				save_scope_as = dreyfus_character
+			}
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1906_vindication.a
+		default_option = yes
+		
+		# Full vindication and restoration
+		add_modifier = {
+			name = dreyfus_fully_vindicated
+			months = 120
+		}
+		
+		# Restore Dreyfus to rank
+		if = {
+			limit = { exists = scope:dreyfus_character }
+			scope:dreyfus_character = {
+				remove_modifier = accused_of_treason
+				add_modifier = {
+					name = vindicated_hero
+					months = -1
+				}
+			}
+		}
+		
+		# Major restoration of Jewish faith in French justice
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 30
+				radical = -25
+			}
+		}
+		
+		# International respect restored
+		every_country = {
+			limit = {
+				has_law = law_guaranteed_liberties
+			}
+			change_relations = {
+				country = root
+				value = 20
+			}
+		}
+		
+		# Long-term effects on French justice system
+		add_modifier = {
+			name = reformed_military_justice
+			months = -1
+		}
+		
+		ai_chance = {
+			factor = 90
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1906_vindication.b
+		
+		# Grudging partial vindication
+		add_modifier = {
+			name = reluctant_dreyfus_vindication
+			months = 60
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 10
+				radical = -10
+			}
+		}
+		
+		# Continued suspicion about military justice
+		add_modifier = {
+			name = military_justice_questioned
+			months = 240
+		}
+		
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+# Aftermath Event - Rise of Modern Antisemitism
+jewish_timeline.1906_aftermath = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1906_aftermath.t
+	desc = jewish_timeline.1906_aftermath.d
+	flavor = jewish_timeline.1906_aftermath.f
+	
+	duration = 3
+	
+	trigger = {
+		has_modifier = dreyfus_fully_vindicated
+		game_date > 1907.1.1
+	}
+	
+	option = {
+		name = jewish_timeline.1906_aftermath.a
+		
+		# Learn from the affair - strengthen civil rights
+		add_modifier = {
+			name = strengthened_civil_rights
+			months = -1
+		}
+		
+		# Improved protection for minorities
+		add_modifier = {
+			name = minority_protection_laws
+			months = -1
+		}
+		
+		ai_chance = {
+			factor = 70
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1906_aftermath.b
+		
+		# Affair leaves lasting divisions
+		add_modifier = {
+			name = lasting_social_divisions
+			months = 300
+		}
+		
+		# Seeds of future antisemitism
+		add_modifier = {
+			name = antisemitic_undercurrents
+			months = 600
+		}
+		
+		ai_chance = {
+			factor = 30
+		}
+	}
+}
+
+# Late Game Events for Jewish Heritage Mod
+# Add to events/jewish_heritage_timeline.txt
+
+# 1924 - Immigration Act (USA)
+jewish_timeline.1924_immigration_act = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1924_immigration_act.t
+	desc = jewish_timeline.1924_immigration_act.d
+	flavor = jewish_timeline.1924_immigration_act.f
+	
+	duration = 3
+	
+	trigger = {
+		c:USA = THIS
+		game_date > 1924.5.26
+		game_date < 1925.5.26
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 100000
+		}
+		
+		# Economic or social pressure for restriction
+		OR = {
+			average_sol <= 15
+			has_modifier = economic_crisis
+			any_political_movement = {
+				movement_ideology = ideology_traditionalist
+				movement_support >= 0.15
+			}
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1924_immigration_act.a
+		
+		# Implement national origins quotas
+		add_modifier = {
+			name = national_origins_quotas
+			months = 480  # 40 years until 1965 reform
+		}
+		
+		# Severely restricts Jewish immigration
+		add_modifier = {
+			name = restricted_jewish_immigration
+			months = 480
+		}
+		
+		# Affects relations with countries experiencing persecution
+		every_country = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 50000
+				}
+				OR = {
+					has_modifier = state_sponsored_antisemitism
+					has_modifier = economic_antisemitism
+				}
+			}
+			change_relations = {
+				country = root
+				value = -20
+			}
+		}
+		
+		# Domestic Jewish reaction
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -15
+				radical = 20
+			}
+		}
+		
+		ai_chance = {
+			factor = 75
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1924_immigration_act.b
+		
+		# Maintain open immigration policy
+		add_modifier = {
+			name = maintained_open_immigration
+			months = 120
+		}
+		
+		# Continue attracting Jewish refugees
+		add_modifier = {
+			name = refuge_for_persecuted
+			months = 240
+		}
+		
+		# Economic benefits from skilled immigrants
+		add_modifier = {
+			name = immigrant_economic_contribution
+			months = 240
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 20
+			}
+		}
+		
+		ai_chance = {
+			factor = 25
+		}
+	}
+}
+
+# 1925 - Hebrew University Opens
+jewish_timeline.1925_hebrew_university = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1925_hebrew_university.t
+	desc = jewish_timeline.1925_hebrew_university.d
+	flavor = jewish_timeline.1925_hebrew_university.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1925.4.1
+		game_date < 1926.4.1
+		
+		any_scope_state = {
+			state_region = s:STATE_PALESTINE
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_size >= 25000
+			}
+		}
+		
+		has_technology = academia
+	}
+	
+	option = {
+		name = jewish_timeline.1925_hebrew_university.a
+		
+		# Support the university development
+		random_scope_state = {
+			limit = {
+				state_region = s:STATE_PALESTINE
+			}
+			if = {
+				limit = {
+					can_build = building_university
+				}
+				create_building = {
+					building = building_university
+					level = 1
+				}
+			}
+			
+			add_modifier = {
+				name = hebrew_university_established
+				months = -1
+			}
+		}
+		
+		# Attracts Jewish intellectuals globally
+		add_modifier = {
+			name = jewish_intellectual_center
+			months = -1
+		}
+		
+		# International recognition of Jewish scholarship
+		every_country = {
+			limit = {
+				has_law = law_guaranteed_liberties
+			}
+			change_relations = {
+				country = root
+				value = 10
+			}
+		}
+		
+		ai_chance = {
+			factor = 80
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1925_hebrew_university.b
+		
+		# Restrict the university's development
+		add_modifier = {
+			name = restricted_jewish_education
+			months = 120
+		}
+		
+		every_scope_pop = {
+			limit = { 
+				culture_is_jewish = yes
+				state_region = s:STATE_PALESTINE
+			}
+			change_pop_loyalties = {
+				loyalty = -20
+				radical = 25
+			}
+		}
+		
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+
+# 1929 - Stock Market Crash Response
+jewish_timeline.1929_economic_crisis = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1929_economic_crisis.t
+	desc = jewish_timeline.1929_economic_crisis.d
+	flavor = jewish_timeline.1929_economic_crisis.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1929.10.24
+		game_date < 1930.10.24
+		
+		has_modifier = economic_crisis
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			OR = {
+				pop_type = capitalists
+				pop_type = shopkeepers
+			}
+			pop_size >= 25000
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1929_economic_crisis.a
+		
+		# Protect all citizens equally during crisis
+		add_modifier = {
+			name = equal_crisis_protection
+			months = 60
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 10
+			}
+		}
+		
+		ai_chance = {
+			factor = 60
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1929_economic_crisis.b
+		
+		# Allow scapegoating of Jewish financiers
+		add_modifier = {
+			name = economic_antisemitism
+			months = 120
+		}
+		
+		every_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					OR = {
+						pop_type = capitalists
+						pop_type = shopkeepers
+					}
+				}
+			}
+			add_modifier = {
+				name = jewish_economic_persecution
+				months = 120
+			}
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -30
+				radical = 35
+			}
+		}
+		
+		ai_chance = {
+			factor = 40
+		}
+	}
+}
+
+# 1935 - Nuremberg Laws Response
+jewish_timeline.1935_nuremberg_response = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1935_nuremberg_response.t
+	desc = jewish_timeline.1935_nuremberg_response.d
+	flavor = jewish_timeline.1935_nuremberg_response.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1935.9.15
+		game_date < 1936.9.15
+		
+		NOT = { c:GER = THIS }
+		
+		# Nazi Germany exists and has implemented racial laws
+		c:GER = {
+			has_law = law_racial_segregation
+		}
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 15000
+		}
+		
+		has_law = law_guaranteed_liberties
+	}
+	
+	option = {
+		name = jewish_timeline.1935_nuremberg_response.a
+		
+		# Condemn Nazi policies and welcome refugees
+		add_modifier = {
+			name = condemned_nazi_policies
+			months = 120
+		}
+		
+		add_modifier = {
+			name = german_jewish_refugees
+			months = 180
+		}
+		
+		# Refugee immigration
+		capital = {
+			create_pop = {
+				culture = cu:ashkenazi_jewish
+				religion = rel:jewish
+				pop_type = intellectuals
+				size = 3000
+			}
+			create_pop = {
+				culture = cu:ashkenazi_jewish
+				religion = rel:jewish
+				pop_type = shopkeepers
+				size = 5000
+			}
+		}
+		
+		# Diplomatic consequences
+		change_relations = {
+			country = c:GER
+			value = -40
+		}
+		
+		ai_chance = {
+			factor = 80
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1935_nuremberg_response.b
+		
+		# Maintain neutrality and restrict immigration
+		add_modifier = {
+			name = neutrality_maintained
+			months = 60
+		}
+		
+		add_modifier = {
+			name = limited_refugee_acceptance
+			months = 120
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -15
+				radical = 20
+			}
+		}
+		
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+
+# 1938 - Evian Conference
+jewish_timeline.1938_evian_conference = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1938_evian_conference.t
+	desc = jewish_timeline.1938_evian_conference.d
+	flavor = jewish_timeline.1938_evian_conference.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1938.7.6
+		game_date < 1938.7.15
+		
+		OR = {
+			c:USA = THIS
+			c:GBR = THIS
+			c:FRA = THIS
+			c:CAN = THIS
+			c:AUS = THIS
+		}
+		
+		c:GER = {
+			has_modifier = annexed_austria  # After Anschluss
+		}
+		
+		has_law = law_guaranteed_liberties
+	}
+	
+	option = {
+		name = jewish_timeline.1938_evian_conference.a
+		
+		# Commit to accepting significant numbers of refugees
+		add_modifier = {
+			name = evian_conference_commitment
+			months = 60
+		}
+		
+		add_modifier = {
+			name = large_scale_refugee_program
+			months = 120
+		}
+		
+		# Major refugee immigration
+		every_scope_state = {
+			limit = {
+				is_incorporated = yes
+				state_has_building = building_urban_center
+			}
+			create_pop = {
+				culture = cu:ashkenazi_jewish
+				religion = rel:jewish
+				pop_type = laborers
+				size = 8000
+			}
+		}
+		
+		ai_chance = {
+			factor = 30
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1938_evian_conference.b
+		
+		# Express sympathy but offer limited help
+		add_modifier = {
+			name = evian_conference_limited_response
+			months = 60
+		}
+		
+		# Small refugee program
+		capital = {
+			create_pop = {
+				culture = cu:ashkenazi_jewish
+				religion = rel:jewish
+				pop_type = intellectuals
+				size = 2000
+			}
+		}
+		
+		ai_chance = {
+			factor = 70
+		}
+	}
+}
+
+# 1947 - UN Partition Plan Response
+jewish_timeline.1947_partition_plan = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1947_partition_plan.t
+	desc = jewish_timeline.1947_partition_plan.d
+	flavor = jewish_timeline.1947_partition_plan.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1947.11.29
+		game_date < 1948.11.29
+		
+		# Major powers with significant Jewish populations
+		OR = {
+			c:USA = THIS
+			c:SOV = THIS
+			c:GBR = THIS
+			c:FRA = THIS
+		}
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 50000
+		}
+		
+		# Palestine still under mandate or disputed
+		any_country = {
+			any_scope_state = {
+				state_region = s:STATE_PALESTINE
+			}
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1947_partition_plan.a
+		
+		# Support partition and Jewish statehood
+		add_modifier = {
+			name = supported_partition_plan
+			months = 120
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 25
+			}
+		}
+		
+		# Diplomatic effects with Middle Eastern countries
+		every_country = {
+			limit = {
+				capital = {
+					OR = {
+						region = sr:region_middle_east
+						region = sr:region_north_africa
+					}
+				}
+				NOT = {
+					any_scope_pop = {
+						culture_is_jewish = yes
+						pop_size >= 10000
+					}
+				}
+			}
+			change_relations = {
+				country = root
+				value = -15
+			}
+		}
+		
+		ai_chance = {
+			factor = 70
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1947_partition_plan.b
+		
+		# Oppose partition, favor alternative solution
+		add_modifier = {
+			name = opposed_partition_plan
+			months = 60
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -20
+				radical = 25
+			}
+		}
+		
+		ai_chance = {
+			factor = 30
+		}
+	}
+}
+
+# 1948 - Israel Independence
+jewish_timeline.1948_israel_independence = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1948_israel_independence.t
+	desc = jewish_timeline.1948_israel_independence.d
+	flavor = jewish_timeline.1948_israel_independence.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1948.5.14
+		game_date < 1949.5.14
+		
+		# Israel has been formed
+		exists = c:ISR
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 25000
+		}
+		
+		NOT = { c:ISR = THIS }
+	}
+	
+	option = {
+		name = jewish_timeline.1948_israel_independence.a
+		
+		# Immediately recognize Israel
+		add_modifier = {
+			name = recognized_israel_immediately
+			months = -1
+		}
+		
+		create_diplomatic_pact = {
+			country = c:ISR
+			type = defensive_pact
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 30
+			}
+		}
+		
+		# Some Jewish emigration to Israel
+		every_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 5000
+				}
+			}
+			add_modifier = {
+				name = aliyah_emigration_wave
+				months = 180
+			}
+		}
+		
+		ai_chance = {
+			factor = 80
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1948_israel_independence.b
+		
+		# Delay recognition
+		add_modifier = {
+			name = delayed_israel_recognition
+			months = 24
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -15
+				radical = 20
+			}
+		}
+		
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+
+# 1950s - Cold War Jewish Positioning
+jewish_timeline.1950_cold_war_jews = {
+	type = country_event
+	placement = root
+	
+	title = jewish_timeline.1950_cold_war_jews.t
+	desc = jewish_timeline.1950_cold_war_jews.d
+	flavor = jewish_timeline.1950_cold_war_jews.f
+	
+	duration = 3
+	
+	trigger = {
+		game_date > 1950.1.1
+		game_date < 1955.1.1
+		
+		OR = {
+			c:USA = THIS
+			c:SOV = THIS
+		}
+		
+		any_scope_pop = {
+			culture_is_jewish = yes
+			pop_size >= 100000
+		}
+		
+		# Cold War context
+		exists = c:USA
+		exists = c:SOV
+		NOT = {
+			has_diplomatic_pact = {
+				who = c:SOV
+				type = alliance
+			}
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1950_cold_war_jews.a
+		triggered_desc = {
+			trigger = { c:USA = THIS }
+			desc = jewish_timeline.1950_cold_war_jews.a.usa
+		}
+		triggered_desc = {
+			trigger = { c:SOV = THIS }
+			desc = jewish_timeline.1950_cold_war_jews.a.sov
+		}
+		
+		# Embrace Jewish communities as democratic/socialist allies
+		add_modifier = {
+			name = jewish_cold_war_allies
+			months = 240
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = 20
+			}
+		}
+		
+		ai_chance = {
+			factor = 70
+		}
+	}
+	
+	option = {
+		name = jewish_timeline.1950_cold_war_jews.b
+		
+		# View Jewish communities with suspicion
+		add_modifier = {
+			name = jewish_cold_war_suspicion
+			months = 120
+		}
+		
+		every_scope_pop = {
+			limit = { culture_is_jewish = yes }
+			change_pop_loyalties = {
+				loyalty = -15
+				radical = 15
+			}
+		}
+		
+		ai_chance = {
+			factor = 30
+		}
+	}
+}

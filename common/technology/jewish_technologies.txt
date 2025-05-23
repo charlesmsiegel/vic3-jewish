@@ -1,0 +1,544 @@
+# Enhanced Technologies with Detailed Tooltips
+# Replace content in common/technology/jewish_technologies.txt
+
+cultural_autonomy = {
+	category = society
+	era = era_2
+	texture = "gfx/interface/icons/invention_icons/cultural_autonomy.dds"
+	
+	modifier = {
+		country_cultural_acceptance_mult = 0.25
+		country_migration_attraction_mult = 0.10
+	}
+	
+	unlocking_technologies = {
+		nationalism
+	}
+	
+	# Enhanced tooltip explaining the technology
+	custom_tooltip = {
+		text = cultural_autonomy_tooltip
+	}
+	
+	# Additional effects tooltip
+	custom_tooltip = {
+		text = "Unlocks cultural preservation policies and autonomous region options for minority populations."
+	}
+	
+	ai_weight = {
+		value = 1.0
+		
+		# More valuable for multicultural countries
+		if = {
+			limit = {
+				country_cultural_acceptance_average >= 0.75
+			}
+			add = 1.5
+		}
+		
+		# Extra valuable for countries with Jewish pops
+		if = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 50000
+				}
+			}
+			add = 2.0
+		}
+		
+		# More valuable for countries with multiple minority cultures
+		if = {
+			limit = {
+				any_scope_pop = {
+					NOT = { 
+						pop_has_culture = root.primary_culture
+					}
+					pop_size >= 100000
+				}
+			}
+			add = 1.2
+		}
+		
+		# Liberal governments prioritize this
+		if = {
+			limit = {
+				has_law = law_guaranteed_liberties
+			}
+			add = 1.3
+		}
+		
+		# Conservative governments are less interested
+		if = {
+			limit = {
+				has_law = law_national_supremacy
+			}
+			add = -0.5
+		}
+	}
+	
+	# Unlock additional laws or policies
+	on_researched = {
+		custom_tooltip = {
+			text = "Cultural autonomy policies become available for implementation in states with significant minority populations."
+		}
+	}
+}
+
+modern_hebrew_revival = {
+	category = society  
+	era = era_3
+	texture = "gfx/interface/icons/invention_icons/hebrew_revival.dds"
+	
+	modifier = {
+		# Only beneficial if you have Jewish pops
+		country_weekly_innovation_mult = 0.05
+		country_legitimacy_ideological_incoherence_mult = 0.10
+	}
+	
+	unlocking_technologies = {
+		nationalism
+		mass_communication
+	}
+	
+	custom_tooltip = {
+		text = modern_hebrew_revival_tooltip
+	}
+	
+	custom_tooltip = {
+		text = "Enables Hebrew language education programs and enhances Jewish cultural institutions. Effect scales with Jewish population size."
+	}
+	
+	# Conditional modifier based on Jewish population
+	modifier = {
+		trigger = {
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_size >= 100000
+			}
+		}
+		
+		# Additional benefits for substantial Jewish populations
+		building_university_throughput_mult = 0.10
+		country_cultural_acceptance_mult = 0.15
+	}
+	
+	ai_weight = {
+		value = 0.5
+		
+		# Only valuable for Jewish nations or those with large Jewish populations
+		if = {
+			limit = {
+				OR = {
+					primary_culture = {
+						culture_is_jewish = yes
+					}
+					any_scope_pop = {
+						culture_is_jewish = yes
+						pop_size >= 100000
+					}
+				}
+			}
+			add = 3.0
+		}
+		
+		# Extra valuable for Zionist movements
+		if = {
+			limit = {
+				has_journal_entry = je_zionist_movement
+			}
+			add = 2.0
+		}
+		
+		# Valuable for multicultural societies
+		if = {
+			limit = {
+				has_law = law_multiculturalism
+			}
+			add = 1.0
+		}
+		
+		# Less valuable for monocultural states
+		if = {
+			limit = {
+				has_law = law_cultural_exclusion
+			}
+			add = -1.0
+		}
+	}
+	
+	on_researched = {
+		# Immediate effects on Jewish populations
+		every_scope_pop = {
+			limit = {
+				culture_is_jewish = yes
+			}
+			change_pop_loyalties = {
+				loyalty = 10
+			}
+		}
+		
+		# Create Hebrew education programs
+		every_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 25000
+				}
+			}
+			add_modifier = {
+				name = hebrew_education_program
+				months = 240
+			}
+		}
+		
+		custom_tooltip = {
+			text = "Hebrew becomes a recognized language of education and administration in areas with significant Jewish populations."
+		}
+	}
+}
+
+agricultural_cooperatives = {
+	category = production
+	era = era_3
+	texture = "gfx/interface/icons/invention_icons/cooperatives.dds"
+	
+	modifier = {
+		building_food_industry_throughput_mult = 0.15
+		building_livestock_ranch_throughput_mult = 0.10
+		country_weekly_innovation_mult = 0.03
+	}
+	
+	unlocking_technologies = {
+		steel_working
+		banking
+	}
+	
+	custom_tooltip = {
+		text = agricultural_cooperatives_tooltip
+	}
+	
+	custom_tooltip = {
+		text = "Unlocks Kibbutz building type and enables cooperative farming methods that increase agricultural efficiency."
+	}
+	
+	# Additional modifier for societies with cooperative traditions
+	modifier = {
+		trigger = {
+			OR = {
+				has_law = law_council_republic
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_type = farmers
+					pop_size >= 25000
+				}
+			}
+		}
+		
+		# Bonus for socialist or Jewish farming communities
+		building_subsistence_farms_throughput_mult = 0.20
+		state_pop_growth_mult = 1.05
+	}
+	
+	ai_weight = {
+		value = 1.5
+		
+		# More valuable for agricultural nations
+		if = {
+			limit = {
+				gdp_breakdown = {
+					value = agriculture
+					percent >= 0.40
+				}
+			}
+			add = 1.0
+		}
+		
+		# Jewish nations get extra benefit
+		if = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_type = farmers
+				}
+			}
+			add = 1.5
+		}
+		
+		# Socialist governments highly value this
+		if = {
+			limit = {
+				has_law = law_council_republic
+			}
+			add = 2.0
+		}
+		
+		# More valuable for countries with land reform
+		if = {
+			limit = {
+				has_modifier = land_reform_enacted
+			}
+			add = 1.3
+		}
+		
+		# Less valuable for highly industrialized countries
+		if = {
+			limit = {
+				gdp_breakdown = {
+					value = manufacturing
+					percent >= 0.60
+				}
+			}
+			add = -0.5
+		}
+	}
+	
+	on_researched = {
+		# Enable kibbutz construction
+		custom_tooltip = {
+			text = "Kibbutz collective farms become available for construction in areas with Jewish farming populations."
+		}
+		
+		# Immediate agricultural improvements
+		every_scope_building = {
+			limit = {
+				OR = {
+					is_building_type = building_subsistence_farms
+					is_building_type = building_livestock_ranch
+				}
+			}
+			add_modifier = {
+				name = cooperative_farming_methods
+				months = 180
+			}
+		}
+		
+		# Special effects for Jewish farming communities
+		every_scope_state = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_type = farmers
+					pop_size >= 10000
+				}
+			}
+			add_modifier = {
+				name = kibbutz_movement_begins
+				months = 240
+			}
+		}
+	}
+}
+
+# New Technology: Jewish Commercial Networks
+jewish_commercial_networks = {
+	category = society
+	era = era_2
+	texture = "gfx/interface/icons/invention_icons/commercial_networks.dds"
+	
+	modifier = {
+		building_financial_district_throughput_mult = 0.12
+		building_trade_center_throughput_mult = 0.10
+		country_leverage_generation_mult = 0.08
+	}
+	
+	unlocking_technologies = {
+		banking
+		nationalism
+	}
+	
+	custom_tooltip = {
+		text = "Enables Jewish commercial networks that enhance trade between Jewish communities worldwide and improve financial sector efficiency."
+	}
+	
+	# Conditional effects based on Jewish populations
+	modifier = {
+		trigger = {
+			any_scope_pop = {
+				culture_is_jewish = yes
+				OR = {
+					pop_type = capitalists
+					pop_type = shopkeepers
+				}
+				pop_size >= 15000
+			}
+		}
+		
+		# Enhanced effects for significant Jewish commercial populations
+		country_trade_route_quantity_mult = 0.15
+		building_port_throughput_mult = 0.08
+	}
+	
+	ai_weight = {
+		value = 1.2
+		
+		# Highly valuable for countries with Jewish commercial populations
+		if = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					OR = {
+						pop_type = capitalists
+						pop_type = shopkeepers
+					}
+					pop_size >= 25000
+				}
+			}
+			add = 2.5
+		}
+		
+		# Valuable for trade-focused economies
+		if = {
+			limit = {
+				gdp_breakdown = {
+					value = trade
+					percent >= 0.30
+				}
+			}
+			add = 1.5
+		}
+		
+		# More valuable if other countries also have Jewish populations
+		if = {
+			limit = {
+				any_country = {
+					any_scope_pop = {
+						culture_is_jewish = yes
+						pop_size >= 50000
+					}
+					NOT = { THIS = root }
+				}
+			}
+			add = 1.0
+		}
+	}
+	
+	on_researched = {
+		# Activate commercial networks
+		activate_jewish_trade_networks = yes
+		
+		# Improve relations with other Jewish communities
+		every_country = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_size >= 25000
+				}
+				NOT = { THIS = root }
+			}
+			change_relations = {
+				country = root
+				value = 10
+			}
+		}
+		
+		custom_tooltip = {
+			text = "Jewish commercial networks establish enhanced trade relationships with other countries containing Jewish populations."
+		}
+	}
+}
+
+# New Technology: Scientific Judaism
+scientific_judaism = {
+	category = society
+	era = era_3
+	texture = "gfx/interface/icons/invention_icons/scientific_judaism.dds"
+	
+	modifier = {
+		building_university_throughput_mult = 0.18
+		country_weekly_innovation_mult = 0.08
+		building_yeshiva_throughput_mult = 0.25
+	}
+	
+	unlocking_technologies = {
+		academia
+		modern_hebrew_revival
+	}
+	
+	custom_tooltip = {
+		text = "Enables the Wissenschaft des Judentums movement, applying scientific methods to Jewish studies and enhancing academic institutions."
+	}
+	
+	# Special effects for Jewish intellectual communities
+	modifier = {
+		trigger = {
+			any_scope_pop = {
+				culture_is_jewish = yes
+				pop_type = intellectuals
+				pop_size >= 10000
+			}
+		}
+		
+		# Bonus for significant Jewish intellectual populations
+		country_weekly_innovation_mult = 0.05  # Additional bonus
+		building_arts_academy_throughput_mult = 0.15
+	}
+	
+	ai_weight = {
+		value = 1.0
+		
+		# Highly valuable for countries with Jewish intellectuals
+		if = {
+			limit = {
+				any_scope_pop = {
+					culture_is_jewish = yes
+					pop_type = intellectuals
+					pop_size >= 15000
+				}
+			}
+			add = 3.0
+		}
+		
+		# Valuable for countries with universities and yeshivas
+		if = {
+			limit = {
+				any_scope_building = {
+					OR = {
+						is_building_type = building_university
+						is_building_type = building_yeshiva
+					}
+				}
+			}
+			add = 1.5
+		}
+		
+		# More valuable for liberal societies
+		if = {
+			limit = {
+				has_law = law_guaranteed_liberties
+			}
+			add = 1.2
+		}
+	}
+	
+	on_researched = {
+		# Enhance all educational institutions
+		every_scope_building = {
+			limit = {
+				OR = {
+					is_building_type = building_university
+					is_building_type = building_yeshiva
+				}
+			}
+			add_modifier = {
+				name = scientific_study_methods
+				months = -1
+			}
+		}
+		
+		# Special effects for Jewish intellectuals
+		every_scope_pop = {
+			limit = {
+				culture_is_jewish = yes
+				pop_type = intellectuals
+			}
+			change_pop_loyalties = {
+				loyalty = 15
+			}
+		}
+		
+		custom_tooltip = {
+			text = "Scientific methods revolutionize Jewish scholarship, attracting international recognition and enhancing all forms of education."
+		}
+	}
+}
